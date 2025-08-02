@@ -60,8 +60,8 @@ all: main-build
 main-build: Flash_Memory_Try.elf secondary-outputs
 
 # Tool invocations
-Flash_Memory_Try.elf Flash_Memory_Try.map: $(OBJS) $(USER_OBJS) C:\Users\Oguzm\STM32CubeIDE\tei\Flash_Memory_Try\STM32G071RBTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Flash_Memory_Try.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0plus -T"C:\Users\Oguzm\STM32CubeIDE\tei\Flash_Memory_Try\STM32G071RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Flash_Memory_Try.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Flash_Memory_Try.elf Flash_Memory_Try.map: $(OBJS) $(USER_OBJS) C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\Flash_Memory_Try\STM32G071RBTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Flash_Memory_Try.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0plus -T"C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\Flash_Memory_Try\STM32G071RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Flash_Memory_Try.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
