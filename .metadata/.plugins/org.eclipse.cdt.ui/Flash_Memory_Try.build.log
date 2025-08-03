@@ -1,18 +1,10 @@
-16:23:38 **** Incremental Build of configuration Debug for project Flash_Memory_Try ****
+18:02:41 **** Incremental Build of configuration Debug for project Flash_Memory_Try ****
 make -j8 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G071xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "Flash_Memory_Try.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\Flash_Memory_Try\STM32G071RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Flash_Memory_Try.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-C:/Users/Oguzm/Downloads/STM32CubeIDE_1.18.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: warning: Flash_Memory_Try.elf has a LOAD segment with RWX permissions
-Finished building target: Flash_Memory_Try.elf
- 
 arm-none-eabi-size  Flash_Memory_Try.elf 
-arm-none-eabi-objdump -h -S Flash_Memory_Try.elf  > "Flash_Memory_Try.list"
    text	   data	    bss	    dec	    hex	filename
    8536	      0	  18072	  26608	   67f0	Flash_Memory_Try.elf
 Finished building: default.size.stdout
  
-Finished building: Flash_Memory_Try.list
- 
 
-16:23:46 Build Finished. 0 errors, 1 warnings. (took 8s.98ms)
+18:02:42 Build Finished. 0 errors, 0 warnings. (took 334ms)
 
