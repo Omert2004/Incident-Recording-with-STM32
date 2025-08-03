@@ -72,6 +72,11 @@ void Error_Handler(void);
 
 /* USER CODE BEGIN Private defines */
 
+void MPU6050_Init(void);
+void MPU6050_Read_Accel(void);
+void MPU6050_Read_Gyro(void);
+
+
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

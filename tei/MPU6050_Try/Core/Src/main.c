@@ -18,10 +18,10 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include <stdio.h>
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include <stdio.h>
 
 /* USER CODE END Includes */
 
@@ -38,6 +38,19 @@
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
 #define MPU6050_ADDR 0x68
+
+int16_t Accel_X_RAW;
+int16_t Accel_Y_RAW;
+int16_t Accel_Z_RAW;
+
+
+int16_t Gyro_X_RAW;
+int16_t Gyro_Y_RAW;
+int16_t Gyro_Z_RAW;
+
+float Gx;
+float Gy;
+float Gz;
 
 /* USER CODE END PM */
 
@@ -96,6 +109,7 @@ int main(void)
   MX_USART2_UART_Init();
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
+  MPU6050_Init();
 
   /*
   for (uint8_t addr = 0; addr < 127; addr++)
@@ -120,13 +134,21 @@ int main(void)
   }
 
 
-  HAL_I2C_Mem_Write(&hi2c1,  (MPU6050_ADDR << 1) , 27 , 1 , pData, Size, Timeout)
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  MPU6050_Read_Accel();
+	  MPU6050_Read_Gyro();
+
+	  printf("Ax: %d\tGx: %.2f\r\n", Accel_X_RAW, Gx);
+	  printf("Ay: %d\tGy: %.2f\r\n", Accel_Y_RAW, Gy);
+	  printf("Az: %d\tGz: %.2f\r\n", Accel_Z_RAW, Gz);
+
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -150,10 +172,8 @@ void SystemClock_Config(void)
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
-  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.HSIDiv = RCC_HSI_DIV1;
-  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
@@ -164,7 +184,7 @@ void SystemClock_Config(void)
   */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSE;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
 
@@ -190,7 +210,7 @@ static void MX_I2C1_Init(void)
 
   /* USER CODE END I2C1_Init 1 */
   hi2c1.Instance = I2C1;
-  hi2c1.Init.Timing = 0x00503D58;
+  hi2c1.Init.Timing = 0x00201D2B;
   hi2c1.Init.OwnAddress1 = 0;
   hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
   hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
@@ -304,6 +324,54 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+void MPU6050_Init(void){
+
+	uint8_t data;
+
+	//Wake sensor up -> register 0x6B
+	HAL_I2C_Mem_Write(&hi2c1, MPU6050_ADDR <<1, 0x6B, 1, &data, 1, 1000);
+
+	//SET DATA RATE of 1Khz -> SMPLRT_DIV register
+	data = 0x07;
+	HAL_I2C_Mem_Write(&hi2c1, MPU6050_ADDR <<1, 0x19, 1, &data, 1, 1000);
+
+	//GYRO_CONFIG <strong>±</strong> 250 ̐/s
+	data = 0x00;
+	HAL_I2C_Mem_Write(&hi2c1, MPU6050_ADDR <<1, 0x1B, 1, &data, 1, 1000);
+
+	//ACCEL_CONFIG  <strong>±</strong> 2g
+	data = 0x00;
+	HAL_I2C_Mem_Write(&hi2c1, MPU6050_ADDR <<1, 0x1C, 1, &data, 1, 1000);
+
+}
+
+void MPU6050_Read_Accel(void){
+	uint8_t Accel_Data[6];
+
+	// Read 6 BYTES of data starting from ACCEL_XOUT_H (0x3B) register
+	HAL_I2C_Mem_Read (&hi2c1, MPU6050_ADDR <<1 , 0x3B, 1, Accel_Data, 6, 1000);
+	Accel_X_RAW = (int16_t)(Accel_Data[0] << 8 | Accel_Data[1]);
+	Accel_Y_RAW = (int16_t)(Accel_Data[2] << 8 | Accel_Data[3]);
+	Accel_Z_RAW = (int16_t)(Accel_Data[4] << 8 | Accel_Data[5]);
+}
+
+void MPU6050_Read_Gyro (void)
+{
+	uint8_t Gyro_Data[6];
+
+	// Read 6 BYTES of data starting from GYRO_XOUT_H register
+	HAL_I2C_Mem_Read (&hi2c1, MPU6050_ADDR <<1, 0x43, 1, Gyro_Data, 6, 1000);
+
+	Gyro_X_RAW = (int16_t)(Gyro_Data[0] << 8 | Gyro_Data[1]);
+	Gyro_Y_RAW = (int16_t)(Gyro_Data[2] << 8 | Gyro_Data[3]);
+	Gyro_Z_RAW = (int16_t)(Gyro_Data[4] << 8 | Gyro_Data[5]);
+
+	Gx = (float)Gyro_X_RAW/131.0;
+	Gy = (float)Gyro_Y_RAW/131.0;
+	Gz = (float)Gyro_Z_RAW/131.0;
+}
+
 
 /* USER CODE END 4 */
 
