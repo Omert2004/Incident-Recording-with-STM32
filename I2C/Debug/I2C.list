@@ -5823,7 +5823,7 @@ void MPU6050_Read_Accel(void){
  8002c6e:	f003 ff49 	bl	8006b04 <iprintf>
 
 	// Compute pitch and roll
-	    roll_acc  = atan2((float)Accel_Y_RAW, (float)Accel_Z_RAW) * 180.0 / M_PI;
+	roll_acc  = atan2((float)Accel_Y_RAW, (float)Accel_Z_RAW) * 180.0 / M_PI;
  8002c72:	4b3e      	ldr	r3, [pc, #248]	@ (8002d6c <MPU6050_Read_Accel+0x180>)
  8002c74:	2200      	movs	r2, #0
  8002c76:	5e9b      	ldrsh	r3, [r3, r2]
@@ -5865,7 +5865,7 @@ void MPU6050_Read_Accel(void){
  8002cce:	1c02      	adds	r2, r0, #0
  8002cd0:	4b2d      	ldr	r3, [pc, #180]	@ (8002d88 <MPU6050_Read_Accel+0x19c>)
  8002cd2:	601a      	str	r2, [r3, #0]
-	    pitch_acc = atan2(-(float)Accel_X_RAW, sqrt(Accel_Y_RAW * Accel_Y_RAW + Accel_Z_RAW * Accel_Z_RAW)) * 180.0 / M_PI;
+	pitch_acc = atan2(-(float)Accel_X_RAW, sqrt(Accel_Y_RAW * Accel_Y_RAW + Accel_Z_RAW * Accel_Z_RAW)) * 180.0 / M_PI;
  8002cd4:	4b24      	ldr	r3, [pc, #144]	@ (8002d68 <MPU6050_Read_Accel+0x17c>)
  8002cd6:	2200      	movs	r2, #0
  8002cd8:	5e9b      	ldrsh	r3, [r3, r2]
@@ -5926,6 +5926,8 @@ void MPU6050_Read_Accel(void){
  8002d56:	1c02      	adds	r2, r0, #0
  8002d58:	4b0c      	ldr	r3, [pc, #48]	@ (8002d8c <MPU6050_Read_Accel+0x1a0>)
  8002d5a:	601a      	str	r2, [r3, #0]
+
+
 
 
 }

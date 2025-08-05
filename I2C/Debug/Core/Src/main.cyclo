@@ -5,5 +5,5 @@
 ../Core/Src/main.c:306:13:MX_GPIO_Init	1
 ../Core/Src/main.c:336:6:MPU6050_Init	1
 ../Core/Src/main.c:357:6:MPU6050_Read_Accel	1
-../Core/Src/main.c:375:6:MPU6050_Read_Gyro	1
-../Core/Src/main.c:398:6:Error_Handler	1
+../Core/Src/main.c:377:6:MPU6050_Read_Gyro	1
+../Core/Src/main.c:400:6:Error_Handler	1

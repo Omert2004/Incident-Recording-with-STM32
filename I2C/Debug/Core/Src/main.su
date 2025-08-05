@@ -5,5 +5,5 @@
 ../Core/Src/main.c:306:13:MX_GPIO_Init	56	static
 ../Core/Src/main.c:336:6:MPU6050_Init	32	static
 ../Core/Src/main.c:357:6:MPU6050_Read_Accel	40	static
-../Core/Src/main.c:375:6:MPU6050_Read_Gyro	32	static
-../Core/Src/main.c:398:6:Error_Handler	8	static,ignoring_inline_asm
+../Core/Src/main.c:377:6:MPU6050_Read_Gyro	32	static
+../Core/Src/main.c:400:6:Error_Handler	8	static,ignoring_inline_asm
