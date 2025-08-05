@@ -1,0 +1,114 @@
+2025-08-04 00:21:48,812 [INFO] I2cTimingTraitement:330 - 0x20E2A7F4
+2025-08-04 00:21:51,330 [INFO] I2cTimingTraitement:330 - 0x20E2A7F4
+2025-08-04 00:21:51,611 [INFO] I2cTimingTraitement:330 - 0x10B17DB5
+2025-08-04 00:21:56,444 [INFO] I2cTimingTraitement:330 - 0x00201D2B
+2025-08-04 00:22:12,853 [INFO] I2cTimingTraitement:330 - 0x10B17DB5
+2025-08-04 00:22:18,109 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 421464024 Bytes (1049624576)
+2025-08-04 00:22:19,703 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 601132840 Bytes (1052770304)
+2025-08-04 00:22:20,486 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 713952360 Bytes (1052770304)
+2025-08-04 00:22:20,906 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: NVIC
+2025-08-04 00:22:20,906 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: USART
+2025-08-04 00:22:20,906 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SYS
+2025-08-04 00:22:20,907 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: GPIO
+2025-08-04 00:22:20,907 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: RCC
+2025-08-04 00:22:20,907 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: I2C
+2025-08-04 00:22:20,910 [INFO] CodeGenerator:882 - code generatio: config db path: C:\Users\Oguzm\Downloads\STM32CubeIDE_1.18.1\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.14.1.202504091515\\db\
+2025-08-04 00:22:21,107 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\MXTmpFiles\license.tmp_save
+2025-08-04 00:22:21,407 [INFO] CodeEngine:287 - Generated code: C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\MXTmpFiles\license.tmp
+2025-08-04 00:22:21,485 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\MXTmpFiles\gpio.tmp_save
+2025-08-04 00:22:21,637 [INFO] CodeEngine:287 - Generated code: C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\MXTmpFiles\gpio.tmp
+2025-08-04 00:22:22,027 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\Core\Src\stm32g0xx_it.c_save
+2025-08-04 00:22:22,391 [INFO] CodeEngine:287 - Generated code: C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\Core\Src\stm32g0xx_it.c
+2025-08-04 00:22:22,402 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\Core\Inc\stm32g0xx_it.h_save
+2025-08-04 00:22:22,507 [INFO] CodeEngine:287 - Generated code: C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\Core\Inc\stm32g0xx_it.h
+2025-08-04 00:22:22,531 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\Core\Src\stm32g0xx_hal_msp.c_save
+2025-08-04 00:22:22,739 [INFO] CodeEngine:287 - Generated code: C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\Core\Src\stm32g0xx_hal_msp.c
+2025-08-04 00:22:22,752 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\MXTmpFiles\system.tmp_save
+2025-08-04 00:22:22,841 [INFO] CodeEngine:287 - Generated code: C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\MXTmpFiles\system.tmp
+2025-08-04 00:22:22,859 [INFO] CodeEngine:319 - oldGeneratedFile, C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\Core\Inc\stm32g0xx_hal_conf.h_save
+2025-08-04 00:22:22,954 [INFO] CodeEngine:343 - Generated code: C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\Core\Inc\stm32g0xx_hal_conf.h
+2025-08-04 00:22:23,009 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\Core\Inc\main.h_save
+2025-08-04 00:22:23,136 [INFO] CodeEngine:287 - Generated code: C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\Core\Inc\main.h
+2025-08-04 00:22:23,146 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\Core\Src\main.c_save
+2025-08-04 00:22:23,309 [INFO] CodeEngine:287 - Generated code: C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\Core\Src\main.c
+2025-08-04 00:22:24,095 [INFO] ProjectBuilder:3324 - Time for Copy HAL[1] : 416mS.
+2025-08-04 00:22:24,103 [INFO] ProjectBuilder:4912 - Project Generator version: 4.6.0.1-B1
+2025-08-04 00:22:24,260 [INFO] ConfigFileManager:1590 - The Die is : DIE460
+2025-08-04 00:22:26,148 [INFO] ProjectBuilder:5191 - Time for Generating toolchain IDE Files: 2046mS.
+2025-08-04 00:22:26,150 [INFO] ProjectBuilder:3181 - Time for Copy CMSIS : 1mS.
+2025-08-04 00:22:26,153 [INFO] ProjectBuilder:3181 - Time for Copy CMSIS : 0mS.
+2025-08-04 00:27:21,408 [INFO] I2cTimingTraitement:330 - 0x10B17DB5
+2025-08-04 00:27:21,685 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2025-08-04 00:27:26,678 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2025-08-04 00:27:46,357 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 551025576 Bytes (1073741824)
+2025-08-04 00:27:48,430 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 581347744 Bytes (1073741824)
+2025-08-04 00:27:48,981 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: NVIC
+2025-08-04 00:27:48,982 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: USART
+2025-08-04 00:27:48,982 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SYS
+2025-08-04 00:27:48,983 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: GPIO
+2025-08-04 00:27:48,983 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: RCC
+2025-08-04 00:27:48,983 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: I2C
+2025-08-04 00:27:48,985 [INFO] CodeGenerator:882 - code generatio: config db path: C:\Users\Oguzm\Downloads\STM32CubeIDE_1.18.1\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.14.1.202504091515\\db\
+2025-08-04 00:27:49,120 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\MXTmpFiles\license.tmp_save
+2025-08-04 00:27:49,366 [INFO] CodeEngine:287 - Generated code: C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\MXTmpFiles\license.tmp
+2025-08-04 00:27:49,419 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\MXTmpFiles\gpio.tmp_save
+2025-08-04 00:27:49,541 [INFO] CodeEngine:287 - Generated code: C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\MXTmpFiles\gpio.tmp
+2025-08-04 00:27:49,791 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\Core\Src\stm32g0xx_it.c_save
+2025-08-04 00:27:50,095 [INFO] CodeEngine:287 - Generated code: C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\Core\Src\stm32g0xx_it.c
+2025-08-04 00:27:50,107 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\Core\Inc\stm32g0xx_it.h_save
+2025-08-04 00:27:50,181 [INFO] CodeEngine:287 - Generated code: C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\Core\Inc\stm32g0xx_it.h
+2025-08-04 00:27:50,197 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\Core\Src\stm32g0xx_hal_msp.c_save
+2025-08-04 00:27:50,341 [INFO] CodeEngine:287 - Generated code: C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\Core\Src\stm32g0xx_hal_msp.c
+2025-08-04 00:27:50,347 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\MXTmpFiles\system.tmp_save
+2025-08-04 00:27:50,406 [INFO] CodeEngine:287 - Generated code: C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\MXTmpFiles\system.tmp
+2025-08-04 00:27:50,423 [INFO] CodeEngine:319 - oldGeneratedFile, C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\Core\Inc\stm32g0xx_hal_conf.h_save
+2025-08-04 00:27:50,490 [INFO] CodeEngine:343 - Generated code: C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\Core\Inc\stm32g0xx_hal_conf.h
+2025-08-04 00:27:50,531 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\Core\Inc\main.h_save
+2025-08-04 00:27:50,656 [INFO] CodeEngine:287 - Generated code: C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\Core\Inc\main.h
+2025-08-04 00:27:50,665 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\Core\Src\main.c_save
+2025-08-04 00:27:50,799 [INFO] CodeEngine:287 - Generated code: C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\Core\Src\main.c
+2025-08-04 00:27:51,214 [INFO] ProjectBuilder:3324 - Time for Copy HAL[1] : 229mS.
+2025-08-04 00:27:51,219 [INFO] ProjectBuilder:4912 - Project Generator version: 4.6.0.1-B1
+2025-08-04 00:27:51,294 [INFO] ConfigFileManager:1590 - The Die is : DIE460
+2025-08-04 00:27:52,534 [INFO] ProjectBuilder:5191 - Time for Generating toolchain IDE Files: 1315mS.
+2025-08-04 00:27:52,538 [INFO] ProjectBuilder:3181 - Time for Copy CMSIS : 2mS.
+2025-08-04 00:27:52,542 [INFO] ProjectBuilder:3181 - Time for Copy CMSIS : 0mS.
+2025-08-04 00:30:55,745 [INFO] I2cTimingTraitement:330 - 0x20E2A7F4
+2025-08-04 00:31:02,379 [INFO] I2cTimingTraitement:330 - 0x10B17DB5
+2025-08-04 00:31:04,276 [INFO] I2cTimingTraitement:330 - 0x20E2A7F4
+2025-08-04 00:31:06,306 [INFO] I2cTimingTraitement:330 - 0x10B17DB5
+2025-08-04 00:31:08,851 [INFO] I2cTimingTraitement:330 - 0x00201D2B
+2025-08-04 00:31:11,408 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 562986264 Bytes (1073741824)
+2025-08-04 00:31:13,274 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 355654464 Bytes (898629632)
+2025-08-04 00:31:16,291 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 798524864 Bytes (1055916032)
+2025-08-04 00:31:16,889 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: NVIC
+2025-08-04 00:31:16,889 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: USART
+2025-08-04 00:31:16,889 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SYS
+2025-08-04 00:31:16,890 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: GPIO
+2025-08-04 00:31:16,890 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: RCC
+2025-08-04 00:31:16,890 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: I2C
+2025-08-04 00:31:16,892 [INFO] CodeGenerator:882 - code generatio: config db path: C:\Users\Oguzm\Downloads\STM32CubeIDE_1.18.1\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.14.1.202504091515\\db\
+2025-08-04 00:31:17,035 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\MXTmpFiles\license.tmp_save
+2025-08-04 00:31:17,245 [INFO] CodeEngine:287 - Generated code: C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\MXTmpFiles\license.tmp
+2025-08-04 00:31:17,297 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\MXTmpFiles\gpio.tmp_save
+2025-08-04 00:31:17,428 [INFO] CodeEngine:287 - Generated code: C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\MXTmpFiles\gpio.tmp
+2025-08-04 00:31:17,659 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\Core\Src\stm32g0xx_it.c_save
+2025-08-04 00:31:17,901 [INFO] CodeEngine:287 - Generated code: C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\Core\Src\stm32g0xx_it.c
+2025-08-04 00:31:17,908 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\Core\Inc\stm32g0xx_it.h_save
+2025-08-04 00:31:17,995 [INFO] CodeEngine:287 - Generated code: C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\Core\Inc\stm32g0xx_it.h
+2025-08-04 00:31:18,012 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\Core\Src\stm32g0xx_hal_msp.c_save
+2025-08-04 00:31:18,155 [INFO] CodeEngine:287 - Generated code: C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\Core\Src\stm32g0xx_hal_msp.c
+2025-08-04 00:31:18,161 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\MXTmpFiles\system.tmp_save
+2025-08-04 00:31:18,231 [INFO] CodeEngine:287 - Generated code: C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\MXTmpFiles\system.tmp
+2025-08-04 00:31:18,247 [INFO] CodeEngine:319 - oldGeneratedFile, C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\Core\Inc\stm32g0xx_hal_conf.h_save
+2025-08-04 00:31:18,323 [INFO] CodeEngine:343 - Generated code: C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\Core\Inc\stm32g0xx_hal_conf.h
+2025-08-04 00:31:18,361 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\Core\Inc\main.h_save
+2025-08-04 00:31:18,490 [INFO] CodeEngine:287 - Generated code: C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\Core\Inc\main.h
+2025-08-04 00:31:18,498 [INFO] CodeEngine:263 - oldGeneratedFile, C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\Core\Src\main.c_save
+2025-08-04 00:31:18,649 [INFO] CodeEngine:287 - Generated code: C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\Core\Src\main.c
+2025-08-04 00:31:19,068 [INFO] ProjectBuilder:3324 - Time for Copy HAL[1] : 217mS.
+2025-08-04 00:31:19,073 [INFO] ProjectBuilder:4912 - Project Generator version: 4.6.0.1-B1
+2025-08-04 00:31:19,173 [INFO] ConfigFileManager:1590 - The Die is : DIE460
+2025-08-04 00:31:20,647 [INFO] ProjectBuilder:5191 - Time for Generating toolchain IDE Files: 1574mS.
+2025-08-04 00:31:20,648 [INFO] ProjectBuilder:3181 - Time for Copy CMSIS : 1mS.
+2025-08-04 00:31:20,651 [INFO] ProjectBuilder:3181 - Time for Copy CMSIS : 0mS.

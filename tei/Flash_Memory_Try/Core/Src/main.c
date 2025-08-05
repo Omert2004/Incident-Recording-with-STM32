@@ -112,7 +112,8 @@ int main(void)
 
   FLASH_EraseInitTypeDef erase_init = {
     .TypeErase   = FLASH_TYPEERASE_PAGES,
-    .Page        = 63,               // Last page for 128KB
+	.Banks       = 1,
+	.Page        = 63,               // Last page for 128KB
     .NbPages     = 1
   };
 
@@ -141,6 +142,7 @@ int main(void)
 
 	HAL_FLASH_Unlock();
 
+
 	HAL_FLASHEx_Erase(&erase_init, &page_error);
 
   for(int i = 0; i<3 ; i++){
@@ -155,9 +157,9 @@ int main(void)
 
 
   current_addr = FLASH_PAGE_START;
-  for (uint32_t i = 0 ; i < PAGE_SIZE; i += 8) {
+  for (uint32_t i = 0 ; (i*8) < PAGE_SIZE; i++) {
       uint64_t data64 = *((uint64_t*)&page_buffer[i]);
-      if (HAL_FLASH_Program(FLASH_TYPEPROGRAM_DOUBLEWORD, current_addr + i, data64) != HAL_OK) {
+      if (HAL_FLASH_Program(FLASH_TYPEPROGRAM_DOUBLEWORD, current_addr + (i*8), data64) != HAL_OK) {
           // handle error
 
       }

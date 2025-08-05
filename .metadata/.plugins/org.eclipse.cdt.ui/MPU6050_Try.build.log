@@ -1,0 +1,16 @@
+10:04:48 **** Incremental Build of configuration Debug for project MPU6050_Try ****
+make -j8 all 
+arm-none-eabi-gcc -o "MPU6050_Try.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\tei\MPU6050_Try\STM32G071RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="MPU6050_Try.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: MPU6050_Try.elf
+ 
+arm-none-eabi-size  MPU6050_Try.elf 
+arm-none-eabi-objdump -h -S MPU6050_Try.elf  > "MPU6050_Try.list"
+   text	   data	    bss	    dec	    hex	filename
+  37412	    468	   2164	  40044	   9c6c	MPU6050_Try.elf
+Finished building: default.size.stdout
+ 
+Finished building: MPU6050_Try.list
+ 
+
+10:04:50 Build Finished. 0 errors, 0 warnings. (took 2s.591ms)
+
