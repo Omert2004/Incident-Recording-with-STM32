@@ -1754,39 +1754,3 @@ Caused by: java.nio.channels.UnresolvedAddressException
 	at java.base/java.security.AccessController.doPrivileged(AccessController.java:571)
 	at java.net.http/jdk.internal.net.http.PlainHttpConnection.connectAsync(PlainHttpConnection.java:212)
 	... 21 more
-
-!ENTRY org.eclipse.core.resources 4 0 2025-08-05 11:20:30.068
-!MESSAGE Error occurred while reading master table file
-!STACK 0
-java.nio.charset.MalformedInputException: Input length = 1
-	at java.base/java.nio.charset.CoderResult.throwException(CoderResult.java:279)
-	at java.base/sun.nio.cs.StreamDecoder.implRead(StreamDecoder.java:405)
-	at java.base/sun.nio.cs.StreamDecoder.lockedRead(StreamDecoder.java:217)
-	at java.base/sun.nio.cs.StreamDecoder.read(StreamDecoder.java:171)
-	at java.base/java.io.InputStreamReader.read(InputStreamReader.java:188)
-	at java.base/java.io.BufferedReader.fill(BufferedReader.java:160)
-	at java.base/java.io.BufferedReader.implReadLine(BufferedReader.java:370)
-	at java.base/java.io.BufferedReader.readLine(BufferedReader.java:347)
-	at java.base/java.io.BufferedReader.readLine(BufferedReader.java:436)
-	at java.base/java.nio.file.Files.readAllLines(Files.java:3395)
-	at org.eclipse.core.internal.resources.SaveManager.getBadSequenceNumberErrorMessage(SaveManager.java:1670)
-	at org.eclipse.core.internal.resources.SaveManager.validateMasterTableBeforeSave(SaveManager.java:1651)
-	at org.eclipse.core.internal.resources.SaveManager.saveMasterTable(SaveManager.java:1330)
-	at org.eclipse.core.internal.resources.SaveManager.saveMasterTable(SaveManager.java:1321)
-	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1294)
-	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1205)
-	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:52)
-	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
-
-!ENTRY org.eclipse.core.jobs 4 2 2025-08-05 11:20:30.072
-!MESSAGE An internal error occurred during: "Periodic workspace save.".
-!STACK 0
-java.lang.IllegalArgumentException: Cannot set lower sequence number for root (previous: 9, new: 6). Location: C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\.metadata\.plugins\org.eclipse.core.resources\.safetable\org.eclipse.core.resourcesTimestamps and tree sequence numbers from file:
-	at org.eclipse.core.runtime.Assert.isLegal(Assert.java:68)
-	at org.eclipse.core.internal.resources.SaveManager.validateMasterTableBeforeSave(SaveManager.java:1652)
-	at org.eclipse.core.internal.resources.SaveManager.saveMasterTable(SaveManager.java:1330)
-	at org.eclipse.core.internal.resources.SaveManager.saveMasterTable(SaveManager.java:1321)
-	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1294)
-	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1205)
-	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:52)
-	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
