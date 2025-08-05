@@ -22,6 +22,11 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
+#include <math.h>
+
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
 
 /* USER CODE END Includes */
 
@@ -43,6 +48,14 @@ int16_t Gyro_Z_RAW;
 float Gx;
 float Gy;
 float Gz;
+
+float Ax ; // g
+float Ay ;
+float Az ;
+
+float pitch_acc;
+float roll_acc;
+
 
 /* USER CODE END PTD */
 
@@ -111,7 +124,21 @@ int main(void)
   MX_USART2_UART_Init();
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
+  for(int addr = 0 ; addr<128 ; addr++){
+	  HAL_StatusTypeDef ret = HAL_I2C_IsDeviceReady(&hi2c1, addr <<1 , 1, 1000);
+	  if(ret == HAL_OK)
+	        {
+		  	  printf("MPU is ready at I2C address: 0x%02X\n", addr);
+	        }
+	        else
+	        {
+	      	  printf("MPU is not ready. Check it.\n");
+	        }
+  }
+
+
   MPU6050_Init();
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -119,10 +146,8 @@ int main(void)
   while (1)
   {
 	  MPU6050_Read_Accel();
+	  //MPU6050_Read_Gyro();
 	  HAL_Delay(250);
-	  MPU6050_Read_Gyro();
-	  HAL_Delay(250);
-
 
     /* USER CODE END WHILE */
 
@@ -151,7 +176,13 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
   RCC_OscInitStruct.HSIDiv = RCC_HSI_DIV1;
   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
-  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
+  RCC_OscInitStruct.PLL.PLLM = RCC_PLLM_DIV1;
+  RCC_OscInitStruct.PLL.PLLN = 8;
+  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
+  RCC_OscInitStruct.PLL.PLLQ = RCC_PLLQ_DIV2;
+  RCC_OscInitStruct.PLL.PLLR = RCC_PLLR_DIV2;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
@@ -161,11 +192,11 @@ void SystemClock_Config(void)
   */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
   {
     Error_Handler();
   }
@@ -187,7 +218,7 @@ static void MX_I2C1_Init(void)
 
   /* USER CODE END I2C1_Init 1 */
   hi2c1.Instance = I2C1;
-  hi2c1.Init.Timing = 0x00503D58;
+  hi2c1.Init.Timing = 0x10707DBC;
   hi2c1.Init.OwnAddress1 = 0;
   hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
   hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
@@ -324,7 +355,7 @@ void MPU6050_Init(void){
 }
 
 void MPU6050_Read_Accel(void){
-	volatile uint8_t Accel_Data[6];
+	uint8_t Accel_Data[6];
 
 	// Read 6 BYTES of data starting from ACCEL_XOUT_H (0x3B) register
 	HAL_I2C_Mem_Read (&hi2c1, MPU6050_ADDR <<1 , 0x3B, 1, Accel_Data, 6, 1000);
@@ -332,11 +363,20 @@ void MPU6050_Read_Accel(void){
 	Accel_Y_RAW = (int16_t)(Accel_Data[2] << 8 | Accel_Data[3]);
 	Accel_Z_RAW = (int16_t)(Accel_Data[4] << 8 | Accel_Data[5]);
 
+	printf("Ax: %d\tGx: %.2f\r\n", Accel_X_RAW, Gx);
+
+	// Compute pitch and roll
+	roll_acc  = atan2((float)Accel_Y_RAW, (float)Accel_Z_RAW) * 180.0 / M_PI;
+	pitch_acc = atan2(-(float)Accel_X_RAW, sqrt(Accel_Y_RAW * Accel_Y_RAW + Accel_Z_RAW * Accel_Z_RAW)) * 180.0 / M_PI;
+
+
+
+
 }
 
 void MPU6050_Read_Gyro (void)
 {
-	volatile uint8_t Gyro_Data[6];
+	uint8_t Gyro_Data[6];
 
 	// Read 6 BYTES of data starting from GYRO_XOUT_H register
 	 HAL_I2C_Mem_Read (&hi2c1, MPU6050_ADDR <<1, 0x43, 1, Gyro_Data, 6, 1000);

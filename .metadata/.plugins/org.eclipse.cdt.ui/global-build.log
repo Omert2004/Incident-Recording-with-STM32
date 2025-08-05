@@ -1,97 +1,441 @@
-10:36:54 **** Incremental Build of configuration Debug for project I2C ****
+13:48:00 **** Incremental Build of configuration Debug for project I2C ****
 make -j8 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G071xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
 ../Core/Src/main.c: In function 'MPU6050_Read_Accel':
-../Core/Src/main.c:328:63: warning: passing argument 5 of 'HAL_I2C_Mem_Read' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-  328 |         HAL_I2C_Mem_Read (&hi2c1, MPU6050_ADDR <<1 , 0x3B, 1, Accel_Data, 6, 1000);
-      |                                                               ^~~~~~~~~~
-In file included from ../Core/Inc/stm32g0xx_hal_conf.h:267,
-                 from ../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Src/main.c:20:
-../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_i2c.h:635:66: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'volatile uint8_t *' {aka 'volatile unsigned char *'}
-  635 |                                    uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
-      |                                                         ~~~~~~~~~^~~~~
-../Core/Src/main.c:329:21: error: assignment to expression with array type
-  329 |         Accel_X_RAW = (int16_t)(Accel_Data[0] << 8 | Accel_Data[1]);
-      |                     ^
-../Core/Src/main.c: In function 'MPU6050_Read_Gyro':
-../Core/Src/main.c:339:63: warning: passing argument 5 of 'HAL_I2C_Mem_Read' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-  339 |          HAL_I2C_Mem_Read (&hi2c1, MPU6050_ADDR <<1, 0x43, 1, Gyro_Data, 6, 1000);
-      |                                                               ^~~~~~~~~
-../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_i2c.h:635:66: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'volatile uint8_t *' {aka 'volatile unsigned char *'}
-  635 |                                    uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
-      |                                                         ~~~~~~~~~^~~~~
-make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
-"make -j8 all" terminated with exit code 2. Build might be incomplete.
-10:42:23 **** Incremental Build of configuration Debug for project I2C ****
-make -j8 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G071xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'MPU6050_Read_Accel':
-../Core/Src/main.c:329:63: warning: passing argument 5 of 'HAL_I2C_Mem_Read' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-  329 |         HAL_I2C_Mem_Read (&hi2c1, MPU6050_ADDR <<1 , 0x3B, 1, Accel_Data, 6, 1000);
-      |                                                               ^~~~~~~~~~
-In file included from ../Core/Inc/stm32g0xx_hal_conf.h:267,
-                 from ../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Src/main.c:20:
-../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_i2c.h:635:66: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'volatile uint8_t *' {aka 'volatile unsigned char *'}
-  635 |                                    uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
-      |                                                         ~~~~~~~~~^~~~~
-../Core/Src/main.c: In function 'MPU6050_Read_Gyro':
-../Core/Src/main.c:341:63: warning: passing argument 5 of 'HAL_I2C_Mem_Read' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-  341 |          HAL_I2C_Mem_Read (&hi2c1, MPU6050_ADDR <<1, 0x43, 1, Gyro_Data, 6, 1000);
-      |                                                               ^~~~~~~~~
-../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_i2c.h:635:66: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'volatile uint8_t *' {aka 'volatile unsigned char *'}
-  635 |                                    uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
-      |                                                         ~~~~~~~~~^~~~~
+../Core/Src/main.c:344:15: warning: unused variable 'roll_acc' [-Wunused-variable]
+  344 |         float roll_acc  = atan2f(-Ax, Az) * 180.0 / M_PI;
+      |               ^~~~~~~~
+../Core/Src/main.c:343:15: warning: unused variable 'pitch_acc' [-Wunused-variable]
+  343 |         float pitch_acc = atan2f(Ay, sqrtf(Ax*Ax + Az*Az)) * 180.0 / M_PI;
+      |               ^~~~~~~~~
 arm-none-eabi-gcc -o "I2C.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\I2C\STM32G071RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: I2C.elf
  
 arm-none-eabi-size  I2C.elf 
 arm-none-eabi-objdump -h -S I2C.elf  > "I2C.list"
    text	   data	    bss	    dec	    hex	filename
-  35236	    468	   2148	  37852	   93dc	I2C.elf
+  41200	    468	   2148	  43816	   ab28	I2C.elf
 Finished building: default.size.stdout
  
 Finished building: I2C.list
  
-10:43:43 **** Incremental Build of configuration Debug for project I2C ****
+13:48:11 **** Incremental Build of configuration Debug for project I2C ****
+make -j8 all 
+arm-none-eabi-size  I2C.elf 
+   text	   data	    bss	    dec	    hex	filename
+  41200	    468	   2148	  43816	   ab28	I2C.elf
+Finished building: default.size.stdout
+ 
+13:50:17 **** Incremental Build of configuration Debug for project I2C ****
 make -j8 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G071xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'MPU6050_Read_Accel':
-../Core/Src/main.c:330:63: warning: passing argument 5 of 'HAL_I2C_Mem_Read' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-  330 |         HAL_I2C_Mem_Read (&hi2c1, MPU6050_ADDR <<1 , 0x3B, 1, Accel_Data, 6, 1000);
-      |                                                               ^~~~~~~~~~
-In file included from ../Core/Inc/stm32g0xx_hal_conf.h:267,
-                 from ../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Src/main.c:20:
-../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_i2c.h:635:66: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'volatile uint8_t *' {aka 'volatile unsigned char *'}
-  635 |                                    uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
-      |                                                         ~~~~~~~~~^~~~~
-../Core/Src/main.c: In function 'MPU6050_Read_Gyro':
-../Core/Src/main.c:342:63: warning: passing argument 5 of 'HAL_I2C_Mem_Read' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-  342 |          HAL_I2C_Mem_Read (&hi2c1, MPU6050_ADDR <<1, 0x43, 1, Gyro_Data, 6, 1000);
-      |                                                               ^~~~~~~~~
-../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_i2c.h:635:66: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'volatile uint8_t *' {aka 'volatile unsigned char *'}
-  635 |                                    uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
-      |                                                         ~~~~~~~~~^~~~~
 arm-none-eabi-gcc -o "I2C.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\I2C\STM32G071RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: I2C.elf
  
 arm-none-eabi-size  I2C.elf 
 arm-none-eabi-objdump -h -S I2C.elf  > "I2C.list"
    text	   data	    bss	    dec	    hex	filename
-  36336	    468	   2164	  38968	   9838	I2C.elf
+  41252	    468	   2164	  43884	   ab6c	I2C.elf
 Finished building: default.size.stdout
  
 Finished building: I2C.list
  
-10:53:09 **** Incremental Build of configuration Debug for project I2C ****
+13:50:48 **** Incremental Build of configuration Debug for project I2C ****
 make -j8 all 
 arm-none-eabi-size  I2C.elf 
    text	   data	    bss	    dec	    hex	filename
-  36336	    468	   2164	  38968	   9838	I2C.elf
+  41252	    468	   2164	  43884	   ab6c	I2C.elf
+Finished building: default.size.stdout
+ 
+13:50:52 **** Incremental Build of configuration Debug for project I2C ****
+make -j8 all 
+arm-none-eabi-size  I2C.elf 
+   text	   data	    bss	    dec	    hex	filename
+  41252	    468	   2164	  43884	   ab6c	I2C.elf
+Finished building: default.size.stdout
+ 
+13:51:30 **** Incremental Build of configuration Debug for project I2C ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G071xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "I2C.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\I2C\STM32G071RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: I2C.elf
+ 
+arm-none-eabi-size  I2C.elf 
+arm-none-eabi-objdump -h -S I2C.elf  > "I2C.list"
+   text	   data	    bss	    dec	    hex	filename
+  41252	    468	   2164	  43884	   ab6c	I2C.elf
+Finished building: default.size.stdout
+ 
+Finished building: I2C.list
+ 
+13:55:49 **** Incremental Build of configuration Debug for project I2C ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G071xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "I2C.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\I2C\STM32G071RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: I2C.elf
+ 
+arm-none-eabi-size  I2C.elf 
+arm-none-eabi-objdump -h -S I2C.elf  > "I2C.list"
+   text	   data	    bss	    dec	    hex	filename
+  41236	    468	   2164	  43868	   ab5c	I2C.elf
+Finished building: default.size.stdout
+ 
+Finished building: I2C.list
+ 
+13:58:53 **** Incremental Build of configuration Debug for project I2C ****
+make -j8 all 
+arm-none-eabi-size  I2C.elf 
+   text	   data	    bss	    dec	    hex	filename
+  41236	    468	   2164	  43868	   ab5c	I2C.elf
+Finished building: default.size.stdout
+ 
+14:00:50 **** Incremental Build of configuration Debug for project I2C ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G071xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "I2C.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\I2C\STM32G071RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: I2C.elf
+ 
+arm-none-eabi-size  I2C.elf 
+arm-none-eabi-objdump -h -S I2C.elf  > "I2C.list"
+   text	   data	    bss	    dec	    hex	filename
+  41236	    468	   2164	  43868	   ab5c	I2C.elf
+Finished building: default.size.stdout
+ 
+Finished building: I2C.list
+ 
+14:02:19 **** Incremental Build of configuration Debug for project I2C ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G071xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "I2C.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\I2C\STM32G071RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: I2C.elf
+ 
+arm-none-eabi-size  I2C.elf 
+arm-none-eabi-objdump -h -S I2C.elf  > "I2C.list"
+   text	   data	    bss	    dec	    hex	filename
+  35224	    468	   2148	  37840	   93d0	I2C.elf
+Finished building: default.size.stdout
+ 
+Finished building: I2C.list
+ 
+14:08:07 **** Incremental Build of configuration Debug for project Flash_Memory_Try ****
+make -j8 all 
+arm-none-eabi-size  Flash_Memory_Try.elf 
+   text	   data	    bss	    dec	    hex	filename
+   8536	      0	  18072	  26608	   67f0	Flash_Memory_Try.elf
+Finished building: default.size.stdout
+ 
+14:10:32 **** Incremental Build of configuration Debug for project Flash_Memory_Try ****
+make -j8 all 
+arm-none-eabi-size  Flash_Memory_Try.elf 
+   text	   data	    bss	    dec	    hex	filename
+   8536	      0	  18072	  26608	   67f0	Flash_Memory_Try.elf
+Finished building: default.size.stdout
+ 
+14:17:26 **** Incremental Build of configuration Debug for project I2C ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G071xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "I2C.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\I2C\STM32G071RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: I2C.elf
+ 
+arm-none-eabi-size  I2C.elf 
+arm-none-eabi-objdump -h -S I2C.elf  > "I2C.list"
+   text	   data	    bss	    dec	    hex	filename
+  35268	    468	   2148	  37884	   93fc	I2C.elf
+Finished building: default.size.stdout
+ 
+Finished building: I2C.list
+ 
+14:18:07 **** Incremental Build of configuration Debug for project I2C ****
+make -j8 all 
+arm-none-eabi-size  I2C.elf 
+   text	   data	    bss	    dec	    hex	filename
+  35268	    468	   2148	  37884	   93fc	I2C.elf
+Finished building: default.size.stdout
+ 
+14:22:36 **** Incremental Build of configuration Debug for project I2C ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G071xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "I2C.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\I2C\STM32G071RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: I2C.elf
+ 
+arm-none-eabi-size  I2C.elf 
+arm-none-eabi-objdump -h -S I2C.elf  > "I2C.list"
+   text	   data	    bss	    dec	    hex	filename
+  35508	    468	   2148	  38124	   94ec	I2C.elf
+Finished building: default.size.stdout
+ 
+Finished building: I2C.list
+ 
+14:27:01 **** Incremental Build of configuration Debug for project I2C ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G071xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "I2C.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\I2C\STM32G071RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: I2C.elf
+ 
+arm-none-eabi-size  I2C.elf 
+arm-none-eabi-objdump -h -S I2C.elf  > "I2C.list"
+   text	   data	    bss	    dec	    hex	filename
+  36304	    468	   2148	  38920	   9808	I2C.elf
+Finished building: default.size.stdout
+ 
+Finished building: I2C.list
+ 
+14:27:35 **** Incremental Build of configuration Debug for project I2C ****
+make -j8 all 
+arm-none-eabi-size  I2C.elf 
+   text	   data	    bss	    dec	    hex	filename
+  36304	    468	   2148	  38920	   9808	I2C.elf
+Finished building: default.size.stdout
+ 
+14:29:16 **** Incremental Build of configuration Debug for project I2C ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G071xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "I2C.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\I2C\STM32G071RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: I2C.elf
+ 
+arm-none-eabi-size  I2C.elf 
+arm-none-eabi-objdump -h -S I2C.elf  > "I2C.list"
+   text	   data	    bss	    dec	    hex	filename
+  36304	    468	   2148	  38920	   9808	I2C.elf
+Finished building: default.size.stdout
+ 
+Finished building: I2C.list
+ 
+14:34:10 **** Incremental Build of configuration Debug for project I2C ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G071xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "I2C.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\I2C\STM32G071RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: I2C.elf
+ 
+arm-none-eabi-size  I2C.elf 
+arm-none-eabi-objdump -h -S I2C.elf  > "I2C.list"
+   text	   data	    bss	    dec	    hex	filename
+  36308	    468	   2148	  38924	   980c	I2C.elf
+Finished building: default.size.stdout
+ 
+Finished building: I2C.list
+ 
+14:35:21 **** Incremental Build of configuration Debug for project I2C ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G071xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "I2C.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\I2C\STM32G071RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: I2C.elf
+ 
+arm-none-eabi-size  I2C.elf 
+arm-none-eabi-objdump -h -S I2C.elf  > "I2C.list"
+   text	   data	    bss	    dec	    hex	filename
+  36308	    468	   2148	  38924	   980c	I2C.elf
+Finished building: default.size.stdout
+ 
+Finished building: I2C.list
+ 
+14:35:38 **** Incremental Build of configuration Debug for project I2C ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G071xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "I2C.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\I2C\STM32G071RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: I2C.elf
+ 
+arm-none-eabi-size  I2C.elf 
+arm-none-eabi-objdump -h -S I2C.elf  > "I2C.list"
+   text	   data	    bss	    dec	    hex	filename
+  36308	    468	   2148	  38924	   980c	I2C.elf
+Finished building: default.size.stdout
+ 
+Finished building: I2C.list
+ 
+14:37:29 **** Incremental Build of configuration Debug for project I2C ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G071xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "I2C.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\I2C\STM32G071RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: I2C.elf
+ 
+arm-none-eabi-size  I2C.elf 
+arm-none-eabi-objdump -h -S I2C.elf  > "I2C.list"
+   text	   data	    bss	    dec	    hex	filename
+  36332	    468	   2148	  38948	   9824	I2C.elf
+Finished building: default.size.stdout
+ 
+Finished building: I2C.list
+ 
+14:38:08 **** Incremental Build of configuration Debug for project I2C ****
+make -j8 all 
+arm-none-eabi-size  I2C.elf 
+   text	   data	    bss	    dec	    hex	filename
+  36332	    468	   2148	  38948	   9824	I2C.elf
+Finished building: default.size.stdout
+ 
+14:38:47 **** Incremental Build of configuration Debug for project I2C ****
+make -j8 all 
+arm-none-eabi-size  I2C.elf 
+   text	   data	    bss	    dec	    hex	filename
+  36332	    468	   2148	  38948	   9824	I2C.elf
+Finished building: default.size.stdout
+ 
+14:39:54 **** Incremental Build of configuration Debug for project I2C ****
+make -j8 all 
+arm-none-eabi-size  I2C.elf 
+   text	   data	    bss	    dec	    hex	filename
+  36332	    468	   2148	  38948	   9824	I2C.elf
+Finished building: default.size.stdout
+ 
+14:44:12 **** Incremental Build of configuration Debug for project I2C ****
+make -j8 all 
+arm-none-eabi-size  I2C.elf 
+   text	   data	    bss	    dec	    hex	filename
+  36332	    468	   2148	  38948	   9824	I2C.elf
+Finished building: default.size.stdout
+ 
+23:19:22 **** Incremental Build of configuration Debug for project I2C ****
+make -j8 all 
+arm-none-eabi-size  I2C.elf 
+   text	   data	    bss	    dec	    hex	filename
+  36332	    468	   2148	  38948	   9824	I2C.elf
+Finished building: default.size.stdout
+ 
+23:21:10 **** Incremental Build of configuration Debug for project I2C ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G071xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "I2C.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\I2C\STM32G071RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: I2C.elf
+ 
+arm-none-eabi-size  I2C.elf 
+arm-none-eabi-objdump -h -S I2C.elf  > "I2C.list"
+   text	   data	    bss	    dec	    hex	filename
+  36376	    468	   2148	  38992	   9850	I2C.elf
+Finished building: default.size.stdout
+ 
+Finished building: I2C.list
+ 
+23:21:52 **** Incremental Build of configuration Debug for project I2C ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G071xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "I2C.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\I2C\STM32G071RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: I2C.elf
+ 
+arm-none-eabi-size  I2C.elf 
+arm-none-eabi-objdump -h -S I2C.elf  > "I2C.list"
+   text	   data	    bss	    dec	    hex	filename
+  36376	    468	   2148	  38992	   9850	I2C.elf
+Finished building: default.size.stdout
+ 
+Finished building: I2C.list
+ 
+00:12:26 **** Incremental Build of configuration Debug for project I2C ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G071xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "I2C.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\I2C\STM32G071RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: I2C.elf
+ 
+arm-none-eabi-size  I2C.elf 
+arm-none-eabi-objdump -h -S I2C.elf  > "I2C.list"
+   text	   data	    bss	    dec	    hex	filename
+  36376	    468	   2148	  38992	   9850	I2C.elf
+Finished building: default.size.stdout
+ 
+Finished building: I2C.list
+ 
+00:16:53 **** Incremental Build of configuration Debug for project I2C ****
+make -j8 all 
+arm-none-eabi-size  I2C.elf 
+   text	   data	    bss	    dec	    hex	filename
+  36376	    468	   2148	  38992	   9850	I2C.elf
+Finished building: default.size.stdout
+ 
+00:18:19 **** Incremental Build of configuration Debug for project I2C ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G071xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "I2C.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\I2C\STM32G071RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: I2C.elf
+ 
+arm-none-eabi-size  I2C.elf 
+arm-none-eabi-objdump -h -S I2C.elf  > "I2C.list"
+   text	   data	    bss	    dec	    hex	filename
+  36376	    468	   2148	  38992	   9850	I2C.elf
+Finished building: default.size.stdout
+ 
+Finished building: I2C.list
+ 
+00:18:48 **** Incremental Build of configuration Debug for project I2C ****
+make -j8 all 
+arm-none-eabi-size  I2C.elf 
+   text	   data	    bss	    dec	    hex	filename
+  36376	    468	   2148	  38992	   9850	I2C.elf
+Finished building: default.size.stdout
+ 
+00:19:16 **** Incremental Build of configuration Debug for project I2C ****
+make -j8 all 
+arm-none-eabi-size  I2C.elf 
+   text	   data	    bss	    dec	    hex	filename
+  36376	    468	   2148	  38992	   9850	I2C.elf
+Finished building: default.size.stdout
+ 
+00:20:48 **** Incremental Build of configuration Debug for project I2C ****
+make -j8 all 
+arm-none-eabi-size  I2C.elf 
+   text	   data	    bss	    dec	    hex	filename
+  36376	    468	   2148	  38992	   9850	I2C.elf
+Finished building: default.size.stdout
+ 
+00:28:22 **** Incremental Build of configuration Debug for project I2C ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/stm32g0xx_hal_msp.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G071xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32g0xx_hal_msp.d" -MT"Core/Src/stm32g0xx_hal_msp.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/stm32g0xx_hal_msp.o"
+arm-none-eabi-gcc -o "I2C.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\I2C\STM32G071RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: I2C.elf
+ 
+arm-none-eabi-size  I2C.elf 
+arm-none-eabi-objdump -h -S I2C.elf  > "I2C.list"
+   text	   data	    bss	    dec	    hex	filename
+  36376	    468	   2148	  38992	   9850	I2C.elf
+Finished building: default.size.stdout
+ 
+Finished building: I2C.list
+ 
+10:02:48 **** Incremental Build of configuration Debug for project I2C ****
+make -j8 all 
+arm-none-eabi-size  I2C.elf 
+   text	   data	    bss	    dec	    hex	filename
+  36376	    468	   2148	  38992	   9850	I2C.elf
+Finished building: default.size.stdout
+ 
+10:39:26 **** Incremental Build of configuration Debug for project I2C ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G071xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "I2C.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\I2C\STM32G071RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: I2C.elf
+ 
+arm-none-eabi-size  I2C.elf 
+arm-none-eabi-objdump -h -S I2C.elf  > "I2C.list"
+   text	   data	    bss	    dec	    hex	filename
+  38812	    468	   2156	  41436	   a1dc	I2C.elf
+Finished building: default.size.stdout
+ 
+Finished building: I2C.list
+ 
+10:40:31 **** Incremental Build of configuration Debug for project I2C ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G071xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "I2C.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\I2C\STM32G071RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: I2C.elf
+ 
+arm-none-eabi-size  I2C.elf 
+arm-none-eabi-objdump -h -S I2C.elf  > "I2C.list"
+   text	   data	    bss	    dec	    hex	filename
+  38808	    468	   2156	  41432	   a1d8	I2C.elf
+Finished building: default.size.stdout
+ 
+Finished building: I2C.list
+ 
+10:41:08 **** Incremental Build of configuration Debug for project I2C ****
+make -j8 all 
+arm-none-eabi-size  I2C.elf 
+   text	   data	    bss	    dec	    hex	filename
+  38808	    468	   2156	  41432	   a1d8	I2C.elf
+Finished building: default.size.stdout
+ 
+10:41:24 **** Incremental Build of configuration Debug for project I2C ****
+make -j8 all 
+arm-none-eabi-size  I2C.elf 
+   text	   data	    bss	    dec	    hex	filename
+  38808	    468	   2156	  41432	   a1d8	I2C.elf
 Finished building: default.size.stdout
  
