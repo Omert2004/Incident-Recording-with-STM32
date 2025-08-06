@@ -158,7 +158,7 @@ int main(void)
 
   current_addr = FLASH_PAGE_START;
   for (uint32_t i = 0 ; (i*8) < PAGE_SIZE; i++) {
-      uint64_t data64 = *((uint64_t*)&page_buffer[i]);
+      uint32_t data64 = *((uint32_t*)&page_buffer[i]);
       if (HAL_FLASH_Program(FLASH_TYPEPROGRAM_DOUBLEWORD, current_addr + (i*8), data64) != HAL_OK) {
           // handle error
 

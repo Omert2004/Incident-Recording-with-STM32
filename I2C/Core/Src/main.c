@@ -34,6 +34,9 @@
 /* USER CODE BEGIN PTD */
 #define MPU6050_ADDR 0x68
 
+#define GREEN_LED_Pin         GPIO_PIN_5
+#define GREEN_LED_GPIO_Port   GPIOA
+
 
 int16_t Accel_X_RAW;
 int16_t Accel_Y_RAW;
@@ -55,6 +58,21 @@ float Az ;
 
 float pitch_acc;
 float roll_acc;
+
+//Store the values of past 1 sec using FIFO
+int16_t dynamicbuffer_1s[100];
+//After the button is pressed, memcopy(copybuffer,dynamicbuf) to use for Flash Mem
+int16_t copybuffer_1s[100];
+//Store the values of next 2 sec
+int16_t nextbuffer_2s[200];
+
+//Checks whether new input is received
+uint8_t flag_input = 0;
+//Checks whether the button is pressed
+__IO uint8_t ubButtonPress = 0;
+
+
+
 
 
 /* USER CODE END PTD */
@@ -135,8 +153,7 @@ int main(void)
 	      	  printf("MPU is not ready. Check it.\n");
 	        }
   }
-
-
+  //Initalize MPU6050
   MPU6050_Init();
 
   /* USER CODE END 2 */
@@ -148,6 +165,9 @@ int main(void)
 	  MPU6050_Read_Accel();
 	  //MPU6050_Read_Gyro();
 	  HAL_Delay(250);
+
+
+
 
     /* USER CODE END WHILE */
 
@@ -319,12 +339,22 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin, GPIO_PIN_RESET);
 
+  /*Configure GPIO pin : User_Button_Pin */
+  GPIO_InitStruct.Pin = User_Button_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(User_Button_GPIO_Port, &GPIO_InitStruct);
+
   /*Configure GPIO pin : LED_GREEN_Pin */
   GPIO_InitStruct.Pin = LED_GREEN_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
   HAL_GPIO_Init(LED_GREEN_GPIO_Port, &GPIO_InitStruct);
+
+  /* EXTI interrupt init*/
+  HAL_NVIC_SetPriority(EXTI4_15_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(EXTI4_15_IRQn);
 
   /* USER CODE BEGIN MX_GPIO_Init_2 */
 
@@ -390,6 +420,13 @@ void MPU6050_Read_Gyro (void)
 	Gz = (float)Gyro_Z_RAW/131.0;
 }
 
+
+void UserButton_Callback(void){
+	ubButtonPress=1;
+	//Toggle the GREEN_LED
+	HAL_GPIO_TogglePin(GREEN_LED_GPIO_Port, GREEN_LED_Pin);
+
+}
 
 /* USER CODE END 4 */
 
