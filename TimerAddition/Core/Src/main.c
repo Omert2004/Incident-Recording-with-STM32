@@ -59,6 +59,8 @@ float Az ;
 float pitch_acc;
 float roll_acc;
 
+uint32_t elapsed_time_us;
+
 //Store the values of past 1 sec using FIFO
 int16_t dynamicbuffer_1s[100];
 //After the button is pressed, memcopy(copybuffer,dynamicbuf) to use for Flash Mem
@@ -90,6 +92,8 @@ __IO uint8_t ubButtonPress = 0;
 /* Private variables ---------------------------------------------------------*/
 I2C_HandleTypeDef hi2c1;
 
+TIM_HandleTypeDef htim2;
+
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
@@ -101,6 +105,7 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_USART2_UART_Init(void);
 static void MX_I2C1_Init(void);
+static void MX_TIM2_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -141,6 +146,7 @@ int main(void)
   MX_GPIO_Init();
   MX_USART2_UART_Init();
   MX_I2C1_Init();
+  MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
   for(int addr = 0 ; addr<128 ; addr++){
 	  HAL_StatusTypeDef ret = HAL_I2C_IsDeviceReady(&hi2c1, addr <<1 , 1, 1000);
@@ -153,6 +159,8 @@ int main(void)
 	      	  printf("MPU is not ready. Check it.\n");
 	        }
   }
+
+  HAL_TIM_Base_Start(&htim2);
   //Initalize MPU6050
   MPU6050_Init();
 
@@ -162,8 +170,14 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+
+	  __HAL_TIM_SET_COUNTER(&htim2, 0);
+
 	  MPU6050_Read_Accel();
 	  //MPU6050_Read_Gyro();
+
+	  elapsed_time_us = __HAL_TIM_GET_COUNTER(&htim2);
+
 	  HAL_Delay(250);
 
 
@@ -267,6 +281,51 @@ static void MX_I2C1_Init(void)
   /* USER CODE BEGIN I2C1_Init 2 */
 
   /* USER CODE END I2C1_Init 2 */
+
+}
+
+/**
+  * @brief TIM2 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM2_Init(void)
+{
+
+  /* USER CODE BEGIN TIM2_Init 0 */
+
+  /* USER CODE END TIM2_Init 0 */
+
+  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+
+  /* USER CODE BEGIN TIM2_Init 1 */
+
+  /* USER CODE END TIM2_Init 1 */
+  htim2.Instance = TIM2;
+  htim2.Init.Prescaler = (64-1);
+  htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim2.Init.Period = 0xFFFFFFFF;
+  htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+  if (HAL_TIM_ConfigClockSource(&htim2, &sClockSourceConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM2_Init 2 */
+
+  /* USER CODE END TIM2_Init 2 */
 
 }
 
