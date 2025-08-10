@@ -82,6 +82,8 @@ char rtc_buffer[15];
 #define FLASH_PAGE_START 0x0801F800
 uint32_t current_addr = FLASH_PAGE_START;
 
+uint32_t data[4] = {0x31,0x32,0x33,0x24};
+
 #define PAGE_SIZE 2048
 
 #define DATA_SIZE 24  // 3 doublewords
@@ -112,7 +114,14 @@ UART_HandleTypeDef huart2;
 
 //double word size = 8byte
 //Float size = 4 byte
-
+typedef struct __attribute__((packed)){
+	int16_t pitch_i;
+	int16_t roll_i;
+	int8_t hours;
+	int8_t minutes;
+	int8_t seconds;
+	int8_t unused ;
+} Current_Flash_Struct;
 Current_Flash_Struct currentData;
 /* USER CODE END PV */
 
@@ -194,12 +203,7 @@ int main(void)
 	  __HAL_TIM_SET_COUNTER(&htim2, 0);
 
 	  MPU6050_Read_Accel();
-	  if(ubButtonPress){
-		  Construct_Flash_Struct(&currentData);
-		  Flash_Write();
-		  ubButtonPress=0;
-	  }
-
+	  Construct_Flash_Struct(&currentData);
 	  //MPU6050_Read_Gyro();
 
 	  elapsed_time_us = __HAL_TIM_GET_COUNTER(&htim2);
@@ -631,23 +635,6 @@ void Construct_Flash_Struct(Current_Flash_Struct *data){
 	       Error_Handler();
 	   }
 
-	   // Prepare to write double word (8 bytes)
-	      uint64_t data_to_write = 0;
-
-	      // Copy your struct bytes into the 64-bit variable safely
-	      memcpy(&data_to_write, &currentData, sizeof(Current_Flash_Struct));
-
-	      // Write double word to flash
-	      if (HAL_FLASH_Program(FLASH_TYPEPROGRAM_DOUBLEWORD, FLASH_PAGE_START, data_to_write) != HAL_OK)
-	      {
-	          // Handle error
-	          HAL_FLASH_Lock();
-	          Error_Handler();
-	          return;
-	      }
-
-	      HAL_FLASH_Lock();
-
 //	   current_addr=FLASH_PAGE_START;
 //
 //
@@ -691,7 +678,7 @@ void Construct_Flash_Struct(Current_Flash_Struct *data){
 //	   }
 
 
-	   //HAL_FLASH_Lock();
+	   HAL_FLASH_Lock();
  }
 
 /* USER CODE END 4 */

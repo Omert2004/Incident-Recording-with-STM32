@@ -1,205 +1,80 @@
-14:41:27 **** Incremental Build of configuration Debug for project TimerAddition ****
-make -j8 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G071xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:192:59: warning: implicit declaration of function 'strlen' [-Wimplicit-function-declaration]
-  192 |           HAL_UART_Transmit(&huart2,(uint8_t*)rtc_buffer, strlen(rtc_buffer), HAL_MAX_DELAY);
-      |                                                           ^~~~~~
-../Core/Src/main.c:26:1: note: include '<string.h>' or provide a declaration of 'strlen'
-   25 | #include <math.h>
-  +++ |+#include <string.h>
-   26 | 
-../Core/Src/main.c:192:59: warning: incompatible implicit declaration of built-in function 'strlen' [-Wbuiltin-declaration-mismatch]
-  192 |           HAL_UART_Transmit(&huart2,(uint8_t*)rtc_buffer, strlen(rtc_buffer), HAL_MAX_DELAY);
-      |                                                           ^~~~~~
-../Core/Src/main.c:192:59: note: include '<string.h>' or provide a declaration of 'strlen'
-arm-none-eabi-gcc -o "TimerAddition.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\TimerAddition\STM32G071RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TimerAddition.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: TimerAddition.elf
- 
-arm-none-eabi-size  TimerAddition.elf 
-arm-none-eabi-objdump -h -S TimerAddition.elf  > "TimerAddition.list"
-   text	   data	    bss	    dec	    hex	filename
-  44348	    468	   2380	  47196	   b85c	TimerAddition.elf
-Finished building: default.size.stdout
- 
-Finished building: TimerAddition.list
- 
-14:42:18 **** Incremental Build of configuration Debug for project TimerAddition ****
-make -j8 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G071xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "TimerAddition.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\TimerAddition\STM32G071RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TimerAddition.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: TimerAddition.elf
- 
-arm-none-eabi-size  TimerAddition.elf 
-arm-none-eabi-objdump -h -S TimerAddition.elf  > "TimerAddition.list"
-   text	   data	    bss	    dec	    hex	filename
-  44348	    468	   2380	  47196	   b85c	TimerAddition.elf
-Finished building: default.size.stdout
- 
-Finished building: TimerAddition.list
- 
-14:43:49 **** Incremental Build of configuration Debug for project TimerAddition ****
-make -j8 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G071xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "TimerAddition.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\TimerAddition\STM32G071RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TimerAddition.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: TimerAddition.elf
- 
-arm-none-eabi-size  TimerAddition.elf 
-arm-none-eabi-objdump -h -S TimerAddition.elf  > "TimerAddition.list"
-   text	   data	    bss	    dec	    hex	filename
-  44348	    468	   2380	  47196	   b85c	TimerAddition.elf
-Finished building: default.size.stdout
- 
-Finished building: TimerAddition.list
- 
-14:45:08 **** Incremental Build of configuration Debug for project TimerAddition ****
-make -j8 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G071xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "TimerAddition.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\TimerAddition\STM32G071RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TimerAddition.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: TimerAddition.elf
- 
-arm-none-eabi-size  TimerAddition.elf 
-arm-none-eabi-objdump -h -S TimerAddition.elf  > "TimerAddition.list"
-   text	   data	    bss	    dec	    hex	filename
-  44352	    468	   2380	  47200	   b860	TimerAddition.elf
-Finished building: default.size.stdout
- 
-Finished building: TimerAddition.list
- 
-14:48:01 **** Incremental Build of configuration Debug for project TimerAddition ****
-make -j8 all 
-arm-none-eabi-size  TimerAddition.elf 
-   text	   data	    bss	    dec	    hex	filename
-  44352	    468	   2380	  47200	   b860	TimerAddition.elf
-Finished building: default.size.stdout
- 
-14:49:38 **** Incremental Build of configuration Debug for project TimerAddition ****
-make -j8 all 
-arm-none-eabi-size  TimerAddition.elf 
-   text	   data	    bss	    dec	    hex	filename
-  44352	    468	   2380	  47200	   b860	TimerAddition.elf
-Finished building: default.size.stdout
- 
-14:58:24 **** Incremental Build of configuration Debug for project TimerAddition ****
-make -j8 all 
-arm-none-eabi-size  TimerAddition.elf 
-   text	   data	    bss	    dec	    hex	filename
-  44352	    468	   2380	  47200	   b860	TimerAddition.elf
-Finished building: default.size.stdout
- 
-15:02:19 **** Incremental Build of configuration Debug for project TimerAddition ****
-make -j8 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G071xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:191:31: warning: passing argument 2 of 'sprintf' makes pointer from integer without a cast [-Wint-conversion]
-  191 |           sprintf(rtc_buffer, sizeof(rtc_buffer), "Time:%02d:%02d:%02d\n", sTime.Hours, sTime.Minutes, sTime.Seconds);
-      |                               ^~~~~~~~~~~~~~~~~~
-      |                               |
-      |                               unsigned int
-In file included from ../Core/Src/main.c:24:
-C:\Users\Oguzm\Downloads\STM32CubeIDE_1.18.1\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344\tools\bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/include/stdio.h:250:36: note: expected 'const char * restrict' but argument is of type 'unsigned int'
-  250 | int     sprintf (char *__restrict, const char *__restrict, ...)
-      |                                    ^
-arm-none-eabi-gcc -o "TimerAddition.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\TimerAddition\STM32G071RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TimerAddition.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: TimerAddition.elf
- 
-arm-none-eabi-size  TimerAddition.elf 
-arm-none-eabi-objdump -h -S TimerAddition.elf  > "TimerAddition.list"
-   text	   data	    bss	    dec	    hex	filename
-  44312	    468	   2380	  47160	   b838	TimerAddition.elf
-Finished building: default.size.stdout
- 
-Finished building: TimerAddition.list
- 
-15:04:19 **** Incremental Build of configuration Debug for project TimerAddition ****
-make -j8 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G071xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "TimerAddition.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\TimerAddition\STM32G071RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TimerAddition.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: TimerAddition.elf
- 
-arm-none-eabi-size  TimerAddition.elf 
-arm-none-eabi-objdump -h -S TimerAddition.elf  > "TimerAddition.list"
-   text	   data	    bss	    dec	    hex	filename
-  44352	    468	   2380	  47200	   b860	TimerAddition.elf
-Finished building: default.size.stdout
- 
-Finished building: TimerAddition.list
- 
-15:04:46 **** Incremental Build of configuration Debug for project TimerAddition ****
-make -j8 all 
-arm-none-eabi-size  TimerAddition.elf 
-   text	   data	    bss	    dec	    hex	filename
-  44352	    468	   2380	  47200	   b860	TimerAddition.elf
-Finished building: default.size.stdout
- 
-15:07:06 **** Incremental Build of configuration Debug for project TimerAddition ****
-make -j8 all 
-arm-none-eabi-size  TimerAddition.elf 
-   text	   data	    bss	    dec	    hex	filename
-  44352	    468	   2380	  47200	   b860	TimerAddition.elf
-Finished building: default.size.stdout
- 
-15:24:24 **** Incremental Build of configuration Debug for project TimerAddition ****
+18:27:43 **** Incremental Build of configuration Debug for project TimerAddition ****
 make -j8 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G071xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
 arm-none-eabi-gcc "../Core/Src/stm32g0xx_hal_msp.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G071xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32g0xx_hal_msp.d" -MT"Core/Src/stm32g0xx_hal_msp.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/stm32g0xx_hal_msp.o"
+arm-none-eabi-gcc "../Core/Src/stm32g0xx_it.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G071xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32g0xx_it.d" -MT"Core/Src/stm32g0xx_it.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/stm32g0xx_it.o"
 arm-none-eabi-gcc -o "TimerAddition.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\TimerAddition\STM32G071RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TimerAddition.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: TimerAddition.elf
  
 arm-none-eabi-size  TimerAddition.elf 
 arm-none-eabi-objdump -h -S TimerAddition.elf  > "TimerAddition.list"
    text	   data	    bss	    dec	    hex	filename
-  44400	    468	   2380	  47248	   b890	TimerAddition.elf
+  44192	    468	   2292	  46952	   b768	TimerAddition.elf
 Finished building: default.size.stdout
  
 Finished building: TimerAddition.list
  
-15:47:43 **** Incremental Build of configuration Debug for project TimerAddition ****
+18:27:57 **** Incremental Build of configuration Debug for project TimerAddition ****
 make -j8 all 
 arm-none-eabi-size  TimerAddition.elf 
    text	   data	    bss	    dec	    hex	filename
-  44400	    468	   2380	  47248	   b890	TimerAddition.elf
+  44192	    468	   2292	  46952	   b768	TimerAddition.elf
 Finished building: default.size.stdout
  
-15:48:17 **** Incremental Build of configuration Debug for project TimerAddition ****
-make -j8 all 
-arm-none-eabi-size  TimerAddition.elf 
-   text	   data	    bss	    dec	    hex	filename
-  44400	    468	   2380	  47248	   b890	TimerAddition.elf
-Finished building: default.size.stdout
- 
-16:04:22 **** Incremental Build of configuration Debug for project TimerAddition ****
-make -j8 all 
-arm-none-eabi-size  TimerAddition.elf 
-   text	   data	    bss	    dec	    hex	filename
-  44400	    468	   2380	  47248	   b890	TimerAddition.elf
-Finished building: default.size.stdout
- 
-16:06:05 **** Incremental Build of configuration Debug for project TimerAddition ****
+18:31:14 **** Incremental Build of configuration Debug for project TimerAddition ****
 make -j8 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G071xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:199:19: warning: implicit declaration of function 'Flash_Write' [-Wimplicit-function-declaration]
+  199 |                   Flash_Write();
+      |                   ^~~~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:617:7: warning: conflicting types for 'Flash_Write'; have 'void(void)'
+  617 |  void Flash_Write(void){
+      |       ^~~~~~~~~~~
+../Core/Src/main.c:199:19: note: previous implicit declaration of 'Flash_Write' with type 'void(void)'
+  199 |                   Flash_Write();
+      |                   ^~~~~~~~~~~
 arm-none-eabi-gcc -o "TimerAddition.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\TimerAddition\STM32G071RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TimerAddition.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+C:/Users/Oguzm/Downloads/STM32CubeIDE_1.18.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: warning: TimerAddition.elf has a LOAD segment with RWX permissions
 Finished building target: TimerAddition.elf
  
 arm-none-eabi-size  TimerAddition.elf 
 arm-none-eabi-objdump -h -S TimerAddition.elf  > "TimerAddition.list"
    text	   data	    bss	    dec	    hex	filename
-  44356	    468	   2380	  47204	   b864	TimerAddition.elf
+  45784	      0	   2316	  48100	   bbe4	TimerAddition.elf
 Finished building: default.size.stdout
  
 Finished building: TimerAddition.list
  
-16:20:14 **** Incremental Build of configuration Debug for project TimerAddition ****
+18:32:35 **** Incremental Build of configuration Debug for project TimerAddition ****
 make -j8 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G071xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/stm32g0xx_hal_msp.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G071xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32g0xx_hal_msp.d" -MT"Core/Src/stm32g0xx_hal_msp.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/stm32g0xx_hal_msp.o"
+arm-none-eabi-gcc "../Core/Src/stm32g0xx_it.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G071xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32g0xx_it.d" -MT"Core/Src/stm32g0xx_it.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/stm32g0xx_it.o"
 arm-none-eabi-gcc -o "TimerAddition.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\TimerAddition\STM32G071RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TimerAddition.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+C:/Users/Oguzm/Downloads/STM32CubeIDE_1.18.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: warning: TimerAddition.elf has a LOAD segment with RWX permissions
 Finished building target: TimerAddition.elf
  
 arm-none-eabi-size  TimerAddition.elf 
 arm-none-eabi-objdump -h -S TimerAddition.elf  > "TimerAddition.list"
    text	   data	    bss	    dec	    hex	filename
-  44524	    468	   2380	  47372	   b90c	TimerAddition.elf
+  45784	      0	   2316	  48100	   bbe4	TimerAddition.elf
 Finished building: default.size.stdout
  
 Finished building: TimerAddition.list
+ 
+18:37:16 **** Incremental Build of configuration Debug for project TimerAddition ****
+make -j8 all 
+arm-none-eabi-size  TimerAddition.elf 
+   text	   data	    bss	    dec	    hex	filename
+  45784	      0	   2316	  48100	   bbe4	TimerAddition.elf
+Finished building: default.size.stdout
+ 
+18:37:39 **** Incremental Build of configuration Debug for project TimerAddition ****
+make -j8 all 
+arm-none-eabi-size  TimerAddition.elf 
+   text	   data	    bss	    dec	    hex	filename
+  45784	      0	   2316	  48100	   bbe4	TimerAddition.elf
+Finished building: default.size.stdout
  

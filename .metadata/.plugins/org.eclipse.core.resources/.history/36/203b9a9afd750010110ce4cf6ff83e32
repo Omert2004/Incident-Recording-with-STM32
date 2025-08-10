@@ -112,7 +112,14 @@ UART_HandleTypeDef huart2;
 
 //double word size = 8byte
 //Float size = 4 byte
-
+typedef struct __attribute__((packed)){
+	int16_t pitch_i;
+	int16_t roll_i;
+	int8_t hours;
+	int8_t minutes;
+	int8_t seconds;
+	int8_t unused ;
+} Current_Flash_Struct;
 Current_Flash_Struct currentData;
 /* USER CODE END PV */
 
@@ -196,8 +203,6 @@ int main(void)
 	  MPU6050_Read_Accel();
 	  if(ubButtonPress){
 		  Construct_Flash_Struct(&currentData);
-		  Flash_Write();
-		  ubButtonPress=0;
 	  }
 
 	  //MPU6050_Read_Gyro();

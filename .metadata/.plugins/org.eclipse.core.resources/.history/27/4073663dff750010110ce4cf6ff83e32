@@ -91,7 +91,6 @@ typedef struct __attribute__((packed)){
 } Current_Flash_Struct;
 
 void Construct_Flash_Struct(Current_Flash_Struct *data);
-void Flash_Write(void);
 
 
 /* USER CODE END Private defines */

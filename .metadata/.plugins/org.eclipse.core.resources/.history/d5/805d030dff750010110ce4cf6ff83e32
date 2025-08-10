@@ -196,7 +196,6 @@ int main(void)
 	  MPU6050_Read_Accel();
 	  if(ubButtonPress){
 		  Construct_Flash_Struct(&currentData);
-		  Flash_Write();
 		  ubButtonPress=0;
 	  }
 

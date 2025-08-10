@@ -112,7 +112,14 @@ UART_HandleTypeDef huart2;
 
 //double word size = 8byte
 //Float size = 4 byte
-
+typedef struct __attribute__((packed)){
+	int16_t pitch_i;
+	int16_t roll_i;
+	int8_t hours;
+	int8_t minutes;
+	int8_t seconds;
+	int8_t unused ;
+} Current_Flash_Struct;
 Current_Flash_Struct currentData;
 /* USER CODE END PV */
 
@@ -196,8 +203,6 @@ int main(void)
 	  MPU6050_Read_Accel();
 	  if(ubButtonPress){
 		  Construct_Flash_Struct(&currentData);
-		  Flash_Write();
-		  ubButtonPress=0;
 	  }
 
 	  //MPU6050_Read_Gyro();
@@ -635,7 +640,7 @@ void Construct_Flash_Struct(Current_Flash_Struct *data){
 	      uint64_t data_to_write = 0;
 
 	      // Copy your struct bytes into the 64-bit variable safely
-	      memcpy(&data_to_write, &currentData, sizeof(Current_Flash_Struct));
+	      memcpy(&data_to_write, data, sizeof(Current_Flash_Struct));
 
 	      // Write double word to flash
 	      if (HAL_FLASH_Program(FLASH_TYPEPROGRAM_DOUBLEWORD, FLASH_PAGE_START, data_to_write) != HAL_OK)
