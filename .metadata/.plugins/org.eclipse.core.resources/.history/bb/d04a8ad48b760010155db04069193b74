@@ -189,6 +189,8 @@ int main(void)
   //Initalize MPU6050
   MPU6050_Init();
 
+
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -621,6 +623,7 @@ void Construct_Flash_Struct(Current_Flash_Struct *data){
 
  void Flash_Write(void){
 
+
 	 memcpy(page_buffer, (uint32_t *)FLASH_ADDR_POINTER_STORAGE, PAGE_SIZE);
 
 	 HAL_FLASH_Unlock();
@@ -648,7 +651,8 @@ void Construct_Flash_Struct(Current_Flash_Struct *data){
 
 	   page_buffer[index] = data_to_write;
 
-	   //Write the whole page
+	      // Write double word to flash
+
 	   current_addr = FLASH_PAGE_START;
 	   	   for (uint32_t i = 0 ; (i*8) < PAGE_SIZE; i++) {
 	   	       uint32_t data64 = *((uint32_t*)&page_buffer[i]);
@@ -662,14 +666,50 @@ void Construct_Flash_Struct(Current_Flash_Struct *data){
 
 	  HAL_FLASH_Lock();
 
-	  //Increment the pointer
-	  if(flash_addr_pointer == (uint32_t*)(FLASH_ADDR_POINTER_STORAGE + PAGESIZE)){
-		  flash_addr_pointer = FLASH_ADDR_POINTER_STORAGE;
-	  }
-	  else{
-		  flash_addr_pointer+=8;
-	  }
+//	   current_addr=FLASH_PAGE_START;
+//
+//
+//
+//	   for(int i=0;i<4;i++){
+//	   	  HAL_FLASH_Program(FLASH_TYPEPROGRAM_DOUBLEWORD, current_addr, data[i]);
+//	   	  current_addr+= 8;
+//	     }
 
+	 	HAL_FLASH_Lock();
+//
+//
+//
+//	 	memcpy(page_buffer, (uint32_t *)FLASH_PAGE_START, PAGE_SIZE);
+//
+//
+//
+//	 	HAL_FLASH_Unlock();
+//
+//
+//	 	HAL_FLASHEx_Erase(&erase_init, &page_error);
+//
+//	   for(int i = 0; i<3 ; i++){
+//	 	page_buffer[i]= new_data[i];
+//	   }
+//	 //
+//	 //  for(int i=0;i<3;i++){
+//	 //	  HAL_FLASH_Program(FLASH_TYPEPROGRAM_DOUBLEWORD, current_addr, new_data[i]);
+//	 //	  current_addr+= 8;
+//	 //  }
+//
+//
+//
+//	   current_addr = FLASH_PAGE_START;
+//	   for (uint32_t i = 0 ; (i*8) < PAGE_SIZE; i++) {
+//	       uint32_t data64 = *((uint32_t*)&page_buffer[i]);
+//	       if (HAL_FLASH_Program(FLASH_TYPEPROGRAM_DOUBLEWORD, current_addr + (i*8), data64) != HAL_OK) {
+//	           // handle error
+//
+//	       }
+//	   }
+
+
+	   //HAL_FLASH_Lock();
  }
 
 /* USER CODE END 4 */

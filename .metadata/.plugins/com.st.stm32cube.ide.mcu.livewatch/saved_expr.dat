@@ -10,3 +10,6 @@ Accel_Y_RAW
 Accel_Z_RAW
 ret
 elapsed_time_us
+rtc_buffer
+currentData
+data_to_write
