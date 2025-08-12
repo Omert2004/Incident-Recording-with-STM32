@@ -748,6 +748,7 @@ void Construct_Flash_Struct(Current_Flash_Struct *data){
 	   memcpy(&data_to_write, &currentData, sizeof(Current_Flash_Struct));
 
 
+
 	   uint8_t index= flash_addr_pointer / 8 ;
 
 	   page_buffer[index] = data_to_write;
@@ -765,8 +766,6 @@ void Construct_Flash_Struct(Current_Flash_Struct *data){
 	   	   }
 
 	  HAL_FLASH_Lock();
-
-
 
 	  //Increment the pointer
 	  	   if(flash_addr_pointer >= Page_Start_Addr + PAGE_SIZE ){
@@ -790,7 +789,6 @@ void Construct_Flash_Struct(Current_Flash_Struct *data){
  		}
  		else{
  			receive_flag=0;
- 			log_session = 0;
  		}
 
  		 }

@@ -106,7 +106,6 @@ uint8_t word_counter=220;
 
 uint8_t button_count=0;
 
-uint8_t log_session = 0;
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -238,13 +237,11 @@ int main(void)
   {
 
 	  if(ubButtonPress){
+		  word_counter=0;
 		  ubButtonPress=0;
-		  if(!log_session){
-			  word_counter=0;
-			  flash_addr_pointer= Flash_PAGE54_START + button_count * PAGE_SIZE;
-			  button_count++;
-			  log_session=1;
-		  }
+		  flash_addr_pointer= Flash_PAGE54_START + button_count * PAGE_SIZE;
+		  button_count++;
+
 	  }
 
 	  __HAL_TIM_SET_COUNTER(&htim2, 0);
@@ -685,10 +682,10 @@ void MPU6050_Read_Gyro (void)
 
 
 void UserButton_Callback(void){
-
-	if(!log_session){
+	if(!ubButtonPress){
 		ubButtonPress=1;
 	}
+
 	//Toggle the GREEN_LED
 	HAL_GPIO_TogglePin(GREEN_LED_GPIO_Port, GREEN_LED_Pin);
 
@@ -748,6 +745,7 @@ void Construct_Flash_Struct(Current_Flash_Struct *data){
 	   memcpy(&data_to_write, &currentData, sizeof(Current_Flash_Struct));
 
 
+
 	   uint8_t index= flash_addr_pointer / 8 ;
 
 	   page_buffer[index] = data_to_write;
@@ -765,8 +763,6 @@ void Construct_Flash_Struct(Current_Flash_Struct *data){
 	   	   }
 
 	  HAL_FLASH_Lock();
-
-
 
 	  //Increment the pointer
 	  	   if(flash_addr_pointer >= Page_Start_Addr + PAGE_SIZE ){
@@ -790,7 +786,6 @@ void Construct_Flash_Struct(Current_Flash_Struct *data){
  		}
  		else{
  			receive_flag=0;
- 			log_session = 0;
  		}
 
  		 }
