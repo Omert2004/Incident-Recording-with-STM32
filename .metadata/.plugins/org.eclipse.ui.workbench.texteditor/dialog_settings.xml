@@ -3,6 +3,10 @@
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<item key="replaceBarOpen" value="false"/>
 	<list key="searchhistory">
+		<item value="Flash_Write"/>
+		<item value="word_counter"/>
+		<item value="flash_start_addr"/>
+		<item value="receive_flag"/>
 		<item value="TIM2_IRQHandler"/>
 		<item value="systick"/>
 	</list>

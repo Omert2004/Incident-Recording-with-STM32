@@ -107,6 +107,23 @@ uint8_t word_counter=220;
 uint8_t button_count=0;
 
 uint8_t log_session = 0;
+
+uint8_t tick_flag=0;
+
+
+
+volatile uint16_t head;
+volatile uint16_t tail;
+volatile uint16_t count;
+
+typedef enum {
+	STATE_IDLE,
+	STATE_PAST_1SECS,
+	STATE_AFTER_2SECS
+}STATES;
+
+uint8_t state=STATE_IDLE;
+
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -200,16 +217,12 @@ int main(void)
 	      	  printf("MPU is not ready. Check it.\n");
 	        }
   }
-
   HAL_TIM_Base_Start(&htim2);
 
   HAL_TIM_Base_Start_IT(&htim3);
 
   //Initalize MPU6050
   MPU6050_Init();
-
-
-
 
   HAL_FLASH_Unlock();
 
@@ -226,8 +239,7 @@ int main(void)
   	       Error_Handler();
   	   }
 
-
-  	   HAL_FLASH_Lock();
+  HAL_FLASH_Lock();
 
 
   /* USER CODE END 2 */
@@ -236,7 +248,6 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-
 	  if(ubButtonPress){
 		  ubButtonPress=0;
 		  if(!log_session){
@@ -244,20 +255,37 @@ int main(void)
 			  flash_addr_pointer= Flash_PAGE54_START + button_count * PAGE_SIZE;
 			  button_count++;
 			  log_session=1;
+			  state=STATE_PAST_1SECS;
 		  }
 	  }
-
 	  __HAL_TIM_SET_COUNTER(&htim2, 0);
 
-
-	  if(receive_flag){
+	  if(tick_flag){
+	// Prepare to write double word (8 bytes)
+		  tick_flag=0;
 		  MPU6050_Read_Accel();
 		  Construct_Flash_Struct(&currentData);
-		  Flash_Write();
-		  word_counter++;
+		  data_to_write = 0;
+		  // Copy your struct bytes into the 64-bit variable safely
+		  memcpy(&data_to_write, &currentData, sizeof(Current_Flash_Struct));
+		  Dynamic_Buffer_Write(data_to_write);
 	  }
 
-	  //MPU6050_Read_Gyro();
+	  switch(state){
+	  case STATE_PAST_1SECS:
+		  Flash_Write_Past_1s();
+		  state=STATE_AFTER_2SECS;
+		  break;
+
+	  case STATE_AFTER_2SECS:
+		  if(receive_flag){
+			  Flash_Write_After_2Secs(flash_addr_pointer);
+			  word_counter++;
+		  }
+		  break;
+
+	  }
+
 
 	  elapsed_time_us = __HAL_TIM_GET_COUNTER(&htim2);
 
@@ -421,7 +449,7 @@ static void MX_RTC_Init(void)
   /** Initialize RTC and set the Time and Date
   */
   sTime.Hours = 14;
-  sTime.Minutes = 0;
+  sTime.Minutes = 15;
   sTime.Seconds = 0;
   sTime.SubSeconds = 0;
   sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
@@ -509,9 +537,9 @@ static void MX_TIM3_Init(void)
 
   /* USER CODE END TIM3_Init 1 */
   htim3.Instance = TIM3;
-  htim3.Init.Prescaler = 15;
+  htim3.Init.Prescaler = 63;
   htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim3.Init.Period = 39999;
+  htim3.Init.Period = 49999;
   htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
@@ -720,19 +748,19 @@ void Construct_Flash_Struct(Current_Flash_Struct *data){
 
 }
 
- void Flash_Write(void){
+ void Flash_Write_After_2Secs(uint32_t current_pointer){
 
 	 uint32_t Page_Start_Addr= (uint32_t) Flash_PAGE54_START + ((button_count-1) * PAGE_SIZE);
-	 uint32_t flash_start_addr = (uint32_t) Flash_PAGE54_START + ((button_count-1) * PAGE_SIZE);
+
 	 memcpy(page_buffer, (uint32_t *)Page_Start_Addr, PAGE_SIZE);
 
 	 HAL_FLASH_Unlock();
 
 	   FLASH_EraseInitTypeDef erase_init = {
-	     .TypeErase   = FLASH_TYPEERASE_PAGES,
+	    .TypeErase   = FLASH_TYPEERASE_PAGES,
 	 	.Banks       = 1,
-	 	.Page        = 54 + (button_count-1),               // Last page for 128KB
-	     .NbPages     = 1
+	 	.Page        = 54 + (button_count-1), 	// Last page for 128KB
+	    .NbPages     = 1
 	   };
 
 	   uint32_t page_error = 0;
@@ -741,14 +769,8 @@ void Construct_Flash_Struct(Current_Flash_Struct *data){
 	       Error_Handler();
 	   }
 
-	   // Prepare to write double word (8 bytes)
-	   data_to_write = 0;
-
-	   // Copy your struct bytes into the 64-bit variable safely
-	   memcpy(&data_to_write, &currentData, sizeof(Current_Flash_Struct));
-
-
-	   uint8_t index= flash_addr_pointer / 8 ;
+	   //Get the index for the next data to be updated into the page_buffer
+	   uint16_t index = (uint16_t)((flash_addr_pointer - Page_Start_Addr) / 8);
 
 	   page_buffer[index] = data_to_write;
 
@@ -763,56 +785,101 @@ void Construct_Flash_Struct(Current_Flash_Struct *data){
 	   	    	   return;
 	   	       }
 	   	   }
-
 	  HAL_FLASH_Lock();
 
-
-
 	  //Increment the pointer
-	  	   if(flash_addr_pointer >= Page_Start_Addr + PAGE_SIZE ){
+	  	   if(current_pointer >= Page_Start_Addr + PAGE_SIZE ){
 	  	   		  flash_addr_pointer = FLASH_ADDR_POINTER_STORAGE;
 	  	   	  }
 	  	  else{
-
-	  		  flash_addr_pointer+=8;
+	  		 flash_addr_pointer+=8;
 	  	  }
+ }
+
+ void Flash_Write_Past_1s(void){
+	 uint32_t Page_Start_Addr= (uint32_t) Flash_PAGE54_START + ((button_count-1) * PAGE_SIZE);
+
+	 	 memcpy(page_buffer, (uint32_t *)Page_Start_Addr, PAGE_SIZE);
+
+	 	 HAL_FLASH_Unlock();
+
+	 	   FLASH_EraseInitTypeDef erase_init = {
+	 	    .TypeErase   = FLASH_TYPEERASE_PAGES,
+	 	 	.Banks       = 1,
+	 	 	.Page        = 54 + (button_count-1), 	// Last page for 128KB
+	 	    .NbPages     = 1
+	 	   };
+
+	 	   uint32_t page_error = 0;
+	 	   if (HAL_FLASHEx_Erase(&erase_init, &page_error) != HAL_OK)
+	 	   {
+	 	       Error_Handler();
+	 	   }
+
+	 	  uint64_t data;
+	 	  uint16_t indx=0;
+	 	  while(Dynamic_Buffer_Read(&data)){
+	 	  		page_buffer[indx++] = data;
+	 	  }
 
 
 
+	 	   //Write the whole page
+	 	   current_addr = Page_Start_Addr;
+	 	   	   for (uint32_t i = 0 ; (i*8) < PAGE_SIZE; i++) {
+	 	   	       uint32_t data64 = *((uint32_t*)&page_buffer[i]);
+	 	   	       if (HAL_FLASH_Program(FLASH_TYPEPROGRAM_DOUBLEWORD, current_addr + (i*8), data64) != HAL_OK) {
+	 	   	           // handle error
+	 	   	    	   HAL_FLASH_Lock();
+	 	   	    	   Error_Handler();
+	 	   	    	   return;
+	 	   	       }
+	 	   	   }
+	 	  HAL_FLASH_Lock();
 
+	 	 flash_addr_pointer = Page_Start_Addr + (indx*8);
 
  }
 
  void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
  	 if (htim->Instance == TIM3) {
- 		if(word_counter<200){
+ 		 tick_flag=1;
+ 		if(word_counter<150){
  			receive_flag = 1;
+
  		}
  		else{
  			receive_flag=0;
  			log_session = 0;
- 		}
+ 			state=STATE_IDLE;
 
+ 		}
  		 }
  	}
 
- /*
- void Dynamic_Buffer_Write(void){
-	 if(head || tail) return;
 
-	 uint8_t count=0;
+void Dynamic_Buffer_Write(uint64_t value) {
+    dynamic_buffer[head] = value;
+    head = (head + 1) % DYNAMIC_BUFFER_SIZE;
 
-	 while(tail != head && count < sizeof(dynamic_buffer)){
-		 dynamic_buffer[tail] = data_to_write;
-		 tail = (tail + 1) %  DYNAMIC_BUFFER_SIZE;
-	 }
- }
+    if (count < DYNAMIC_BUFFER_SIZE) {
+        count++;
+    } else {
+        // buffer is full, overwrite oldest
+        tail = (tail + 1) % DYNAMIC_BUFFER_SIZE;
+    }
+}
 
- void Flash_Write_Past_1s(void){
+// Read oldest data from circular buffer
+uint64_t Dynamic_Buffer_Read(uint64_t *value) {
+    if (count == 0) return 0; // empty
 
- }
+    *value = dynamic_buffer[tail];
+    tail = (tail + 1) % DYNAMIC_BUFFER_SIZE;
+    count--;
+    return 1;
+}
 
- */
 
 /* USER CODE END 4 */
 

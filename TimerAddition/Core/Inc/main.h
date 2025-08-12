@@ -91,8 +91,10 @@ typedef struct __attribute__((packed)){
 } Current_Flash_Struct;
 
 void Construct_Flash_Struct(Current_Flash_Struct *data);
-void Flash_Write(void);
-
+void Flash_Write_After_2Secs(uint32_t current_pointer);
+void Dynamic_Buffer_Write(uint64_t value);
+uint64_t Dynamic_Buffer_Read(uint64_t *value);
+void Flash_Write_Past_1s(void);
 
 /* USER CODE END Private defines */
 
