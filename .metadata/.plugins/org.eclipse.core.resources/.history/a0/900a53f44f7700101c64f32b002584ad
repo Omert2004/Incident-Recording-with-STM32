@@ -81,13 +81,11 @@ char rtc_buffer[15];
 
 #define FLASH_PAGE_START 0x0801F800
 
-#define Flash_PAGE54_START 0x0801B000
-
 #define FLASH_ADDR_POINTER_STORAGE  0x0801F800
 
 uint32_t current_addr = FLASH_PAGE_START;
 
-uint32_t flash_addr_pointer= Flash_PAGE54_START;
+
 
 #define PAGE_SIZE 2048
 
@@ -97,14 +95,12 @@ uint64_t page_buffer[PAGE_SIZE];
 #define DYNAMIC_BUFFER_SIZE 100
 uint64_t dynamic_buffer[DYNAMIC_BUFFER_SIZE];
 
-
+uint32_t flash_addr_pointer= FLASH_ADDR_POINTER_STORAGE;
 
 uint64_t data_to_write = 0;
 
 uint8_t receive_flag=0;
 uint8_t word_counter=220;
-
-uint8_t button_count=0;
 
 /* USER CODE END PTD */
 
@@ -215,8 +211,8 @@ int main(void)
   	   FLASH_EraseInitTypeDef erase_init = {
   	     .TypeErase   = FLASH_TYPEERASE_PAGES,
   	 	.Banks       = 1,
-  	 	.Page        = 54,
-  	     .NbPages     = 10
+  	 	.Page        = 63,               // Last page for 128KB
+  	     .NbPages     = 1
   	   };
 
   	   uint32_t page_error = 0;
@@ -242,13 +238,10 @@ int main(void)
 	  if(ubButtonPress){
 		  word_counter=0;
 		  ubButtonPress=0;
-		  flash_addr_pointer= Flash_PAGE54_START + button_count * PAGE_SIZE;
-		  button_count++;
 
 	  }
 
 	  __HAL_TIM_SET_COUNTER(&htim2, 0);
-
 
 	  if(receive_flag){
 		  MPU6050_Read_Accel();
@@ -509,7 +502,7 @@ static void MX_TIM3_Init(void)
 
   /* USER CODE END TIM3_Init 1 */
   htim3.Instance = TIM3;
-  htim3.Init.Prescaler = 15;
+  htim3.Init.Prescaler = 31;
   htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
   htim3.Init.Period = 39999;
   htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
@@ -719,16 +712,14 @@ void Construct_Flash_Struct(Current_Flash_Struct *data){
 
  void Flash_Write(void){
 
-	 uint32_t Page_Start_Addr= (uint32_t) Flash_PAGE54_START + ((button_count-1) * PAGE_SIZE);
-	 uint32_t flash_start_addr = (uint32_t) Flash_PAGE54_START + ((button_count-1) * PAGE_SIZE);
-	 memcpy(page_buffer, (uint32_t *)Page_Start_Addr, PAGE_SIZE);
+	 memcpy(page_buffer, (uint32_t *)FLASH_ADDR_POINTER_STORAGE, PAGE_SIZE);
 
 	 HAL_FLASH_Unlock();
 
 	   FLASH_EraseInitTypeDef erase_init = {
 	     .TypeErase   = FLASH_TYPEERASE_PAGES,
 	 	.Banks       = 1,
-	 	.Page        = 54 + (button_count-1),               // Last page for 128KB
+	 	.Page        = 63,               // Last page for 128KB
 	     .NbPages     = 1
 	   };
 
@@ -751,7 +742,7 @@ void Construct_Flash_Struct(Current_Flash_Struct *data){
 	   page_buffer[index] = data_to_write;
 
 	   //Write the whole page
-	   current_addr = Page_Start_Addr;
+	   current_addr = FLASH_PAGE_START;
 	   	   for (uint32_t i = 0 ; (i*8) < PAGE_SIZE; i++) {
 	   	       uint32_t data64 = *((uint32_t*)&page_buffer[i]);
 	   	       if (HAL_FLASH_Program(FLASH_TYPEPROGRAM_DOUBLEWORD, current_addr + (i*8), data64) != HAL_OK) {
@@ -765,7 +756,7 @@ void Construct_Flash_Struct(Current_Flash_Struct *data){
 	  HAL_FLASH_Lock();
 
 	  //Increment the pointer
-	  	   if(flash_addr_pointer >= Page_Start_Addr + PAGE_SIZE ){
+	  	   if(flash_addr_pointer >= FLASH_PAGE_START + PAGE_SIZE ){
 	  	   		  flash_addr_pointer = FLASH_ADDR_POINTER_STORAGE;
 	  	   	  }
 	  	  else{

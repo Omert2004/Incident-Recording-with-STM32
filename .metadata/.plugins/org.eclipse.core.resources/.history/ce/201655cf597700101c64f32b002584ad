@@ -87,7 +87,7 @@ char rtc_buffer[15];
 
 uint32_t current_addr = FLASH_PAGE_START;
 
-uint32_t flash_addr_pointer= Flash_PAGE54_START;
+
 
 #define PAGE_SIZE 2048
 
@@ -97,7 +97,7 @@ uint64_t page_buffer[PAGE_SIZE];
 #define DYNAMIC_BUFFER_SIZE 100
 uint64_t dynamic_buffer[DYNAMIC_BUFFER_SIZE];
 
-
+uint32_t flash_addr_pointer= FLASH_ADDR_POINTER_STORAGE;
 
 uint64_t data_to_write = 0;
 
@@ -242,7 +242,6 @@ int main(void)
 	  if(ubButtonPress){
 		  word_counter=0;
 		  ubButtonPress=0;
-		  flash_addr_pointer= Flash_PAGE54_START + button_count * PAGE_SIZE;
 		  button_count++;
 
 	  }
@@ -721,6 +720,7 @@ void Construct_Flash_Struct(Current_Flash_Struct *data){
 
 	 uint32_t Page_Start_Addr= (uint32_t) Flash_PAGE54_START + ((button_count-1) * PAGE_SIZE);
 	 uint32_t flash_start_addr = (uint32_t) Flash_PAGE54_START + ((button_count-1) * PAGE_SIZE);
+	 flash_addr_pointer = flash_start_addr;
 	 memcpy(page_buffer, (uint32_t *)Page_Start_Addr, PAGE_SIZE);
 
 	 HAL_FLASH_Unlock();
@@ -728,7 +728,7 @@ void Construct_Flash_Struct(Current_Flash_Struct *data){
 	   FLASH_EraseInitTypeDef erase_init = {
 	     .TypeErase   = FLASH_TYPEERASE_PAGES,
 	 	.Banks       = 1,
-	 	.Page        = 54 + (button_count-1),               // Last page for 128KB
+	 	.Page        = 54 + button_count,               // Last page for 128KB
 	     .NbPages     = 1
 	   };
 

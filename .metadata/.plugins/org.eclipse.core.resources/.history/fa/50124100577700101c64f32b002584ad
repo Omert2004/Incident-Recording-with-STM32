@@ -87,7 +87,7 @@ char rtc_buffer[15];
 
 uint32_t current_addr = FLASH_PAGE_START;
 
-uint32_t flash_addr_pointer= Flash_PAGE54_START;
+
 
 #define PAGE_SIZE 2048
 
@@ -97,7 +97,7 @@ uint64_t page_buffer[PAGE_SIZE];
 #define DYNAMIC_BUFFER_SIZE 100
 uint64_t dynamic_buffer[DYNAMIC_BUFFER_SIZE];
 
-
+uint32_t flash_addr_pointer= FLASH_ADDR_POINTER_STORAGE;
 
 uint64_t data_to_write = 0;
 
@@ -242,16 +242,15 @@ int main(void)
 	  if(ubButtonPress){
 		  word_counter=0;
 		  ubButtonPress=0;
-		  flash_addr_pointer= Flash_PAGE54_START + button_count * PAGE_SIZE;
 		  button_count++;
 
 	  }
 
 	  __HAL_TIM_SET_COUNTER(&htim2, 0);
 
-
+	  MPU6050_Read_Accel();
 	  if(receive_flag){
-		  MPU6050_Read_Accel();
+
 		  Construct_Flash_Struct(&currentData);
 		  Flash_Write();
 		  word_counter++;
@@ -719,16 +718,15 @@ void Construct_Flash_Struct(Current_Flash_Struct *data){
 
  void Flash_Write(void){
 
-	 uint32_t Page_Start_Addr= (uint32_t) Flash_PAGE54_START + ((button_count-1) * PAGE_SIZE);
-	 uint32_t flash_start_addr = (uint32_t) Flash_PAGE54_START + ((button_count-1) * PAGE_SIZE);
-	 memcpy(page_buffer, (uint32_t *)Page_Start_Addr, PAGE_SIZE);
+	 uint32_t flash_start_addr= (uint32_t) Flash_PAGE54_START;
+	 memcpy(page_buffer, (uint32_t *)FLASH_ADDR_POINTER_STORAGE, PAGE_SIZE);
 
 	 HAL_FLASH_Unlock();
 
 	   FLASH_EraseInitTypeDef erase_init = {
 	     .TypeErase   = FLASH_TYPEERASE_PAGES,
 	 	.Banks       = 1,
-	 	.Page        = 54 + (button_count-1),               // Last page for 128KB
+	 	.Page        = 54 + button_count,               // Last page for 128KB
 	     .NbPages     = 1
 	   };
 
@@ -751,7 +749,7 @@ void Construct_Flash_Struct(Current_Flash_Struct *data){
 	   page_buffer[index] = data_to_write;
 
 	   //Write the whole page
-	   current_addr = Page_Start_Addr;
+	   current_addr = FLASH_PAGE_START;
 	   	   for (uint32_t i = 0 ; (i*8) < PAGE_SIZE; i++) {
 	   	       uint32_t data64 = *((uint32_t*)&page_buffer[i]);
 	   	       if (HAL_FLASH_Program(FLASH_TYPEPROGRAM_DOUBLEWORD, current_addr + (i*8), data64) != HAL_OK) {
@@ -765,7 +763,7 @@ void Construct_Flash_Struct(Current_Flash_Struct *data){
 	  HAL_FLASH_Lock();
 
 	  //Increment the pointer
-	  	   if(flash_addr_pointer >= Page_Start_Addr + PAGE_SIZE ){
+	  	   if(flash_addr_pointer >= FLASH_PAGE_START + PAGE_SIZE ){
 	  	   		  flash_addr_pointer = FLASH_ADDR_POINTER_STORAGE;
 	  	   	  }
 	  	  else{

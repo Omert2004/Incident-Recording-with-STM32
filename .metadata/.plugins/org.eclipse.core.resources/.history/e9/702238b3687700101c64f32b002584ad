@@ -87,7 +87,7 @@ char rtc_buffer[15];
 
 uint32_t current_addr = FLASH_PAGE_START;
 
-uint32_t flash_addr_pointer= Flash_PAGE54_START;
+
 
 #define PAGE_SIZE 2048
 
@@ -242,7 +242,7 @@ int main(void)
 	  if(ubButtonPress){
 		  word_counter=0;
 		  ubButtonPress=0;
-		  flash_addr_pointer= Flash_PAGE54_START + button_count * PAGE_SIZE;
+		  uint32_t flash_addr_pointer= Flash_PAGE54_START + button_count * PAGE_SIZE;
 		  button_count++;
 
 	  }
