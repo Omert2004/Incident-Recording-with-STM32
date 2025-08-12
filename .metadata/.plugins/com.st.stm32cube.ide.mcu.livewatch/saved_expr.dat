@@ -13,3 +13,8 @@ elapsed_time_us
 rtc_buffer
 currentData
 data_to_write
+page_buffer
+flash_addr_pointer
+start_flag
+ubButtonPress
+receive_new_data

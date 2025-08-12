@@ -1,10 +1,6 @@
-11:40:25 **** Incremental Build of configuration Debug for project TimerAddition ****
+09:55:46 **** Incremental Build of configuration Debug for project TimerAddition ****
 make -j8 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G071xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'Flash_Write':
-../Core/Src/main.c:666:33: warning: comparison between pointer and integer
-  666 |           if(flash_addr_pointer == (uint32_t*)(FLASH_ADDR_POINTER_STORAGE + PAGESIZE)){
-      |                                 ^~
 arm-none-eabi-gcc -o "TimerAddition.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\TimerAddition\STM32G071RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TimerAddition.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
 C:/Users/Oguzm/Downloads/STM32CubeIDE_1.18.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: warning: TimerAddition.elf has a LOAD segment with RWX permissions
 Finished building target: TimerAddition.elf
@@ -12,11 +8,11 @@ Finished building target: TimerAddition.elf
 arm-none-eabi-size  TimerAddition.elf 
 arm-none-eabi-objdump -h -S TimerAddition.elf  > "TimerAddition.list"
    text	   data	    bss	    dec	    hex	filename
-  45936	      0	  18704	  64640	   fc80	TimerAddition.elf
+  47116	      0	  18784	  65900	  1016c	TimerAddition.elf
 Finished building: default.size.stdout
  
 Finished building: TimerAddition.list
  
 
-11:40:28 Build Finished. 0 errors, 2 warnings. (took 2s.362ms)
+09:55:48 Build Finished. 0 errors, 1 warnings. (took 2s.131ms)
 
