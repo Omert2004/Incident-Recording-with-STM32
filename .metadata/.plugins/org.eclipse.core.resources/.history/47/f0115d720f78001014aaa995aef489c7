@@ -253,9 +253,7 @@ int main(void)
 		  if(!log_session){
 			  word_counter=0;
 			  flash_addr_pointer= Flash_PAGE54_START + button_count * PAGE_SIZE;
-			  if(button_count<10){
-				  button_count++;
-			  }
+			  button_count++;
 			  log_session=1;
 			  state=STATE_PAST_1SECS;
 		  }
@@ -296,7 +294,9 @@ int main(void)
 //
 
 //
+//	  sprintf(rtc_buffer,"Time:%02d:%02d:%02d\n", sTime.Hours, sTime.Minutes, sTime.Seconds);
 //
+//	  HAL_UART_Transmit(&huart2,(uint8_t*)rtc_buffer, strlen(rtc_buffer), HAL_MAX_DELAY);
 
 
 
@@ -741,14 +741,10 @@ void Construct_Flash_Struct(Current_Flash_Struct *data){
 
 	data->pitch_i = (int16_t)(pitch_acc * 100);
 	data->roll_i  = (int16_t)(roll_acc  * 100);
-	data->hours   = sTime.Hours;
-	data->minutes = sTime.Minutes;
+	data->hours    = sTime.Hours;
+	data->minutes  = sTime.Minutes;
 	data->seconds = sTime.Seconds;
-	data->padding = 0;
-
-	sprintf(rtc_buffer,"Time:%02d:%02d:%02d\n", data->hours, data->minutes, data->seconds);
-
-		  HAL_UART_Transmit(&huart2,(uint8_t*)rtc_buffer, strlen(rtc_buffer), HAL_MAX_DELAY);
+	data->unused  = 0;
 
 }
 
@@ -781,7 +777,7 @@ void Construct_Flash_Struct(Current_Flash_Struct *data){
 	   //Write the whole page
 	   current_addr = Page_Start_Addr;
 	   	   for (uint32_t i = 0 ; (i*8) < PAGE_SIZE; i++) {
-	   	       uint64_t data64 = page_buffer[i];
+	   	       uint32_t data64 = *((uint32_t*)&page_buffer[i]);
 	   	       if (HAL_FLASH_Program(FLASH_TYPEPROGRAM_DOUBLEWORD, current_addr + (i*8), data64) != HAL_OK) {
 	   	           // handle error
 	   	    	   HAL_FLASH_Lock();
@@ -831,7 +827,7 @@ void Construct_Flash_Struct(Current_Flash_Struct *data){
 	 	   //Write the whole page
 	 	   current_addr = Page_Start_Addr;
 	 	   	   for (uint32_t i = 0 ; (i*8) < PAGE_SIZE; i++) {
-	 	   	       uint64_t data64 = page_buffer[i];
+	 	   	       uint32_t data64 = *((uint32_t*)&page_buffer[i]);
 	 	   	       if (HAL_FLASH_Program(FLASH_TYPEPROGRAM_DOUBLEWORD, current_addr + (i*8), data64) != HAL_OK) {
 	 	   	           // handle error
 	 	   	    	   HAL_FLASH_Lock();

@@ -10,10 +10,10 @@
 ../Core/Src/main.c:681:6:MPU6050_Read_Accel	40	static
 ../Core/Src/main.c:698:6:MPU6050_Read_Gyro	32	static
 ../Core/Src/main.c:715:6:UserButton_Callback	8	static
-../Core/Src/main.c:725:6:Construct_Flash_Struct	48	static
-../Core/Src/main.c:751:7:Flash_Write_After_2Secs	64	static
-../Core/Src/main.c:799:7:Flash_Write_Past_1s	64	static
-../Core/Src/main.c:844:7:HAL_TIM_PeriodElapsedCallback	16	static
-../Core/Src/main.c:861:6:Dynamic_Buffer_Write	16	static
-../Core/Src/main.c:874:10:Dynamic_Buffer_Read	16	static
-../Core/Src/main.c:890:6:Error_Handler	8	static,ignoring_inline_asm
+../Core/Src/main.c:725:6:Construct_Flash_Struct	56	static
+../Core/Src/main.c:755:7:Flash_Write_After_2Secs	64	static
+../Core/Src/main.c:803:7:Flash_Write_Past_1s	64	static
+../Core/Src/main.c:848:7:HAL_TIM_PeriodElapsedCallback	16	static
+../Core/Src/main.c:865:6:Dynamic_Buffer_Write	16	static
+../Core/Src/main.c:878:10:Dynamic_Buffer_Read	16	static
+../Core/Src/main.c:894:6:Error_Handler	8	static,ignoring_inline_asm

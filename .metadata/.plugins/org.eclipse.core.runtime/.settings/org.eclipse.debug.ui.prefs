@@ -1,7 +1,7 @@
 eclipse.preferences.version=1
 org.eclipse.debug.ui.MemoryHistoryKnownColor=235,235,235
 org.eclipse.debug.ui.MemoryHistoryUnknownColor=170,175,185
-org.eclipse.debug.ui.MemoryView.RenderingViewPane.1=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<persistedMemoryRenderings>\r\n    <memoryRendering memoryBlock\="884198296" renderingId\="org.eclipse.debug.ui.rendering.signedint"/>\r\n    <memoryRendering memoryBlock\="387825015" renderingId\="org.eclipse.debug.ui.rendering.signedint"/>\r\n    <memoryRendering memoryBlock\="227177215" renderingId\="org.eclipse.debug.ui.rendering.signedint"/>\r\n    <memoryRendering memoryBlock\="371583516" renderingId\="org.eclipse.debug.ui.rendering.signedint"/>\r\n    <memoryRendering memoryBlock\="283581467" renderingId\="org.eclipse.debug.ui.rendering.signedint"/>\r\n    <memoryRendering memoryBlock\="530026807" renderingId\="org.eclipse.debug.ui.rendering.signedint"/>\r\n    <memoryRendering memoryBlock\="813586619" renderingId\="org.eclipse.debug.ui.rendering.signedint"/>\r\n</persistedMemoryRenderings>\r\n
+org.eclipse.debug.ui.MemoryView.RenderingViewPane.1=
 org.eclipse.debug.ui.MemoryView.RenderingViewPane.2=
 org.eclipse.debug.ui.MemoryView.orientation=0
 org.eclipse.debug.ui.PREF_CHANGED_VALUE_BACKGROUND=150,80,115
