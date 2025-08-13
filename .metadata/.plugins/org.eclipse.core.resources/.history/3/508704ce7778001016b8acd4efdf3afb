@@ -267,7 +267,7 @@ int main(void)
 			  state=STATE_PAST_1SECS;
 		  }
 	  }
-	  __HAL_TIM_SET_COUNTER(&htim2, 0); //0.1ms
+	  __HAL_TIM_SET_COUNTER(&htim2, 0); //1 us
 	  SysTick_InitForTiming();
 
 	  uint32_t start = SysTick->VAL;
@@ -286,7 +286,7 @@ int main(void)
 	  }
 
 	  elapsed_tick_IDLE = GetElapsedTime_us(start); //2550tick = 2.5 ms
-	  IDLE_time_us = __HAL_TIM_GET_COUNTER(&htim2); //266 tick = 26.6 ms
+	  IDLE_time_us = __HAL_TIM_GET_COUNTER(&htim2); //46430us = 46 ms
 
 	  switch(state){
 	  case STATE_PAST_1SECS:

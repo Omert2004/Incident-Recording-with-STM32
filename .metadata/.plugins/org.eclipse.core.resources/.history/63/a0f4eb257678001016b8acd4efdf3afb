@@ -66,9 +66,9 @@ uint32_t elapsed_time_us;
 uint32_t After_1_5s_time_us;
 uint32_t PAST_1s_time_us;
 uint32_t IDLE_time_us;
-uint32_t elapsed_tick_IDLE;
-uint32_t elapsed_tick_past1;
-uint32_t elapsed_tick_after2;
+uint32_t elapsed_us_IDLE;
+uint32_t elapsed_us_past1;
+uint32_t elapsed_us_after2;
 
 //Store the values of past 1 sec using FIFO
 int16_t dynamicbuffer_1s[100];
@@ -267,7 +267,7 @@ int main(void)
 			  state=STATE_PAST_1SECS;
 		  }
 	  }
-	  __HAL_TIM_SET_COUNTER(&htim2, 0); //0.1ms
+	  __HAL_TIM_SET_COUNTER(&htim2, 0); //1 us
 	  SysTick_InitForTiming();
 
 	  uint32_t start = SysTick->VAL;
@@ -285,8 +285,8 @@ int main(void)
 		  Dynamic_Buffer_Write(data_to_write);
 	  }
 
-	  elapsed_tick_IDLE = GetElapsedTime_us(start); //2550tick = 2.5 ms
-	  IDLE_time_us = __HAL_TIM_GET_COUNTER(&htim2); //266 tick = 26.6 ms
+	  elapsed_us_IDLE = GetElapsedTime_us(start);
+	  IDLE_time_us = __HAL_TIM_GET_COUNTER(&htim2); //46430us = 46 ms   2550tick = 2.5 ms
 
 	  switch(state){
 	  case STATE_PAST_1SECS:
@@ -296,7 +296,7 @@ int main(void)
 		  state=STATE_AFTER_2SECS;
 		  PAST_1s_time_us = __HAL_TIM_GET_COUNTER(&htim2);
 
-		  elapsed_tick_past1=GetElapsedTime_us(start);  //46406 ticks
+		  elapsed_us_past1=GetElapsedTime_us(start);
 		  break;
 
 
@@ -307,8 +307,8 @@ int main(void)
 			  Flash_Write_After_2Secs(flash_addr_pointer);
 			  word_counter++;
 		  }
-		  After_1_5s_time_us = __HAL_TIM_GET_COUNTER(&htim2); //2282 us = 2.8 ms
-		  elapsed_tick_after2=GetElapsedTime_us(start);  //46136 ticks
+		  After_1_5s_time_us = __HAL_TIM_GET_COUNTER(&htim2); //46165 us = 46 ms
+		  elapsed_us_after2=GetElapsedTime_us(start);
 		  break;
 
 	  }
@@ -517,9 +517,9 @@ static void MX_TIM2_Init(void)
 
   /* USER CODE END TIM2_Init 1 */
   htim2.Instance = TIM2;
-  htim2.Init.Prescaler = 0;
+  htim2.Init.Prescaler = 0; //999
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim2.Init.Period = 6399; //tick per 0.1ms
+  htim2.Init.Period = 6399; //12799
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim2) != HAL_OK)

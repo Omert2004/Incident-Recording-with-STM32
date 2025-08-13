@@ -1,15 +1,8 @@
 Accel_X_RAW
-Gx
-ret
-data
-Accel_Data
 pitch_acc
 roll_acc
-Ax
 Accel_Y_RAW
 Accel_Z_RAW
-ret
-elapsed_time_us
 rtc_buffer
 currentData
 data_to_write
@@ -26,3 +19,6 @@ head
 tail
 count
 dynamic_buffer
+IDLE_time_us
+PAST_1s_time_us
+After_1_5s_time_us

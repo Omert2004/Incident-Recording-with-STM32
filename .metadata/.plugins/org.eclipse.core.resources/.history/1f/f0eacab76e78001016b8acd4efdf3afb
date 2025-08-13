@@ -96,9 +96,6 @@ void Dynamic_Buffer_Write(uint64_t value);
 uint64_t Dynamic_Buffer_Read(uint64_t *value);
 void Flash_Write_Past_1s(void);
 
-
-uint32_t GetElapsedTime_us(uint32_t start_ticks);
-void SysTick_InitForTiming(void);
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

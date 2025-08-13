@@ -66,9 +66,6 @@ uint32_t elapsed_time_us;
 uint32_t After_1_5s_time_us;
 uint32_t PAST_1s_time_us;
 uint32_t IDLE_time_us;
-uint32_t elapsed_tick_IDLE;
-uint32_t elapsed_tick_past1;
-uint32_t elapsed_tick_after2;
 
 //Store the values of past 1 sec using FIFO
 int16_t dynamicbuffer_1s[100];
@@ -267,12 +264,7 @@ int main(void)
 			  state=STATE_PAST_1SECS;
 		  }
 	  }
-	  __HAL_TIM_SET_COUNTER(&htim2, 0); //0.1ms
-	  SysTick_InitForTiming();
-
-	  uint32_t start = SysTick->VAL;
-
-
+	  __HAL_TIM_SET_COUNTER(&htim2, 0); //165 us = 0.17 ms
 
 	  if(tick_flag){
 	// Prepare to write double word (8 bytes)
@@ -284,31 +276,24 @@ int main(void)
 		  memcpy(&data_to_write, &currentData, sizeof(Current_Flash_Struct));
 		  Dynamic_Buffer_Write(data_to_write);
 	  }
-
-	  elapsed_tick_IDLE = GetElapsedTime_us(start); //2550tick = 2.5 ms
-	  IDLE_time_us = __HAL_TIM_GET_COUNTER(&htim2); //266 tick = 26.6 ms
+	  IDLE_time_us = __HAL_TIM_GET_COUNTER(&htim2); //2970us = 2.9 ms
 
 	  switch(state){
 	  case STATE_PAST_1SECS:
-		  start = SysTick->VAL;
 		  __HAL_TIM_SET_COUNTER(&htim2, 0);
 		  Flash_Write_Past_1s();
 		  state=STATE_AFTER_2SECS;
 		  PAST_1s_time_us = __HAL_TIM_GET_COUNTER(&htim2);
-
-		  elapsed_tick_past1=GetElapsedTime_us(start);  //46406 ticks
 		  break;
 
 
 	  case STATE_AFTER_2SECS:
-		  start = SysTick->VAL;
 		  __HAL_TIM_SET_COUNTER(&htim2, 0);
 		  if(receive_flag){
 			  Flash_Write_After_2Secs(flash_addr_pointer);
 			  word_counter++;
 		  }
-		  After_1_5s_time_us = __HAL_TIM_GET_COUNTER(&htim2); //2282 us = 2.8 ms
-		  elapsed_tick_after2=GetElapsedTime_us(start);  //46136 ticks
+		  After_1_5s_time_us = __HAL_TIM_GET_COUNTER(&htim2); //3000 us = 3 ms
 		  break;
 
 	  }
@@ -517,9 +502,9 @@ static void MX_TIM2_Init(void)
 
   /* USER CODE END TIM2_Init 1 */
   htim2.Instance = TIM2;
-  htim2.Init.Prescaler = 0;
+  htim2.Init.Prescaler = 63; //999
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim2.Init.Period = 6399; //tick per 0.1ms
+  htim2.Init.Period = 0xFFFFFFFF; //12799
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
@@ -908,25 +893,6 @@ uint64_t Dynamic_Buffer_Read(uint64_t *value) {
     count--;
     return 1;
 }
-
-void SysTick_InitForTiming(void)
-{
-    SysTick->CTRL = 0;                // Disable SysTick
-    SysTick->LOAD = 0xFFFFFF;         // Max reload value (24-bit)
-    SysTick->VAL = 0;                 // Clear current value
-    SysTick->CTRL = SysTick_CTRL_CLKSOURCE_Msk | SysTick_CTRL_ENABLE_Msk; // CPU clock, enable
-}
-
-uint32_t GetElapsedTime_us(uint32_t start_ticks)
-{
-    uint32_t end_ticks = SysTick->VAL;
-    uint32_t elapsed_ticks = (start_ticks >= end_ticks)
-                           ? (start_ticks - end_ticks)
-                           : (start_ticks + (0xFFFFFF - end_ticks));
-
-    return elapsed_ticks / (HAL_RCC_GetHCLKFreq() / 1000000);
-}
-
 
 
 /* USER CODE END 4 */

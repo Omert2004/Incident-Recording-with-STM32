@@ -3,6 +3,11 @@
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<item key="replaceBarOpen" value="false"/>
 	<list key="searchhistory">
+		<item value="sys"/>
+		<item value="PAST_1s_time_us"/>
+		<item value="rtc_buf"/>
+		<item value="rtc"/>
+		<item value="rtc "/>
 		<item value="Flash_Write"/>
 		<item value="word_counter"/>
 		<item value="flash_start_addr"/>
