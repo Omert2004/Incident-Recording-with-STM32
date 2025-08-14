@@ -74,19 +74,6 @@ void Error_Handler(void);
 #define TCK_GPIO_Port GPIOA
 
 /* USER CODE BEGIN Private defines */
-
-void MPU6050_Init(void);
-void MPU6050_Read_Accel(void);
-void MPU6050_Read_Gyro(void);
-
-void UserButton_Callback(void);
-
-
-
-uint32_t GetElapsedTime_us(uint32_t start_ticks);
-
-uint64_t Dynamic_Buffer_Read(uint64_t *value);
-
 typedef struct __attribute__((packed)){
 	int16_t intProcessedPitch;
 	int16_t intProcessedRoll;
@@ -96,11 +83,20 @@ typedef struct __attribute__((packed)){
 	uint8_t intPadding ;
 }tsCurrentFlashStruct;
 
+uint32_t GetElapsedTime_us(uint32_t start_ticks);
+uint64_t Dynamic_Buffer_Read(uint64_t *value);
+
+void MPU6050_Init(void);
+void MPU6050_Read_Accel(void);
+void MPU6050_Read_Gyro(void);
+void UserButton_Callback(void);
 void Construct_Flash_Struct(tsCurrentFlashStruct *data);
-void Flash_Write_After_2Secs(uint32_t current_pointer);
 void Dynamic_Buffer_Write(uint64_t value);
 void Flash_Write_Past_1s(void);
+void Flash_Write_After_2Secs(uint32_t current_pointer);
 void SysTick_InitForTiming(void);
+
+
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

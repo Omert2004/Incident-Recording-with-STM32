@@ -47,16 +47,16 @@
 #define DYNAMIC_BUFFER_SIZE 100
 
 
-typedef enum {
+typedef enum
+{
 	EN_STATE_IDLE,
 	EN_STATE_PAST_100_SAMPLES,
 	EN_STATE_NEXT_150_SAMPLES
-}teSTATES;
-
+} teSTATES;
 
 tsCurrentFlashStruct sCurrentData;
 
-char g_chrRTCBuffer[15];
+char g_arr_chrRTCBuffer[15];
 
 uint8_t g_untState=EN_STATE_IDLE;
 
@@ -64,7 +64,6 @@ uint8_t g_int_ReceiveIncomingDataFlag=0;
 uint8_t g_int_SampleCounter=220;
 
 uint8_t g_int_ButtonPressedCount=0;
-
 uint8_t g_int_LogSessionBusyFlag = 0;
 
 uint8_t g_untTim3Tick=0;
@@ -100,7 +99,7 @@ uint64_t g_arr_untFlashPageBuffer[PAGE_SIZE];
 
 uint64_t g_arr_untDynamicBuffer[DYNAMIC_BUFFER_SIZE];
 
-uint64_t data_to_write = 0;
+uint64_t g_untDataToWrite = 0;
 
 float Gx;
 float Gy;
@@ -110,8 +109,8 @@ float Ax ; // g
 float Ay ;
 float Az ;
 
-float pitch_acc;
-float roll_acc;
+float g_fltPitchAcceleration;
+float g_fltRollAcceleration;
 
 
 
@@ -235,60 +234,49 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  uint32_t start = SysTick->VAL;
 
-	  if(g_untIOButtonPressed){
+	  //HAL_IWDG_Refresh(&hiwdg);
+
+	  if(g_untTim3Tick)
+	  	  {
+	  		  // Prepare to write double word (8 bytes)
+	  		  MPU6050_Read_Accel();
+	  		  Construct_Flash_Struct(&sCurrentData);
+	  		  g_untDataToWrite = 0;
+	  		  // Copy your struct bytes into the 64-bits variable safely
+	  		  memcpy(&g_untDataToWrite, &sCurrentData, sizeof(tsCurrentFlashStruct));
+	  		  Dynamic_Buffer_Write(g_untDataToWrite);
+	  	  }
+
+	  if(g_untIOButtonPressed)
+	  {
 		  g_untIOButtonPressed=0;
-		  if(!g_int_LogSessionBusyFlag){
+		  if(!g_int_LogSessionBusyFlag)
+		  {
 			  g_int_SampleCounter=0;
 			  g_untCurrentFlashAddress= FLASH_PAGE54_START + g_int_ButtonPressedCount * PAGE_SIZE;
-			  if(g_int_ButtonPressedCount<10){
+			  if(g_int_ButtonPressedCount<10)
+			  {
 				  g_int_ButtonPressedCount++;
 			  }
 			  g_int_LogSessionBusyFlag=1;
 			  g_untState=EN_STATE_PAST_100_SAMPLES;
 		  }
 	  }
-	  __HAL_TIM_SET_COUNTER(&htim2, 0); //0.1ms
-	  SysTick_InitForTiming();
-	  start = SysTick->VAL;
 
-
-	  if(g_untTim3Tick){
-	// Prepare to write double word (8 bytes)
-		  g_untTim3Tick=0;
-		  MPU6050_Read_Accel();
-		  Construct_Flash_Struct(&sCurrentData);
-		  data_to_write = 0;
-		  // Copy your struct bytes into the 64-bit variable safely
-		  memcpy(&data_to_write, &sCurrentData, sizeof(tsCurrentFlashStruct));
-		  Dynamic_Buffer_Write(data_to_write);
-	  }
-
-	  elapsed_tick_IDLE = GetElapsedTime_us(start); //2550tick = 2.5 ms
-	  IDLE_time_us = __HAL_TIM_GET_COUNTER(&htim2); //266 tick = 26.6 ms
-
-	  switch(g_untState){
+	  switch(g_untState)
+	  {
 	  case EN_STATE_PAST_100_SAMPLES:
-		  start = SysTick->VAL;
-		  __HAL_TIM_SET_COUNTER(&htim2, 0);
 		  Flash_Write_Past_1s();
 		  g_untState=EN_STATE_NEXT_150_SAMPLES;
-		  PAST_1s_time_us = __HAL_TIM_GET_COUNTER(&htim2);
-
-		  elapsed_tick_past1=GetElapsedTime_us(start);  //46406 ticks
 		  break;
 
-
 	  case EN_STATE_NEXT_150_SAMPLES:
-		  start = SysTick->VAL;
-		  __HAL_TIM_SET_COUNTER(&htim2, 0);
-		  if(g_int_ReceiveIncomingDataFlag){
+		  if(g_int_ReceiveIncomingDataFlag)
+		  {
 			  Flash_Write_After_2Secs(g_untCurrentFlashAddress);
 			  g_int_SampleCounter++;
 		  }
-		  After_1_5s_time_us = __HAL_TIM_GET_COUNTER(&htim2); //2282 us = 2.8 ms
-		  elapsed_tick_after2=GetElapsedTime_us(start);  //46136 ticks
 		  break;
 
 	  }
@@ -442,7 +430,7 @@ static void MX_RTC_Init(void)
   /** Initialize RTC and set the Time and Date
   */
   sTime.Hours = 14;
-  sTime.Minutes = 15;
+  sTime.Minutes = 0;
   sTime.Seconds = 0;
   sTime.SubSeconds = 0;
   sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
@@ -485,9 +473,9 @@ static void MX_TIM2_Init(void)
 
   /* USER CODE END TIM2_Init 1 */
   htim2.Instance = TIM2;
-  htim2.Init.Prescaler = 0;
+  htim2.Init.Prescaler = 999;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim2.Init.Period = 6399; //tick per 0.1ms
+  htim2.Init.Period = 12799;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
@@ -506,7 +494,8 @@ static void MX_TIM2_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN TIM2_Init 2 */
-
+	 HAL_NVIC_SetPriority(TIM2_IRQn, 0, 0);
+ HAL_NVIC_EnableIRQ(TIM2_IRQn);
   /* USER CODE END TIM2_Init 2 */
 
 }
@@ -530,9 +519,9 @@ static void MX_TIM3_Init(void)
 
   /* USER CODE END TIM3_Init 1 */
   htim3.Instance = TIM3;
-  htim3.Init.Prescaler = 15;
+  htim3.Init.Prescaler = 63;
   htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim3.Init.Period = 39999;
+  htim3.Init.Period = 49999;
   htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
@@ -688,7 +677,7 @@ void MPU6050_Init(void)
  * This function reads raw acceleration data and computes to generate roll and pitch
  *
  *
- * Buffer : roll_acc , pitch_acc
+ * Buffer : g_fltRollAcceleration , g_fltPitchAcceleration
  *
  * @Precondition: I2C peripheral must be initialized and the MPU6050 configured.
  *
@@ -705,8 +694,8 @@ void MPU6050_Read_Accel(void)
 	g_intAccelZRaw = (int16_t)(Accel_Data[4] << 8 | Accel_Data[5]);
 
 	// Compute pitch and roll
-	roll_acc  = atan2((float)g_intAccelYRaw, (float)g_intAccelZRaw) * 180.0 / M_PI;
-	pitch_acc = atan2(-(float)g_intAccelXRaw, sqrt(g_intAccelYRaw * g_intAccelYRaw + g_intAccelZRaw * g_intAccelZRaw)) * 180.0 / M_PI;
+	g_fltRollAcceleration  = atan2((float)g_intAccelYRaw, (float)g_intAccelZRaw) * 180.0 / M_PI;
+	g_fltPitchAcceleration = atan2(-(float)g_intAccelXRaw, sqrt(g_intAccelYRaw * g_intAccelYRaw + g_intAccelZRaw * g_intAccelZRaw)) * 180.0 / M_PI;
 }
 
 /**
@@ -776,30 +765,28 @@ void UserButton_Callback(void){
  * @Parameter[in]: data : Points to the tsCurrentFlashStruct instance to be filled.
  *
  * @Precondition: RTC peripheral must be initialized and running;
- *                pitch_acc and roll_acc global variables must hold valid values.
+ *                g_fltPitchAcceleration and g_fltRollAcceleration global variables must hold valid values.
  *
  * @Return: N/A
  */
-void Construct_Flash_Struct(tsCurrentFlashStruct *data){
-
+void Construct_Flash_Struct(tsCurrentFlashStruct *data)
+{
 	  RTC_TimeTypeDef sTime;
 	  RTC_DateTypeDef sDate;
 
 	HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
 	HAL_RTC_GetDate(&hrtc, &sDate, RTC_FORMAT_BIN); // Unlocks the shadow registers
 
-	data->intProcessedPitch = (int16_t)(pitch_acc * 100);
-	data->intProcessedRoll  = (int16_t)(roll_acc  * 100);
+	data->intProcessedPitch = (int16_t)(g_fltPitchAcceleration * 100);
+	data->intProcessedRoll  = (int16_t)(g_fltRollAcceleration  * 100);
 	data->intRTCHours   = sTime.Hours;
 	data->intRTCMinutes = sTime.Minutes;
 	data->intRTCSeconds = sTime.Seconds;
 	data->intPadding = 0;
 
-	//sprintf(g_chrRTCBuffer,"Time:%02d:%02d:%02d\n", data->intRTCHours, data->intRTCMinutes, data->intRTCSeconds);
-	//HAL_UART_Transmit(&huart2,(uint8_t*)g_chrRTCBuffer, strlen(g_chrRTCBuffer), HAL_MAX_DELAY);
-
+	//sprintf(g_arr_chrRTCBuffer,"Time:%02d:%02d:%02d\n", data->intRTCHours, data->intRTCMinutes, data->intRTCSeconds);
+	//HAL_UART_Transmit(&huart2,(uint8_t*)g_arr_chrRTCBuffer, strlen(g_arr_chrRTCBuffer), HAL_MAX_DELAY);
 }
-
 
 /**
  * Flash_Write_Past_1s
@@ -840,7 +827,7 @@ void Construct_Flash_Struct(tsCurrentFlashStruct *data){
 
 	   uint64_t data;
 	   uint16_t indx=0;
-	   while(Dynamic_Bg_arr_untDynamicBufferta))
+	   while(Dynamic_Buffer_Read(&data))
 	   {
 		   g_arr_untFlashPageBuffer[indx++] = data;
 	   }
@@ -869,15 +856,15 @@ void Construct_Flash_Struct(tsCurrentFlashStruct *data){
   * Flash_Write_After_2Secs
   *
   * This function updates the flash memory page corresponding to the last log session
-  * by writing a single new data entry (data_to_write) into the correct position in the
+  * by writing a single new data entry (g_untDataToWrite) into the correct position in the
   * page buffer. It reads the existing page from flash, erases it, updates the buffer,
   * and writes the full page back to flash memory.
   *
-  * Buffer : g_arr_untFlashPageBuffer, g_untCurrentFlashAddress, g_untCurrentMemoryAddress, data_to_write
+  * Buffer : g_arr_untFlashPageBuffer, g_untCurrentFlashAddress, g_untCurrentMemoryAddress, g_untDataToWrite
   *
   * @param current_pointer Current flash memory pointer location for the next data write.
   *
-  * @Precondition: FLASH_PAGE54_START, PAGE_SIZE, g_int_ButtonPressedCount, data_to_write,
+  * @Precondition: FLASH_PAGE54_START, PAGE_SIZE, g_int_ButtonPressedCount, g_untDataToWrite,
   *                and g_untCurrentFlashAddress must be valid and initialized.
   *
   * @Return: N/A
@@ -907,7 +894,7 @@ void Construct_Flash_Struct(tsCurrentFlashStruct *data){
 	   //Get the index for the next data to be updated into the g_arr_untFlashPageBuffer
 	   uint16_t index = (uint16_t)((g_untCurrentFlashAddress - Page_Start_Addr) / 8);
 
-	   g_arr_untFlashPageBuffer[index] = data_to_write;
+	   g_arr_untFlashPageBuffer[index] = g_untDataToWrite;
 
 	   //Write the whole page
 	   g_untCurrentMemoryAddress = Page_Start_Addr;
@@ -951,8 +938,10 @@ void Construct_Flash_Struct(tsCurrentFlashStruct *data){
   *
   * @Return: N/A
   */
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
- 	 if (htim->Instance == TIM3)
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+
+	if (htim->Instance == TIM3)
  	 {
  		g_untTim3Tick=1;
  		if(g_int_SampleCounter<150)
@@ -965,6 +954,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
  			g_int_LogSessionBusyFlag = 0;
  			g_untState=EN_STATE_IDLE;
  		}
+
  	 }
  }
 

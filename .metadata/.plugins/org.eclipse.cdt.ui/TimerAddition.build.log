@@ -1,10 +1,18 @@
-10:46:00 **** Incremental Build of configuration Debug for project TimerAddition ****
+16:36:33 **** Incremental Build of configuration Debug for project TimerAddition ****
 make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G071xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "TimerAddition.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\TimerAddition\STM32G071RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TimerAddition.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+C:/Users/Oguzm/Downloads/STM32CubeIDE_1.18.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: warning: TimerAddition.elf has a LOAD segment with RWX permissions
+Finished building target: TimerAddition.elf
+ 
 arm-none-eabi-size  TimerAddition.elf 
+arm-none-eabi-objdump -h -S TimerAddition.elf  > "TimerAddition.list"
    text	   data	    bss	    dec	    hex	filename
-  48128	      0	  19624	  67752	  108a8	TimerAddition.elf
+  47888	      0	  19600	  67488	  107a0	TimerAddition.elf
 Finished building: default.size.stdout
  
+Finished building: TimerAddition.list
+ 
 
-10:46:00 Build Finished. 0 errors, 0 warnings. (took 373ms)
+16:36:35 Build Finished. 0 errors, 1 warnings. (took 1s.812ms)
 
