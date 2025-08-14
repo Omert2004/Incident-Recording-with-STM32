@@ -40,16 +40,67 @@
 #define GREEN_LED_Pin         GPIO_PIN_5
 #define GREEN_LED_GPIO_Port   GPIOA
 
+#define FLASH_PAGE54_START 0x0801B000
 
-int16_t Accel_X_RAW;
-int16_t Accel_Y_RAW;
-int16_t Accel_Z_RAW;
+#define PAGE_SIZE 2048
+
+#define DYNAMIC_BUFFER_SIZE 100
 
 
-int16_t Gyro_X_RAW;
-int16_t Gyro_Y_RAW;
-int16_t Gyro_Z_RAW;
+typedef enum {
+	EN_STATE_IDLE,
+	EN_STATE_PAST_100_SAMPLES,
+	EN_STATE_NEXT_150_SAMPLES
+}teSTATES;
 
+
+tsCurrentFlashStruct sCurrentData;
+
+char g_chrRTCBuffer[15];
+
+uint8_t g_untState=EN_STATE_IDLE;
+
+uint8_t g_int_ReceiveIncomingDataFlag=0;
+uint8_t g_int_SampleCounter=220;
+
+uint8_t g_int_ButtonPressedCount=0;
+
+uint8_t g_int_LogSessionBusyFlag = 0;
+
+uint8_t g_untTim3Tick=0;
+
+//Checks whether the button is pressed
+__IO uint8_t g_untIOButtonPressed = 0;
+
+int16_t g_intAccelXRaw;
+int16_t g_intAccelYRaw;
+int16_t g_intAccelZRaw;
+
+int16_t g_intGyroXRaw;
+int16_t g_intGyroYRaw;
+int16_t g_intGyroZRaw;
+
+volatile uint16_t g_untCircularBufferHead;
+volatile uint16_t g_untCircularBufferTail;
+volatile uint16_t g_untCircularBufferSizeFilled;
+
+uint32_t After_1_5s_time_us;
+uint32_t PAST_1s_time_us;
+uint32_t IDLE_time_us;
+
+uint32_t elapsed_tick_IDLE;
+uint32_t elapsed_tick_past1;
+uint32_t elapsed_tick_after2;
+
+uint32_t g_untCurrentMemoryAddress;
+
+uint32_t g_untCurrentFlashAddress= FLASH_PAGE54_START;
+
+uint64_t g_arr_untFlashPageBuffer[PAGE_SIZE];
+
+uint64_t g_arr_untDynamicBuffer[DYNAMIC_BUFFER_SIZE];
+
+uint64_t data_to_write = 0;
 
 float Gx;
 float Gy;
@@ -62,73 +113,7 @@ float Az ;
 float pitch_acc;
 float roll_acc;
 
-uint32_t elapsed_time_us;
-uint32_t After_1_5s_time_us;
-uint32_t PAST_1s_time_us;
-uint32_t IDLE_time_us;
-uint32_t elapsed_tick_IDLE;
-uint32_t elapsed_tick_past1;
-uint32_t elapsed_tick_after2;
 
-//Store the values of past 1 sec using FIFO
-int16_t dynamicbuffer_1s[100];
-//After the button is pressed, memcopy(copybuffer,dynamicbuf) to use for Flash Mem
-int16_t copybuffer_1s[100];
-//Store the values of next 2 sec
-int16_t nextbuffer_2s[200];
-
-//Checks whether new input is received
-uint8_t flag_input = 0;
-//Checks whether the button is pressed
-__IO uint8_t ubButtonPress = 0;
-
-
-char rtc_buffer[15];
-
-#define FLASH_PAGE_START 0x0801F800
-
-#define Flash_PAGE54_START 0x0801B000
-
-#define FLASH_ADDR_POINTER_STORAGE  0x0801F800
-
-uint32_t current_addr = FLASH_PAGE_START;
-
-uint32_t flash_addr_pointer= Flash_PAGE54_START;
-
-#define PAGE_SIZE 2048
-
-
-uint64_t page_buffer[PAGE_SIZE];
-
-#define DYNAMIC_BUFFER_SIZE 100
-uint64_t dynamic_buffer[DYNAMIC_BUFFER_SIZE];
-
-
-
-uint64_t data_to_write = 0;
-
-uint8_t receive_flag=0;
-uint8_t word_counter=220;
-
-uint8_t button_count=0;
-
-uint8_t log_session = 0;
-
-uint8_t tick_flag=0;
-
-
-
-volatile uint16_t head;
-volatile uint16_t tail;
-volatile uint16_t count;
-
-typedef enum {
-	STATE_IDLE,
-	STATE_PAST_1SECS,
-	STATE_AFTER_2SECS
-}STATES;
-
-uint8_t state=STATE_IDLE;
 
 /* USER CODE END PTD */
 
@@ -154,10 +139,7 @@ UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
 
-//double word size = 8byte
-//Float size = 4 byte
 
-Current_Flash_Struct currentData;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -231,6 +213,7 @@ int main(void)
   MPU6050_Init();
 
   HAL_FLASH_Unlock();
+  uint32_t page_error = 0;
 
   	   FLASH_EraseInitTypeDef erase_init = {
   	     .TypeErase   = FLASH_TYPEERASE_PAGES,
@@ -239,7 +222,6 @@ int main(void)
   	     .NbPages     = 10
   	   };
 
-  	   uint32_t page_error = 0;
   	   if (HAL_FLASHEx_Erase(&erase_init, &page_error) != HAL_OK)
   	   {
   	       Error_Handler();
@@ -247,83 +229,69 @@ int main(void)
 
   HAL_FLASH_Lock();
 
-
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  uint32_t start = SysTick->VAL;
 
-	  if(ubButtonPress){
-		  ubButtonPress=0;
-		  if(!log_session){
-			  word_counter=0;
-			  flash_addr_pointer= Flash_PAGE54_START + button_count * PAGE_SIZE;
-			  if(button_count<10){
-				  button_count++;
+	  if(g_untIOButtonPressed){
+		  g_untIOButtonPressed=0;
+		  if(!g_int_LogSessionBusyFlag){
+			  g_int_SampleCounter=0;
+			  g_untCurrentFlashAddress= FLASH_PAGE54_START + g_int_ButtonPressedCount * PAGE_SIZE;
+			  if(g_int_ButtonPressedCount<10){
+				  g_int_ButtonPressedCount++;
 			  }
-			  log_session=1;
-			  state=STATE_PAST_1SECS;
+			  g_int_LogSessionBusyFlag=1;
+			  g_untState=EN_STATE_PAST_100_SAMPLES;
 		  }
 	  }
 	  __HAL_TIM_SET_COUNTER(&htim2, 0); //0.1ms
 	  SysTick_InitForTiming();
-
-	  uint32_t start = SysTick->VAL;
-
+	  start = SysTick->VAL;
 
 
-	  if(tick_flag){
+	  if(g_untTim3Tick){
 	// Prepare to write double word (8 bytes)
-		  tick_flag=0;
+		  g_untTim3Tick=0;
 		  MPU6050_Read_Accel();
-		  Construct_Flash_Struct(&currentData);
+		  Construct_Flash_Struct(&sCurrentData);
 		  data_to_write = 0;
 		  // Copy your struct bytes into the 64-bit variable safely
-		  memcpy(&data_to_write, &currentData, sizeof(Current_Flash_Struct));
+		  memcpy(&data_to_write, &sCurrentData, sizeof(tsCurrentFlashStruct));
 		  Dynamic_Buffer_Write(data_to_write);
 	  }
 
 	  elapsed_tick_IDLE = GetElapsedTime_us(start); //2550tick = 2.5 ms
 	  IDLE_time_us = __HAL_TIM_GET_COUNTER(&htim2); //266 tick = 26.6 ms
 
-	  switch(state){
-	  case STATE_PAST_1SECS:
+	  switch(g_untState){
+	  case EN_STATE_PAST_100_SAMPLES:
 		  start = SysTick->VAL;
 		  __HAL_TIM_SET_COUNTER(&htim2, 0);
 		  Flash_Write_Past_1s();
-		  state=STATE_AFTER_2SECS;
+		  g_untState=EN_STATE_NEXT_150_SAMPLES;
 		  PAST_1s_time_us = __HAL_TIM_GET_COUNTER(&htim2);
 
 		  elapsed_tick_past1=GetElapsedTime_us(start);  //46406 ticks
 		  break;
 
 
-	  case STATE_AFTER_2SECS:
+	  case EN_STATE_NEXT_150_SAMPLES:
 		  start = SysTick->VAL;
 		  __HAL_TIM_SET_COUNTER(&htim2, 0);
-		  if(receive_flag){
-			  Flash_Write_After_2Secs(flash_addr_pointer);
-			  word_counter++;
+		  if(g_int_ReceiveIncomingDataFlag){
+			  Flash_Write_After_2Secs(g_untCurrentFlashAddress);
+			  g_int_SampleCounter++;
 		  }
 		  After_1_5s_time_us = __HAL_TIM_GET_COUNTER(&htim2); //2282 us = 2.8 ms
 		  elapsed_tick_after2=GetElapsedTime_us(start);  //46136 ticks
 		  break;
 
 	  }
-
-
-
-
-//	  HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
-//	  HAL_RTC_GetDate(&hrtc, &sDate, RTC_FORMAT_BIN); // Unlocks the shadow registers
-//
-
-//
-//
-
-
 
     /* USER CODE END WHILE */
 
@@ -682,8 +650,19 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 
-void MPU6050_Init(void){
-
+/**
+ * MPU6050_Init
+ *
+ * This function is used to initalize MPU6050 IMU sensor by writing required registers
+ *
+ * Buffer : data
+ *
+ * @Precondition: @Precondition: I2C peripheral must be initialized and the MPU6050 configured.
+ *
+ * @Return: N/A
+ */
+void MPU6050_Init(void)
+{
 	uint8_t data =0x00;
 
 	//Wake sensor up -> register 0x6B
@@ -700,63 +679,108 @@ void MPU6050_Init(void){
 	//ACCEL_CONFIG  <strong>±</strong> 2g
 	data = 0x00;
 	HAL_I2C_Mem_Write(&hi2c1, MPU6050_ADDR <<1, 0x1C, 1, &data, 1, 1000);
-
 }
 
-void MPU6050_Read_Accel(void){  //Execution Time = 1.2ms
+
+/**
+ * MPU6050_Read_Accel
+ *
+ * This function reads raw acceleration data and computes to generate roll and pitch
+ *
+ *
+ * Buffer : roll_acc , pitch_acc
+ *
+ * @Precondition: I2C peripheral must be initialized and the MPU6050 configured.
+ *
+ * @Return: N/A
+ */
+void MPU6050_Read_Accel(void)
+{  //Execution Time = 1.2ms
 	uint8_t Accel_Data[6];
 
 	// Read 6 BYTES of data starting from ACCEL_XOUT_H (0x3B) register
 	HAL_I2C_Mem_Read (&hi2c1, MPU6050_ADDR <<1 , 0x3B, 1, Accel_Data, 6, 1000);
-	Accel_X_RAW = (int16_t)(Accel_Data[0] << 8 | Accel_Data[1]);
-	Accel_Y_RAW = (int16_t)(Accel_Data[2] << 8 | Accel_Data[3]);
-	Accel_Z_RAW = (int16_t)(Accel_Data[4] << 8 | Accel_Data[5]);
-
-	//printf("Ax: %d\tGx: %.2f\r\n", Accel_X_RAW, Gx);
+	g_intAccelXRaw = (int16_t)(Accel_Data[0] << 8 | Accel_Data[1]);
+	g_intAccelYRaw = (int16_t)(Accel_Data[2] << 8 | Accel_Data[3]);
+	g_intAccelZRaw = (int16_t)(Accel_Data[4] << 8 | Accel_Data[5]);
 
 	// Compute pitch and roll
-	roll_acc  = atan2((float)Accel_Y_RAW, (float)Accel_Z_RAW) * 180.0 / M_PI;
-	pitch_acc = atan2(-(float)Accel_X_RAW, sqrt(Accel_Y_RAW * Accel_Y_RAW + Accel_Z_RAW * Accel_Z_RAW)) * 180.0 / M_PI;
-
+	roll_acc  = atan2((float)g_intAccelYRaw, (float)g_intAccelZRaw) * 180.0 / M_PI;
+	pitch_acc = atan2(-(float)g_intAccelXRaw, sqrt(g_intAccelYRaw * g_intAccelYRaw + g_intAccelZRaw * g_intAccelZRaw)) * 180.0 / M_PI;
 }
 
+/**
+ * MPU6050_Read_Gyro
+ *
+ * This function reads raw gyroscope data from the MPU6050 and converts it to angular velocity.
+ *
+ * This function communicates with the MPU6050 sensor via I2C to read
+ * 6 bytes of raw gyroscope data (X, Y, Z axes) strating from GYRO_XOUT_h register,
+ * combines them into signed 16-bit integers, and converts them into angular velocities
+ * in degrees per second using the sensitivity scale factor for ±250°/s range (131 LSB/°/s)
+ *
+ * Buffer : Gx, Gy, Gz
+ *
+ * @Precondition: N/A
+ *
+ * @Return: N/A
+ */
 void MPU6050_Read_Gyro (void)
 {
 	uint8_t Gyro_Data[6];
-
 	// Read 6 BYTES of data starting from GYRO_XOUT_H register
 	 HAL_I2C_Mem_Read (&hi2c1, MPU6050_ADDR <<1, 0x43, 1, Gyro_Data, 6, 1000);
 
-	Gyro_X_RAW = (int16_t)(Gyro_Data[0] << 8 | Gyro_Data[1]);
-	Gyro_Y_RAW = (int16_t)(Gyro_Data[2] << 8 | Gyro_Data[3]);
-	Gyro_Z_RAW = (int16_t)(Gyro_Data[4] << 8 | Gyro_Data[5]);
+	g_intGyroXRaw = (int16_t)(Gyro_Data[0] << 8 | Gyro_Data[1]);
+	g_intGyroYRaw = (int16_t)(Gyro_Data[2] << 8 | Gyro_Data[3]);
+	g_intGyroZRaw = (int16_t)(Gyro_Data[4] << 8 | Gyro_Data[5]);
 
-	Gx = (float)Gyro_X_RAW/131.0;
-	Gy = (float)Gyro_Y_RAW/131.0;
-	Gz = (float)Gyro_Z_RAW/131.0;
+	Gx = (float)g_intGyroXRaw/131.0;
+	Gy = (float)g_intGyroYRaw/131.0;
+	Gz = (float)g_intGyroZRaw/131.0;
 }
 
 
+/**
+ * UserButton_Callback
+ *
+ * This callback is triggered when the user button is pressed.
+ *
+ * Updates the g_untIOButtonPressed flag if no logging session is active
+ * and toggles the GREEN_LED GPIO pin state.
+ *
+ * Buffer : N/A
+ *
+ * @Precondition: External interrupt for the user button must be configured.
+ *
+ * @Return: N/A
+ */
 void UserButton_Callback(void){
 
-	if(!log_session){
-		ubButtonPress=1;
+	if(!g_int_LogSessionBusyFlag){
+		g_untIOButtonPressed=1;
 	}
 	//Toggle the GREEN_LED
 	HAL_GPIO_TogglePin(GREEN_LED_GPIO_Port, GREEN_LED_Pin);
-
 }
 
-void Construct_Flash_Struct(Current_Flash_Struct *data){
-//	uint64_t packed = 0;
-//	int16_t pitch_i = (int16_t)(pitch_acc * 100); // store with 0.01 precision
-//	int16_t roll_i  = (int16_t)(roll_acc * 100);
-//
-//	packed |= ((uint64_t)(pitch_i & 0xFFFF) << 48);
-//	packed |= ((uint64_t)(roll_i  & 0xFFFF) << 32);
-//	packed |= ((uint64_t)(sTime.Hours & 0x1F) << 27);
-//	packed |= ((uint64_t)(sTime.Minutes & 0x3F) << 21);
-//	packed |= ((uint64_t)(sTime.Seconds & 0x3F) << 15);
+
+/**
+ * Construct_Flash_Struct
+ *
+ * This function populates a tsCurrentFlashStruct structure with
+ * the current pitch, roll, and RTC time values, ready to be stored in flash.
+ *
+ * Buffer : intProcessedPitch, intProcessedRoll, intRTCHours, intRTCMinutes, intRTCSeconds, intPadding
+ *
+ * @Parameter[in]: data : Points to the tsCurrentFlashStruct instance to be filled.
+ *
+ * @Precondition: RTC peripheral must be initialized and running;
+ *                pitch_acc and roll_acc global variables must hold valid values.
+ *
+ * @Return: N/A
+ */
+void Construct_Flash_Struct(tsCurrentFlashStruct *data){
 
 	  RTC_TimeTypeDef sTime;
 	  RTC_DateTypeDef sDate;
@@ -764,31 +788,113 @@ void Construct_Flash_Struct(Current_Flash_Struct *data){
 	HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
 	HAL_RTC_GetDate(&hrtc, &sDate, RTC_FORMAT_BIN); // Unlocks the shadow registers
 
-	data->pitch_i = (int16_t)(pitch_acc * 100);
-	data->roll_i  = (int16_t)(roll_acc  * 100);
-	data->hours   = sTime.Hours;
-	data->minutes = sTime.Minutes;
-	data->seconds = sTime.Seconds;
-	data->padding = 0;
+	data->intProcessedPitch = (int16_t)(pitch_acc * 100);
+	data->intProcessedRoll  = (int16_t)(roll_acc  * 100);
+	data->intRTCHours   = sTime.Hours;
+	data->intRTCMinutes = sTime.Minutes;
+	data->intRTCSeconds = sTime.Seconds;
+	data->intPadding = 0;
 
-	sprintf(rtc_buffer,"Time:%02d:%02d:%02d\n", data->hours, data->minutes, data->seconds);
-
-		  HAL_UART_Transmit(&huart2,(uint8_t*)rtc_buffer, strlen(rtc_buffer), HAL_MAX_DELAY);
+	//sprintf(g_chrRTCBuffer,"Time:%02d:%02d:%02d\n", data->intRTCHours, data->intRTCMinutes, data->intRTCSeconds);
+	//HAL_UART_Transmit(&huart2,(uint8_t*)g_chrRTCBuffer, strlen(g_chrRTCBuffer), HAL_MAX_DELAY);
 
 }
 
- void Flash_Write_After_2Secs(uint32_t current_pointer){
 
-	 uint32_t Page_Start_Addr= (uint32_t) Flash_PAGE54_START + ((button_count-1) * PAGE_SIZE);
+/**
+ * Flash_Write_Past_1s
+ *
+ * This function writes the collected data from the dynamic buffer to
+ * the flash memory page corresponding to the last 1-second log interval.
+ * It reads the existing flash page into a RAM buffer, erases the page,
+ * appends new data from the dynamic buffer, and writes the entire page back.
+ *
+ * Buffer : g_arr_untFlashPageBuffer, g_untCurrentFlashAddress, g_untCurrentMemoryAddress
+ *
+ * @Precondition: FLASH_PAGE54_START, PAGE_SIZE, g_int_ButtonPressedCount, and
+ *                Dynamic_Buffer_Read() must be properly defined and initialized.
+ *
+ * @Return: N/A
+ */
+ void Flash_Write_Past_1s(void)
+ {
+	 uint32_t Page_Start_Addr= (uint32_t) FLASH_PAGE54_START + ((g_int_ButtonPressedCount-1) * PAGE_SIZE);
 
-	 memcpy(page_buffer, (uint32_t *)Page_Start_Addr, PAGE_SIZE);
+	 memcpy(g_arr_untFlashPageBuffer, (uint32_t *)Page_Start_Addr, PAGE_SIZE);
 
 	 HAL_FLASH_Unlock();
 
-	   FLASH_EraseInitTypeDef erase_init = {
+	 FLASH_EraseInitTypeDef erase_init =
+	 {
+	   .TypeErase   = FLASH_TYPEERASE_PAGES,
+	   .Banks       = 1,
+	   .Page        = 54 + (g_int_ButtonPressedCount-1), 	// Last page for 128KB
+	   .NbPages     = 1
+	 };
+
+	   uint32_t page_error = 0;
+	   if (HAL_FLASHEx_Erase(&erase_init, &page_error) != HAL_OK)
+	   {
+		   Error_Handler();
+	   }
+
+	   uint64_t data;
+	   uint16_t indx=0;
+	   while(Dynamic_Bg_arr_untDynamicBufferta))
+	   {
+		   g_arr_untFlashPageBuffer[indx++] = data;
+	   }
+
+
+
+   //Write the whole page
+	  g_untCurrentMemoryAddress = Page_Start_Addr;
+	  for (uint32_t i = 0 ; (i*8) < PAGE_SIZE; i++)
+	  {
+		   uint64_t data64 = g_arr_untFlashPageBuffer[i];
+		   if (HAL_FLASH_Program(FLASH_TYPEPROGRAM_DOUBLEWORD, g_untCurrentMemoryAddress + (i*8), data64) != HAL_OK)
+		   {
+			   // handle error
+			   HAL_FLASH_Lock();
+			   Error_Handler();
+			   return;
+		   }
+	   }
+	  HAL_FLASH_Lock();
+
+	 g_untCurrentFlashAddress = Page_Start_Addr + (indx*8);
+ }
+
+ /**
+  * Flash_Write_After_2Secs
+  *
+  * This function updates the flash memory page corresponding to the last log session
+  * by writing a single new data entry (data_to_write) into the correct position in the
+  * page buffer. It reads the existing page from flash, erases it, updates the buffer,
+  * and writes the full page back to flash memory.
+  *
+  * Buffer : g_arr_untFlashPageBuffer, g_untCurrentFlashAddress, g_untCurrentMemoryAddress, data_to_write
+  *
+  * @param current_pointer Current flash memory pointer location for the next data write.
+  *
+  * @Precondition: FLASH_PAGE54_START, PAGE_SIZE, g_int_ButtonPressedCount, data_to_write,
+  *                and g_untCurrentFlashAddress must be valid and initialized.
+  *
+  * @Return: N/A
+  */
+ void Flash_Write_After_2Secs(uint32_t current_pointer)
+ {
+	 uint32_t Page_Start_Addr= (uint32_t) FLASH_PAGE54_START + ((g_int_ButtonPressedCount-1) * PAGE_SIZE);
+
+	 memcpy(g_arr_untFlashPageBuffer, (uint32_t *)Page_Start_Addr, PAGE_SIZE);
+
+	 HAL_FLASH_Unlock();
+
+	   FLASH_EraseInitTypeDef erase_init =
+	   {
 	    .TypeErase   = FLASH_TYPEERASE_PAGES,
 	 	.Banks       = 1,
-	 	.Page        = 54 + (button_count-1), 	// Last page for 128KB
+	 	.Page        = 54 + (g_int_ButtonPressedCount-1), 	// Last page for 128KB
 	    .NbPages     = 1
 	   };
 
@@ -798,117 +904,149 @@ void Construct_Flash_Struct(Current_Flash_Struct *data){
 	       Error_Handler();
 	   }
 
-	   //Get the index for the next data to be updated into the page_buffer
-	   uint16_t index = (uint16_t)((flash_addr_pointer - Page_Start_Addr) / 8);
+	   //Get the index for the next data to be updated into the g_arr_untFlashPageBuffer
+	   uint16_t index = (uint16_t)((g_untCurrentFlashAddress - Page_Start_Addr) / 8);
 
-	   page_buffer[index] = data_to_write;
+	   g_arr_untFlashPageBuffer[index] = data_to_write;
 
 	   //Write the whole page
-	   current_addr = Page_Start_Addr;
-	   	   for (uint32_t i = 0 ; (i*8) < PAGE_SIZE; i++) {
-	   	       uint64_t data64 = page_buffer[i];
-	   	       if (HAL_FLASH_Program(FLASH_TYPEPROGRAM_DOUBLEWORD, current_addr + (i*8), data64) != HAL_OK) {
-	   	           // handle error
-	   	    	   HAL_FLASH_Lock();
-	   	    	   Error_Handler();
-	   	    	   return;
-	   	       }
-	   	   }
+	   g_untCurrentMemoryAddress = Page_Start_Addr;
+	   for (uint32_t i = 0 ; (i*8) < PAGE_SIZE; i++)
+	   {
+		   uint64_t data64 = g_arr_untFlashPageBuffer[i];
+		   if (HAL_FLASH_Program(FLASH_TYPEPROGRAM_DOUBLEWORD, g_untCurrentMemoryAddress + (i*8), data64) != HAL_OK) {
+			   // handle error
+			   HAL_FLASH_Lock();
+			   Error_Handler();
+			   return;
+		   }
+	   }
 	  HAL_FLASH_Lock();
 
 	  //Increment the pointer
-	  	   if(current_pointer >= Page_Start_Addr + PAGE_SIZE ){
-	  	   		  flash_addr_pointer = FLASH_ADDR_POINTER_STORAGE;
-	  	   	  }
-	  	  else{
-	  		 flash_addr_pointer+=8;
-	  	  }
+	  if(current_pointer >= Page_Start_Addr + PAGE_SIZE )
+	  {
+		  g_untCurrentFlashAddress = Page_Start_Addr;
+	  }
+	  else
+	  {
+		  g_untCurrentFlashAddress+=8;
+	  }
+ }
+ /**
+  * HAL_TIM_PeriodElapsedCallback
+  *
+  * This callback is triggered when the specified timer reaches its period value.
+  *
+  * When TIM3 generates an update event, the function sets the g_untTim3Tick to indicate
+  * that a timing interval has elapsed. If the g_int_SampleCounter is less than 150, the
+  * g_int_ReceiveIncomingDataFlag is set to enable data reception. Otherwise, data reception is stopped,
+  * the logging session is ended, and the system state is set to EN_STATE_IDLE.
+  *
+  * Buffer : g_untTim3Tick, g_int_ReceiveIncomingDataFlag, g_int_LogSessionBusyFlag, g_untState
+  *
+  * @param htim Pointer to the TIM handle structure that triggered the callback.
+  *
+  * @Precondition: TIM3 must be initialized and started with interrupts enabled.
+  *
+  * @Return: N/A
+  */
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
+ 	 if (htim->Instance == TIM3)
+ 	 {
+ 		g_untTim3Tick=1;
+ 		if(g_int_SampleCounter<150)
+ 		{
+ 			g_int_ReceiveIncomingDataFlag = 1;
+ 		}
+ 		else
+ 		{
+ 			g_int_ReceiveIncomingDataFlag=0;
+ 			g_int_LogSessionBusyFlag = 0;
+ 			g_untState=EN_STATE_IDLE;
+ 		}
+ 	 }
  }
 
- void Flash_Write_Past_1s(void){
-	 uint32_t Page_Start_Addr= (uint32_t) Flash_PAGE54_START + ((button_count-1) * PAGE_SIZE);
+/**
+ * Dynamic_Buffer_Write
+ *
+ * Writes a 64-bit value into the dynamic ring buffer.
+ *
+ * The function inserts the new value at the current head position
+ * and advances the g_untCircularBufferHead pointer in a circular manner. If the buffer
+ * is not yet full, the g_untCircularBufferSizeFilled is incremented. If the buffer is full,
+ * the oldest value (at the tail) is overwritten and the g_untCircularBufferTail pointer
+ * is advanced.
+ *
+ * Buffer : g_arr_untDynamicBuffer, g_untCircularBufferHead, g_untCircularBufferTail, g_untCircularBufferSizeFilled
+ *
+ * @Parameter[in]: value : The 64-bit value to be written into the g_arr_untDynamicBuffer.
+ *
+ * @Precondition: g_arr_untDynamicBuffer, g_untCircularBufferHead, g_untCircularBufferTail, and g_untCircularBufferSizeFilled must be
+ *                properly initialized. DYNAMIC_BUFFER_SIZE must
+ *                define the buffer capacity.
+ *
+ * @Return: N/A
+ */
+void Dynamic_Buffer_Write(uint64_t value)
+{
+    g_arr_untDynamicBuffer[g_untCircularBufferHead] = value;
+    g_untCircularBufferHead = (g_untCircularBufferHead + 1) % DYNAMIC_BUFFER_SIZE;
 
-	 	 memcpy(page_buffer, (uint32_t *)Page_Start_Addr, PAGE_SIZE);
-
-	 	 HAL_FLASH_Unlock();
-
-	 	   FLASH_EraseInitTypeDef erase_init = {
-	 	    .TypeErase   = FLASH_TYPEERASE_PAGES,
-	 	 	.Banks       = 1,
-	 	 	.Page        = 54 + (button_count-1), 	// Last page for 128KB
-	 	    .NbPages     = 1
-	 	   };
-
-	 	   uint32_t page_error = 0;
-	 	   if (HAL_FLASHEx_Erase(&erase_init, &page_error) != HAL_OK)
-	 	   {
-	 	       Error_Handler();
-	 	   }
-
-	 	  uint64_t data;
-	 	  uint16_t indx=0;
-	 	  while(Dynamic_Buffer_Read(&data)){
-	 	  		page_buffer[indx++] = data;
-	 	  }
-
-
-
-	 	   //Write the whole page
-	 	   current_addr = Page_Start_Addr;
-	 	   	   for (uint32_t i = 0 ; (i*8) < PAGE_SIZE; i++) {
-	 	   	       uint64_t data64 = page_buffer[i];
-	 	   	       if (HAL_FLASH_Program(FLASH_TYPEPROGRAM_DOUBLEWORD, current_addr + (i*8), data64) != HAL_OK) {
-	 	   	           // handle error
-	 	   	    	   HAL_FLASH_Lock();
-	 	   	    	   Error_Handler();
-	 	   	    	   return;
-	 	   	       }
-	 	   	   }
-	 	  HAL_FLASH_Lock();
-
-	 	 flash_addr_pointer = Page_Start_Addr + (indx*8);
-
- }
-
- void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
- 	 if (htim->Instance == TIM3) {
- 		 tick_flag=1;
- 		if(word_counter<150){
- 			receive_flag = 1;
-
- 		}
- 		else{
- 			receive_flag=0;
- 			log_session = 0;
- 			state=STATE_IDLE;
-
- 		}
- 		 }
- 	}
-
-
-void Dynamic_Buffer_Write(uint64_t value) {
-    dynamic_buffer[head] = value;
-    head = (head + 1) % DYNAMIC_BUFFER_SIZE;
-
-    if (count < DYNAMIC_BUFFER_SIZE) {
-        count++;
-    } else {
+    if (g_untCircularBufferSizeFilled < DYNAMIC_BUFFER_SIZE)
+    {
+        g_untCircularBufferSizeFilled++;
+    }
+    else
+    {
         // buffer is full, overwrite oldest
-        tail = (tail + 1) % DYNAMIC_BUFFER_SIZE;
+        g_untCircularBufferTail = (g_untCircularBufferTail + 1) % DYNAMIC_BUFFER_SIZE;
     }
 }
 
-// Read oldest data from circular buffer
-uint64_t Dynamic_Buffer_Read(uint64_t *value) {
-    if (count == 0) return 0; // empty
+/**
+ * Dynamic_Buffer_Read
+ *
+ * Reads the oldest value from the dynamic circular buffer.
+ *
+ * The function retrieves the value at the tail position, advances
+ * the g_untCircularBufferTail pointer, and decrements the g_untCircularBufferSizeFilled. If the buffer is empty,
+ * the function returns 0 and does not modify the output value.
+ *
+ * Buffer : g_arr_untDynamicBuffer, g_untCircularBufferHead, g_untCircularBufferTail, g_untCircularBufferSizeFilled
+ *
+ * @param value Pointer to a uint64_t variable where the read value will be stored.
+ *
+ * @Precondition: g_arr_untDynamicBuffer, g_untCircularBufferHead, g_untCircularBufferTail, and g_untCircularBufferSizeFilled must be properly initialized.
+ *
+ * @Return: 1 if a value was successfully read; 0 if the buffer was empty.
+ */
 
-    *value = dynamic_buffer[tail];
-    tail = (tail + 1) % DYNAMIC_BUFFER_SIZE;
-    count--;
+uint64_t Dynamic_Buffer_Read(uint64_t *value)
+{
+    if (g_untCircularBufferSizeFilled == 0) return 0; // empty
+
+    *value = g_arr_untDynamicBuffer[g_untCircularBufferTail];
+    g_untCircularBufferTail = (g_untCircularBufferTail + 1) % DYNAMIC_BUFFER_SIZE;
+    g_untCircularBufferSizeFilled--;
     return 1;
 }
-
+/**
+ * SysTick_InitForTiming
+ *
+ * Initializes the SysTick timer for measuring time intervals.
+ *
+ * This function disables SysTick, sets the maximum 24-bit reload value,
+ * clears the current counter, and enables the timer using the CPU clock.
+ * It can be used to measure elapsed time by reading the current SysTick value.
+ *
+ * Buffer : N/A
+ *
+ * @Precondition: None. Can be called at any point after system clock initialization.
+ *
+ * @Return: N/A
+ */
 void SysTick_InitForTiming(void)
 {
     SysTick->CTRL = 0;                // Disable SysTick
@@ -917,6 +1055,23 @@ void SysTick_InitForTiming(void)
     SysTick->CTRL = SysTick_CTRL_CLKSOURCE_Msk | SysTick_CTRL_ENABLE_Msk; // CPU clock, enable
 }
 
+/**
+ * GetElapsedTime_us
+ *
+ * Calculates the elapsed time in microseconds since a given SysTick start value.
+ *
+ * This function reads the current SysTick counter, computes the difference
+ * from the provided start_ticks, and converts it into microseconds based
+ * on the CPU clock frequency.
+ *
+ * Buffer : N/A
+ *
+ * @Parameter[in]: start_ticks: The SysTick counter value at the start of the timing interval.
+ *
+ * @Precondition: SysTick must be initialized and running (e.g., via SysTick_InitForTiming()).
+ *
+ * @Return: Elapsed time in microseconds since start_ticks.
+ */
 uint32_t GetElapsedTime_us(uint32_t start_ticks)
 {
     uint32_t end_ticks = SysTick->VAL;

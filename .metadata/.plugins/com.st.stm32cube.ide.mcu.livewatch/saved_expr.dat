@@ -22,3 +22,6 @@ dynamic_buffer
 IDLE_time_us
 PAST_1s_time_us
 After_1_5s_time_us
+elapsed_us_IDLE
+elapsed_us_past1
+elapsed_us_after2

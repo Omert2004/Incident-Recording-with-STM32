@@ -2897,3 +2897,1377 @@ Binding(CTRL+G,
 		,,true),null),
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.debug.ui.memory.abstractasynctablerendering,,,system)
+!SESSION 2025-08-14 08:54:28.597 -----------------------------------------------
+eclipse.buildId=Version 1.18.1
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=tr_TR
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-08-14 08:54:38.245
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-08-14 08:54:38.246
+!MESSAGE Log4j2 initialized with config file C:\Users\Oguzm\STM32CubeIDE\TEI_Projects\.metadata\.log4j2.xml
+
+!ENTRY org.eclipse.cdt.core 4 0 2025-08-14 08:54:42.727
+!MESSAGE Internal Error trying to retrieve copy of extension provider id=com.crt.advproject.GCCBuildCommandParser
+!STACK 0
+java.lang.Exception: Internal Error trying to retrieve copy of extension provider id=com.crt.advproject.GCCBuildCommandParser
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.loadLanguageSettingsInternal(LanguageSettingsProvidersSerializer.java:1048)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.loadLanguageSettings(LanguageSettingsProvidersSerializer.java:1197)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage.loadProjectDescription(XmlProjectDescriptionStorage.java:508)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage.getProjectDescription(XmlProjectDescriptionStorage.java:239)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescriptionInternal(CProjectDescriptionManager.java:426)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescription(CProjectDescriptionManager.java:408)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescription(CProjectDescriptionManager.java:402)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescription(CProjectDescriptionManager.java:395)
+	at org.eclipse.cdt.make.ui.MakeContentProvider.getSourceEntries(MakeContentProvider.java:411)
+	at org.eclipse.cdt.make.ui.MakeContentProvider.getChildren(MakeContentProvider.java:106)
+	at org.eclipse.cdt.make.ui.MakeContentProvider.hasChildren(MakeContentProvider.java:174)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.isExpandable(AbstractTreeViewer.java:2269)
+	at org.eclipse.jface.viewers.TreeViewer.isExpandable(TreeViewer.java:553)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.isExpandable(AbstractTreeViewer.java:2299)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.updatePlus(AbstractTreeViewer.java:3113)
+	at org.eclipse.jface.viewers.TreeViewer.updatePlus(TreeViewer.java:796)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.createTreeItem(AbstractTreeViewer.java:895)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.createChildren(AbstractTreeViewer.java:872)
+	at org.eclipse.jface.viewers.TreeViewer.createChildren(TreeViewer.java:611)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.createChildren(AbstractTreeViewer.java:819)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.internalInitializeTree(AbstractTreeViewer.java:1648)
+	at org.eclipse.jface.viewers.TreeViewer.internalInitializeTree(TreeViewer.java:782)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.lambda$1(AbstractTreeViewer.java:1633)
+	at org.eclipse.jface.viewers.StructuredViewer.preservingSelection(StructuredViewer.java:1392)
+	at org.eclipse.jface.viewers.TreeViewer.preservingSelection(TreeViewer.java:367)
+	at org.eclipse.jface.viewers.StructuredViewer.preservingSelection(StructuredViewer.java:1353)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.inputChanged(AbstractTreeViewer.java:1627)
+	at org.eclipse.jface.viewers.ContentViewer.setInput(ContentViewer.java:282)
+	at org.eclipse.jface.viewers.StructuredViewer.setInput(StructuredViewer.java:1636)
+	at org.eclipse.cdt.make.ui.views.MakeView.createPartControl(MakeView.java:218)
+	at org.eclipse.ui.internal.e4.compatibility.CompatibilityPart.createPartControl(CompatibilityPart.java:158)
+	at org.eclipse.ui.internal.e4.compatibility.CompatibilityView.createPartControl(CompatibilityView.java:155)
+	at org.eclipse.ui.internal.e4.compatibility.CompatibilityPart.create(CompatibilityPart.java:365)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(MethodRequestor.java:56)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.processAnnotated(InjectorImpl.java:977)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.processAnnotated(InjectorImpl.java:939)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.internalInject(InjectorImpl.java:139)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.internalMake(InjectorImpl.java:386)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.make(InjectorImpl.java:312)
+	at org.eclipse.e4.core.contexts.ContextInjectionFactory.make(ContextInjectionFactory.java:203)
+	at org.eclipse.e4.ui.internal.workbench.ReflectionContributionFactory.createFromBundle(ReflectionContributionFactory.java:90)
+	at org.eclipse.e4.ui.internal.workbench.ReflectionContributionFactory.doCreate(ReflectionContributionFactory.java:59)
+	at org.eclipse.e4.ui.internal.workbench.ReflectionContributionFactory.create(ReflectionContributionFactory.java:42)
+	at org.eclipse.e4.ui.workbench.renderers.swt.ContributedPartRenderer.createWidget(ContributedPartRenderer.java:132)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createWidget(PartRenderingEngine.java:991)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:658)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$1.run(PartRenderingEngine.java:543)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createGui(PartRenderingEngine.java:527)
+	at org.eclipse.e4.ui.workbench.renderers.swt.ElementReferenceRenderer.createWidget(ElementReferenceRenderer.java:73)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createWidget(PartRenderingEngine.java:991)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:658)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:762)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$2.run(PartRenderingEngine.java:727)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createGui(PartRenderingEngine.java:711)
+	at org.eclipse.e4.ui.internal.workbench.PartServiceImpl.createElement(PartServiceImpl.java:1314)
+	at org.eclipse.e4.ui.internal.workbench.PartServiceImpl.showPart(PartServiceImpl.java:1275)
+	at org.eclipse.ui.internal.WorkbenchPartReference.getPart(WorkbenchPartReference.java:395)
+	at com.st.stm32cube.ide.mcu.ide.oss.MCUProjectPresentationHandler$1$1$1.windowActivated(MCUProjectPresentationHandler.java:115)
+	at org.eclipse.ui.internal.Workbench$8.run(Workbench.java:1022)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.ui.internal.Workbench.fireWindowActivated(Workbench.java:1019)
+	at org.eclipse.ui.internal.WorkbenchWindow$6.shellActivated(WorkbenchWindow.java:2455)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:105)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:91)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4326)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1174)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1198)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1183)
+	at org.eclipse.swt.widgets.Decorations.WM_ACTIVATE(Decorations.java:1523)
+	at org.eclipse.swt.widgets.Shell.WM_ACTIVATE(Shell.java:2338)
+	at org.eclipse.swt.widgets.Control.windowProc(Control.java:4724)
+	at org.eclipse.swt.widgets.Canvas.windowProc(Canvas.java:342)
+	at org.eclipse.swt.widgets.Decorations.windowProc(Decorations.java:1482)
+	at org.eclipse.swt.widgets.Shell.windowProc(Shell.java:2311)
+	at org.eclipse.swt.widgets.Display.windowProc(Display.java:5091)
+	at org.eclipse.swt.internal.win32.OS.BringWindowToTop(Native Method)
+	at org.eclipse.swt.widgets.Decorations.bringToTop(Decorations.java:215)
+	at org.eclipse.swt.widgets.Shell.open(Shell.java:1292)
+	at org.eclipse.e4.ui.workbench.renderers.swt.WBWRenderer.postProcess(WBWRenderer.java:743)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:676)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:762)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$2.run(PartRenderingEngine.java:727)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createGui(PartRenderingEngine.java:711)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1079)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:639)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:546)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:208)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:143)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:109)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:439)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:271)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:668)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:605)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1481)
+
+!ENTRY org.eclipse.cdt.core 4 0 2025-08-14 08:54:42.731
+!MESSAGE Error loading provider class=[com.crt.advproject.specs.MCUGCCBuiltinSpecsDetector] in project=frdmkl25z_usb_uart_bridge_cleancode, cfg=[com.crt.advproject.config.exe.debug.2007939331]
+!STACK 1
+org.eclipse.core.runtime.CoreException: Not able to load provider class=com.crt.advproject.specs.MCUGCCBuiltinSpecsDetector
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsExtensionManager.instantiateProviderClass(LanguageSettingsExtensionManager.java:283)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.loadProvider(LanguageSettingsProvidersSerializer.java:1160)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.loadLanguageSettingsInternal(LanguageSettingsProvidersSerializer.java:1054)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.loadLanguageSettings(LanguageSettingsProvidersSerializer.java:1197)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage.loadProjectDescription(XmlProjectDescriptionStorage.java:508)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage.getProjectDescription(XmlProjectDescriptionStorage.java:239)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescriptionInternal(CProjectDescriptionManager.java:426)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescription(CProjectDescriptionManager.java:408)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescription(CProjectDescriptionManager.java:402)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescription(CProjectDescriptionManager.java:395)
+	at org.eclipse.cdt.make.ui.MakeContentProvider.getSourceEntries(MakeContentProvider.java:411)
+	at org.eclipse.cdt.make.ui.MakeContentProvider.getChildren(MakeContentProvider.java:106)
+	at org.eclipse.cdt.make.ui.MakeContentProvider.hasChildren(MakeContentProvider.java:174)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.isExpandable(AbstractTreeViewer.java:2269)
+	at org.eclipse.jface.viewers.TreeViewer.isExpandable(TreeViewer.java:553)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.isExpandable(AbstractTreeViewer.java:2299)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.updatePlus(AbstractTreeViewer.java:3113)
+	at org.eclipse.jface.viewers.TreeViewer.updatePlus(TreeViewer.java:796)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.createTreeItem(AbstractTreeViewer.java:895)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.createChildren(AbstractTreeViewer.java:872)
+	at org.eclipse.jface.viewers.TreeViewer.createChildren(TreeViewer.java:611)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.createChildren(AbstractTreeViewer.java:819)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.internalInitializeTree(AbstractTreeViewer.java:1648)
+	at org.eclipse.jface.viewers.TreeViewer.internalInitializeTree(TreeViewer.java:782)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.lambda$1(AbstractTreeViewer.java:1633)
+	at org.eclipse.jface.viewers.StructuredViewer.preservingSelection(StructuredViewer.java:1392)
+	at org.eclipse.jface.viewers.TreeViewer.preservingSelection(TreeViewer.java:367)
+	at org.eclipse.jface.viewers.StructuredViewer.preservingSelection(StructuredViewer.java:1353)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.inputChanged(AbstractTreeViewer.java:1627)
+	at org.eclipse.jface.viewers.ContentViewer.setInput(ContentViewer.java:282)
+	at org.eclipse.jface.viewers.StructuredViewer.setInput(StructuredViewer.java:1636)
+	at org.eclipse.cdt.make.ui.views.MakeView.createPartControl(MakeView.java:218)
+	at org.eclipse.ui.internal.e4.compatibility.CompatibilityPart.createPartControl(CompatibilityPart.java:158)
+	at org.eclipse.ui.internal.e4.compatibility.CompatibilityView.createPartControl(CompatibilityView.java:155)
+	at org.eclipse.ui.internal.e4.compatibility.CompatibilityPart.create(CompatibilityPart.java:365)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(MethodRequestor.java:56)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.processAnnotated(InjectorImpl.java:977)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.processAnnotated(InjectorImpl.java:939)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.internalInject(InjectorImpl.java:139)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.internalMake(InjectorImpl.java:386)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.make(InjectorImpl.java:312)
+	at org.eclipse.e4.core.contexts.ContextInjectionFactory.make(ContextInjectionFactory.java:203)
+	at org.eclipse.e4.ui.internal.workbench.ReflectionContributionFactory.createFromBundle(ReflectionContributionFactory.java:90)
+	at org.eclipse.e4.ui.internal.workbench.ReflectionContributionFactory.doCreate(ReflectionContributionFactory.java:59)
+	at org.eclipse.e4.ui.internal.workbench.ReflectionContributionFactory.create(ReflectionContributionFactory.java:42)
+	at org.eclipse.e4.ui.workbench.renderers.swt.ContributedPartRenderer.createWidget(ContributedPartRenderer.java:132)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createWidget(PartRenderingEngine.java:991)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:658)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$1.run(PartRenderingEngine.java:543)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createGui(PartRenderingEngine.java:527)
+	at org.eclipse.e4.ui.workbench.renderers.swt.ElementReferenceRenderer.createWidget(ElementReferenceRenderer.java:73)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createWidget(PartRenderingEngine.java:991)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:658)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:762)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$2.run(PartRenderingEngine.java:727)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createGui(PartRenderingEngine.java:711)
+	at org.eclipse.e4.ui.internal.workbench.PartServiceImpl.createElement(PartServiceImpl.java:1314)
+	at org.eclipse.e4.ui.internal.workbench.PartServiceImpl.showPart(PartServiceImpl.java:1275)
+	at org.eclipse.ui.internal.WorkbenchPartReference.getPart(WorkbenchPartReference.java:395)
+	at com.st.stm32cube.ide.mcu.ide.oss.MCUProjectPresentationHandler$1$1$1.windowActivated(MCUProjectPresentationHandler.java:115)
+	at org.eclipse.ui.internal.Workbench$8.run(Workbench.java:1022)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.ui.internal.Workbench.fireWindowActivated(Workbench.java:1019)
+	at org.eclipse.ui.internal.WorkbenchWindow$6.shellActivated(WorkbenchWindow.java:2455)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:105)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:91)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4326)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1174)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1198)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1183)
+	at org.eclipse.swt.widgets.Decorations.WM_ACTIVATE(Decorations.java:1523)
+	at org.eclipse.swt.widgets.Shell.WM_ACTIVATE(Shell.java:2338)
+	at org.eclipse.swt.widgets.Control.windowProc(Control.java:4724)
+	at org.eclipse.swt.widgets.Canvas.windowProc(Canvas.java:342)
+	at org.eclipse.swt.widgets.Decorations.windowProc(Decorations.java:1482)
+	at org.eclipse.swt.widgets.Shell.windowProc(Shell.java:2311)
+	at org.eclipse.swt.widgets.Display.windowProc(Display.java:5091)
+	at org.eclipse.swt.internal.win32.OS.BringWindowToTop(Native Method)
+	at org.eclipse.swt.widgets.Decorations.bringToTop(Decorations.java:215)
+	at org.eclipse.swt.widgets.Shell.open(Shell.java:1292)
+	at org.eclipse.e4.ui.workbench.renderers.swt.WBWRenderer.postProcess(WBWRenderer.java:743)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:676)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:762)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$2.run(PartRenderingEngine.java:727)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createGui(PartRenderingEngine.java:711)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1079)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:639)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:546)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:208)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:143)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:109)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:439)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:271)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:668)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:605)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1481)
+!SUBENTRY 1 org.eclipse.cdt.core 4 0 2025-08-14 08:54:42.734
+!MESSAGE Not able to load provider class=com.crt.advproject.specs.MCUGCCBuiltinSpecsDetector
+
+!ENTRY org.eclipse.cdt.core 4 0 2025-08-14 08:54:42.736
+!MESSAGE Internal Error trying to retrieve copy of extension provider id=com.crt.advproject.GCCBuildCommandParser
+!STACK 0
+java.lang.Exception: Internal Error trying to retrieve copy of extension provider id=com.crt.advproject.GCCBuildCommandParser
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.loadLanguageSettingsInternal(LanguageSettingsProvidersSerializer.java:1048)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.loadLanguageSettings(LanguageSettingsProvidersSerializer.java:1197)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage.loadProjectDescription(XmlProjectDescriptionStorage.java:508)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage.getProjectDescription(XmlProjectDescriptionStorage.java:239)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescriptionInternal(CProjectDescriptionManager.java:426)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescription(CProjectDescriptionManager.java:408)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescription(CProjectDescriptionManager.java:402)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescription(CProjectDescriptionManager.java:395)
+	at org.eclipse.cdt.make.ui.MakeContentProvider.getSourceEntries(MakeContentProvider.java:411)
+	at org.eclipse.cdt.make.ui.MakeContentProvider.getChildren(MakeContentProvider.java:106)
+	at org.eclipse.cdt.make.ui.MakeContentProvider.hasChildren(MakeContentProvider.java:174)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.isExpandable(AbstractTreeViewer.java:2269)
+	at org.eclipse.jface.viewers.TreeViewer.isExpandable(TreeViewer.java:553)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.isExpandable(AbstractTreeViewer.java:2299)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.updatePlus(AbstractTreeViewer.java:3113)
+	at org.eclipse.jface.viewers.TreeViewer.updatePlus(TreeViewer.java:796)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.createTreeItem(AbstractTreeViewer.java:895)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.createChildren(AbstractTreeViewer.java:872)
+	at org.eclipse.jface.viewers.TreeViewer.createChildren(TreeViewer.java:611)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.createChildren(AbstractTreeViewer.java:819)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.internalInitializeTree(AbstractTreeViewer.java:1648)
+	at org.eclipse.jface.viewers.TreeViewer.internalInitializeTree(TreeViewer.java:782)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.lambda$1(AbstractTreeViewer.java:1633)
+	at org.eclipse.jface.viewers.StructuredViewer.preservingSelection(StructuredViewer.java:1392)
+	at org.eclipse.jface.viewers.TreeViewer.preservingSelection(TreeViewer.java:367)
+	at org.eclipse.jface.viewers.StructuredViewer.preservingSelection(StructuredViewer.java:1353)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.inputChanged(AbstractTreeViewer.java:1627)
+	at org.eclipse.jface.viewers.ContentViewer.setInput(ContentViewer.java:282)
+	at org.eclipse.jface.viewers.StructuredViewer.setInput(StructuredViewer.java:1636)
+	at org.eclipse.cdt.make.ui.views.MakeView.createPartControl(MakeView.java:218)
+	at org.eclipse.ui.internal.e4.compatibility.CompatibilityPart.createPartControl(CompatibilityPart.java:158)
+	at org.eclipse.ui.internal.e4.compatibility.CompatibilityView.createPartControl(CompatibilityView.java:155)
+	at org.eclipse.ui.internal.e4.compatibility.CompatibilityPart.create(CompatibilityPart.java:365)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(MethodRequestor.java:56)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.processAnnotated(InjectorImpl.java:977)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.processAnnotated(InjectorImpl.java:939)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.internalInject(InjectorImpl.java:139)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.internalMake(InjectorImpl.java:386)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.make(InjectorImpl.java:312)
+	at org.eclipse.e4.core.contexts.ContextInjectionFactory.make(ContextInjectionFactory.java:203)
+	at org.eclipse.e4.ui.internal.workbench.ReflectionContributionFactory.createFromBundle(ReflectionContributionFactory.java:90)
+	at org.eclipse.e4.ui.internal.workbench.ReflectionContributionFactory.doCreate(ReflectionContributionFactory.java:59)
+	at org.eclipse.e4.ui.internal.workbench.ReflectionContributionFactory.create(ReflectionContributionFactory.java:42)
+	at org.eclipse.e4.ui.workbench.renderers.swt.ContributedPartRenderer.createWidget(ContributedPartRenderer.java:132)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createWidget(PartRenderingEngine.java:991)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:658)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$1.run(PartRenderingEngine.java:543)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createGui(PartRenderingEngine.java:527)
+	at org.eclipse.e4.ui.workbench.renderers.swt.ElementReferenceRenderer.createWidget(ElementReferenceRenderer.java:73)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createWidget(PartRenderingEngine.java:991)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:658)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:762)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$2.run(PartRenderingEngine.java:727)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createGui(PartRenderingEngine.java:711)
+	at org.eclipse.e4.ui.internal.workbench.PartServiceImpl.createElement(PartServiceImpl.java:1314)
+	at org.eclipse.e4.ui.internal.workbench.PartServiceImpl.showPart(PartServiceImpl.java:1275)
+	at org.eclipse.ui.internal.WorkbenchPartReference.getPart(WorkbenchPartReference.java:395)
+	at com.st.stm32cube.ide.mcu.ide.oss.MCUProjectPresentationHandler$1$1$1.windowActivated(MCUProjectPresentationHandler.java:115)
+	at org.eclipse.ui.internal.Workbench$8.run(Workbench.java:1022)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.ui.internal.Workbench.fireWindowActivated(Workbench.java:1019)
+	at org.eclipse.ui.internal.WorkbenchWindow$6.shellActivated(WorkbenchWindow.java:2455)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:105)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:91)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4326)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1174)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1198)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1183)
+	at org.eclipse.swt.widgets.Decorations.WM_ACTIVATE(Decorations.java:1523)
+	at org.eclipse.swt.widgets.Shell.WM_ACTIVATE(Shell.java:2338)
+	at org.eclipse.swt.widgets.Control.windowProc(Control.java:4724)
+	at org.eclipse.swt.widgets.Canvas.windowProc(Canvas.java:342)
+	at org.eclipse.swt.widgets.Decorations.windowProc(Decorations.java:1482)
+	at org.eclipse.swt.widgets.Shell.windowProc(Shell.java:2311)
+	at org.eclipse.swt.widgets.Display.windowProc(Display.java:5091)
+	at org.eclipse.swt.internal.win32.OS.BringWindowToTop(Native Method)
+	at org.eclipse.swt.widgets.Decorations.bringToTop(Decorations.java:215)
+	at org.eclipse.swt.widgets.Shell.open(Shell.java:1292)
+	at org.eclipse.e4.ui.workbench.renderers.swt.WBWRenderer.postProcess(WBWRenderer.java:743)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:676)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:762)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$2.run(PartRenderingEngine.java:727)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createGui(PartRenderingEngine.java:711)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1079)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:639)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:546)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:208)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:143)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:109)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:439)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:271)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:668)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:605)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1481)
+
+!ENTRY org.eclipse.cdt.core 4 0 2025-08-14 08:54:42.738
+!MESSAGE Error loading provider class=[com.crt.advproject.specs.MCUGCCBuiltinSpecsDetector] in project=frdmkl25z_usb_uart_bridge_cleancode, cfg=[com.crt.advproject.config.exe.release.1430369751]
+!STACK 1
+org.eclipse.core.runtime.CoreException: Not able to load provider class=com.crt.advproject.specs.MCUGCCBuiltinSpecsDetector
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsExtensionManager.instantiateProviderClass(LanguageSettingsExtensionManager.java:283)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.loadProvider(LanguageSettingsProvidersSerializer.java:1160)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.loadLanguageSettingsInternal(LanguageSettingsProvidersSerializer.java:1054)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.loadLanguageSettings(LanguageSettingsProvidersSerializer.java:1197)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage.loadProjectDescription(XmlProjectDescriptionStorage.java:508)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage.getProjectDescription(XmlProjectDescriptionStorage.java:239)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescriptionInternal(CProjectDescriptionManager.java:426)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescription(CProjectDescriptionManager.java:408)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescription(CProjectDescriptionManager.java:402)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescription(CProjectDescriptionManager.java:395)
+	at org.eclipse.cdt.make.ui.MakeContentProvider.getSourceEntries(MakeContentProvider.java:411)
+	at org.eclipse.cdt.make.ui.MakeContentProvider.getChildren(MakeContentProvider.java:106)
+	at org.eclipse.cdt.make.ui.MakeContentProvider.hasChildren(MakeContentProvider.java:174)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.isExpandable(AbstractTreeViewer.java:2269)
+	at org.eclipse.jface.viewers.TreeViewer.isExpandable(TreeViewer.java:553)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.isExpandable(AbstractTreeViewer.java:2299)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.updatePlus(AbstractTreeViewer.java:3113)
+	at org.eclipse.jface.viewers.TreeViewer.updatePlus(TreeViewer.java:796)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.createTreeItem(AbstractTreeViewer.java:895)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.createChildren(AbstractTreeViewer.java:872)
+	at org.eclipse.jface.viewers.TreeViewer.createChildren(TreeViewer.java:611)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.createChildren(AbstractTreeViewer.java:819)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.internalInitializeTree(AbstractTreeViewer.java:1648)
+	at org.eclipse.jface.viewers.TreeViewer.internalInitializeTree(TreeViewer.java:782)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.lambda$1(AbstractTreeViewer.java:1633)
+	at org.eclipse.jface.viewers.StructuredViewer.preservingSelection(StructuredViewer.java:1392)
+	at org.eclipse.jface.viewers.TreeViewer.preservingSelection(TreeViewer.java:367)
+	at org.eclipse.jface.viewers.StructuredViewer.preservingSelection(StructuredViewer.java:1353)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.inputChanged(AbstractTreeViewer.java:1627)
+	at org.eclipse.jface.viewers.ContentViewer.setInput(ContentViewer.java:282)
+	at org.eclipse.jface.viewers.StructuredViewer.setInput(StructuredViewer.java:1636)
+	at org.eclipse.cdt.make.ui.views.MakeView.createPartControl(MakeView.java:218)
+	at org.eclipse.ui.internal.e4.compatibility.CompatibilityPart.createPartControl(CompatibilityPart.java:158)
+	at org.eclipse.ui.internal.e4.compatibility.CompatibilityView.createPartControl(CompatibilityView.java:155)
+	at org.eclipse.ui.internal.e4.compatibility.CompatibilityPart.create(CompatibilityPart.java:365)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(MethodRequestor.java:56)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.processAnnotated(InjectorImpl.java:977)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.processAnnotated(InjectorImpl.java:939)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.internalInject(InjectorImpl.java:139)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.internalMake(InjectorImpl.java:386)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.make(InjectorImpl.java:312)
+	at org.eclipse.e4.core.contexts.ContextInjectionFactory.make(ContextInjectionFactory.java:203)
+	at org.eclipse.e4.ui.internal.workbench.ReflectionContributionFactory.createFromBundle(ReflectionContributionFactory.java:90)
+	at org.eclipse.e4.ui.internal.workbench.ReflectionContributionFactory.doCreate(ReflectionContributionFactory.java:59)
+	at org.eclipse.e4.ui.internal.workbench.ReflectionContributionFactory.create(ReflectionContributionFactory.java:42)
+	at org.eclipse.e4.ui.workbench.renderers.swt.ContributedPartRenderer.createWidget(ContributedPartRenderer.java:132)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createWidget(PartRenderingEngine.java:991)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:658)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$1.run(PartRenderingEngine.java:543)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createGui(PartRenderingEngine.java:527)
+	at org.eclipse.e4.ui.workbench.renderers.swt.ElementReferenceRenderer.createWidget(ElementReferenceRenderer.java:73)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createWidget(PartRenderingEngine.java:991)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:658)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:762)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$2.run(PartRenderingEngine.java:727)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createGui(PartRenderingEngine.java:711)
+	at org.eclipse.e4.ui.internal.workbench.PartServiceImpl.createElement(PartServiceImpl.java:1314)
+	at org.eclipse.e4.ui.internal.workbench.PartServiceImpl.showPart(PartServiceImpl.java:1275)
+	at org.eclipse.ui.internal.WorkbenchPartReference.getPart(WorkbenchPartReference.java:395)
+	at com.st.stm32cube.ide.mcu.ide.oss.MCUProjectPresentationHandler$1$1$1.windowActivated(MCUProjectPresentationHandler.java:115)
+	at org.eclipse.ui.internal.Workbench$8.run(Workbench.java:1022)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.ui.internal.Workbench.fireWindowActivated(Workbench.java:1019)
+	at org.eclipse.ui.internal.WorkbenchWindow$6.shellActivated(WorkbenchWindow.java:2455)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:105)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:91)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4326)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1174)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1198)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1183)
+	at org.eclipse.swt.widgets.Decorations.WM_ACTIVATE(Decorations.java:1523)
+	at org.eclipse.swt.widgets.Shell.WM_ACTIVATE(Shell.java:2338)
+	at org.eclipse.swt.widgets.Control.windowProc(Control.java:4724)
+	at org.eclipse.swt.widgets.Canvas.windowProc(Canvas.java:342)
+	at org.eclipse.swt.widgets.Decorations.windowProc(Decorations.java:1482)
+	at org.eclipse.swt.widgets.Shell.windowProc(Shell.java:2311)
+	at org.eclipse.swt.widgets.Display.windowProc(Display.java:5091)
+	at org.eclipse.swt.internal.win32.OS.BringWindowToTop(Native Method)
+	at org.eclipse.swt.widgets.Decorations.bringToTop(Decorations.java:215)
+	at org.eclipse.swt.widgets.Shell.open(Shell.java:1292)
+	at org.eclipse.e4.ui.workbench.renderers.swt.WBWRenderer.postProcess(WBWRenderer.java:743)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:676)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:762)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$2.run(PartRenderingEngine.java:727)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createGui(PartRenderingEngine.java:711)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1079)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:639)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:546)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:208)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:143)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:109)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:439)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:271)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:668)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:605)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1481)
+!SUBENTRY 1 org.eclipse.cdt.core 4 0 2025-08-14 08:54:42.741
+!MESSAGE Not able to load provider class=com.crt.advproject.specs.MCUGCCBuiltinSpecsDetector
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.743
+!MESSAGE Orphaned CDT build configuration [com.crt.advproject.config.exe.debug.2007939331]: parent extension cfg [com.crt.advproject.config.exe.debug] not found
+!STACK 0
+java.lang.Exception
+	at org.eclipse.cdt.managedbuilder.core.ManagedBuilderCorePlugin.error(ManagedBuilderCorePlugin.java:246)
+	at org.eclipse.cdt.managedbuilder.internal.core.Configuration.loadFromProject(Configuration.java:879)
+	at org.eclipse.cdt.managedbuilder.internal.core.Configuration.<init>(Configuration.java:419)
+	at org.eclipse.cdt.managedbuilder.internal.dataprovider.ConfigurationDataProvider.load(ConfigurationDataProvider.java:405)
+	at org.eclipse.cdt.managedbuilder.internal.dataprovider.ConfigurationDataProvider.loadConfiguration(ConfigurationDataProvider.java:573)
+	at org.eclipse.cdt.internal.core.settings.model.CConfigurationDescriptionCache.loadData(CConfigurationDescriptionCache.java:139)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescription.loadDatas(CProjectDescription.java:199)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage.loadProjectDescription(XmlProjectDescriptionStorage.java:509)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage.getProjectDescription(XmlProjectDescriptionStorage.java:239)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescriptionInternal(CProjectDescriptionManager.java:426)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescription(CProjectDescriptionManager.java:408)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescription(CProjectDescriptionManager.java:402)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescription(CProjectDescriptionManager.java:395)
+	at org.eclipse.cdt.make.ui.MakeContentProvider.getSourceEntries(MakeContentProvider.java:411)
+	at org.eclipse.cdt.make.ui.MakeContentProvider.getChildren(MakeContentProvider.java:106)
+	at org.eclipse.cdt.make.ui.MakeContentProvider.hasChildren(MakeContentProvider.java:174)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.isExpandable(AbstractTreeViewer.java:2269)
+	at org.eclipse.jface.viewers.TreeViewer.isExpandable(TreeViewer.java:553)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.isExpandable(AbstractTreeViewer.java:2299)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.updatePlus(AbstractTreeViewer.java:3113)
+	at org.eclipse.jface.viewers.TreeViewer.updatePlus(TreeViewer.java:796)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.createTreeItem(AbstractTreeViewer.java:895)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.createChildren(AbstractTreeViewer.java:872)
+	at org.eclipse.jface.viewers.TreeViewer.createChildren(TreeViewer.java:611)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.createChildren(AbstractTreeViewer.java:819)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.internalInitializeTree(AbstractTreeViewer.java:1648)
+	at org.eclipse.jface.viewers.TreeViewer.internalInitializeTree(TreeViewer.java:782)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.lambda$1(AbstractTreeViewer.java:1633)
+	at org.eclipse.jface.viewers.StructuredViewer.preservingSelection(StructuredViewer.java:1392)
+	at org.eclipse.jface.viewers.TreeViewer.preservingSelection(TreeViewer.java:367)
+	at org.eclipse.jface.viewers.StructuredViewer.preservingSelection(StructuredViewer.java:1353)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.inputChanged(AbstractTreeViewer.java:1627)
+	at org.eclipse.jface.viewers.ContentViewer.setInput(ContentViewer.java:282)
+	at org.eclipse.jface.viewers.StructuredViewer.setInput(StructuredViewer.java:1636)
+	at org.eclipse.cdt.make.ui.views.MakeView.createPartControl(MakeView.java:218)
+	at org.eclipse.ui.internal.e4.compatibility.CompatibilityPart.createPartControl(CompatibilityPart.java:158)
+	at org.eclipse.ui.internal.e4.compatibility.CompatibilityView.createPartControl(CompatibilityView.java:155)
+	at org.eclipse.ui.internal.e4.compatibility.CompatibilityPart.create(CompatibilityPart.java:365)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(MethodRequestor.java:56)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.processAnnotated(InjectorImpl.java:977)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.processAnnotated(InjectorImpl.java:939)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.internalInject(InjectorImpl.java:139)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.internalMake(InjectorImpl.java:386)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.make(InjectorImpl.java:312)
+	at org.eclipse.e4.core.contexts.ContextInjectionFactory.make(ContextInjectionFactory.java:203)
+	at org.eclipse.e4.ui.internal.workbench.ReflectionContributionFactory.createFromBundle(ReflectionContributionFactory.java:90)
+	at org.eclipse.e4.ui.internal.workbench.ReflectionContributionFactory.doCreate(ReflectionContributionFactory.java:59)
+	at org.eclipse.e4.ui.internal.workbench.ReflectionContributionFactory.create(ReflectionContributionFactory.java:42)
+	at org.eclipse.e4.ui.workbench.renderers.swt.ContributedPartRenderer.createWidget(ContributedPartRenderer.java:132)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createWidget(PartRenderingEngine.java:991)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:658)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$1.run(PartRenderingEngine.java:543)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createGui(PartRenderingEngine.java:527)
+	at org.eclipse.e4.ui.workbench.renderers.swt.ElementReferenceRenderer.createWidget(ElementReferenceRenderer.java:73)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createWidget(PartRenderingEngine.java:991)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:658)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:762)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$2.run(PartRenderingEngine.java:727)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createGui(PartRenderingEngine.java:711)
+	at org.eclipse.e4.ui.internal.workbench.PartServiceImpl.createElement(PartServiceImpl.java:1314)
+	at org.eclipse.e4.ui.internal.workbench.PartServiceImpl.showPart(PartServiceImpl.java:1275)
+	at org.eclipse.ui.internal.WorkbenchPartReference.getPart(WorkbenchPartReference.java:395)
+	at com.st.stm32cube.ide.mcu.ide.oss.MCUProjectPresentationHandler$1$1$1.windowActivated(MCUProjectPresentationHandler.java:115)
+	at org.eclipse.ui.internal.Workbench$8.run(Workbench.java:1022)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.ui.internal.Workbench.fireWindowActivated(Workbench.java:1019)
+	at org.eclipse.ui.internal.WorkbenchWindow$6.shellActivated(WorkbenchWindow.java:2455)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:105)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:91)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4326)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1174)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1198)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1183)
+	at org.eclipse.swt.widgets.Decorations.WM_ACTIVATE(Decorations.java:1523)
+	at org.eclipse.swt.widgets.Shell.WM_ACTIVATE(Shell.java:2338)
+	at org.eclipse.swt.widgets.Control.windowProc(Control.java:4724)
+	at org.eclipse.swt.widgets.Canvas.windowProc(Canvas.java:342)
+	at org.eclipse.swt.widgets.Decorations.windowProc(Decorations.java:1482)
+	at org.eclipse.swt.widgets.Shell.windowProc(Shell.java:2311)
+	at org.eclipse.swt.widgets.Display.windowProc(Display.java:5091)
+	at org.eclipse.swt.internal.win32.OS.BringWindowToTop(Native Method)
+	at org.eclipse.swt.widgets.Decorations.bringToTop(Decorations.java:215)
+	at org.eclipse.swt.widgets.Shell.open(Shell.java:1292)
+	at org.eclipse.e4.ui.workbench.renderers.swt.WBWRenderer.postProcess(WBWRenderer.java:743)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:676)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:762)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$2.run(PartRenderingEngine.java:727)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createGui(PartRenderingEngine.java:711)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1079)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:639)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:546)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:208)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:143)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:109)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:439)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:271)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:668)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:605)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1481)
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.746
+!MESSAGE Missing superclass "com.crt.advproject.cpp.hdrlib" for "com.crt.advproject.cpp.hdrlib.244112035"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.746
+!MESSAGE Missing superclass "com.crt.advproject.cpp.fpu" for "com.crt.advproject.cpp.fpu.1716199703"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.746
+!MESSAGE Missing superclass "com.crt.advproject.cpp.arch" for "com.crt.advproject.cpp.arch.1371216395"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.754
+!MESSAGE Missing superclass "com.crt.advproject.cpp.misc.dialect" for "com.crt.advproject.cpp.misc.dialect.42989680"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.754
+!MESSAGE Missing superclass "com.crt.advproject.cpp.exe.debug.option.optimization.level" for "com.crt.advproject.cpp.exe.debug.option.optimization.level.1280427114"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.754
+!MESSAGE Missing superclass "com.crt.advproject.cpp.exe.debug.option.debugging.level" for "com.crt.advproject.cpp.exe.debug.option.debugging.level.518569919"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.758
+!MESSAGE Missing superclass "com.crt.advproject.cpp.lto" for "com.crt.advproject.cpp.lto.818976976"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.758
+!MESSAGE Missing superclass "com.crt.advproject.cpp.lto.fat" for "com.crt.advproject.cpp.lto.fat.330136940"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.758
+!MESSAGE Missing superclass "com.crt.advproject.cpp.merge.constants" for "com.crt.advproject.cpp.merge.constants.1999837380"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.758
+!MESSAGE Missing superclass "com.crt.advproject.cpp.prefixmap" for "com.crt.advproject.cpp.prefixmap.2036000574"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.758
+!MESSAGE Missing superclass "com.crt.advproject.cpp.thumb" for "com.crt.advproject.cpp.thumb.13660707"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.758
+!MESSAGE Missing superclass "com.crt.advproject.cpp.thumbinterwork" for "com.crt.advproject.cpp.thumbinterwork.991093278"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.758
+!MESSAGE Missing superclass "com.crt.advproject.cpp.securestate" for "com.crt.advproject.cpp.securestate.2005957888"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.758
+!MESSAGE Missing superclass "com.crt.advproject.cpp.stackusage" for "com.crt.advproject.cpp.stackusage.611639561"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.758
+!MESSAGE Missing superclass "com.crt.advproject.cpp.specs" for "com.crt.advproject.cpp.specs.943896478"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.758
+!MESSAGE Missing superclass "com.crt.advproject.cpp.config" for "com.crt.advproject.cpp.config.256215636"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.758
+!MESSAGE Missing superclass "com.crt.advproject.cpp.store" for "com.crt.advproject.cpp.store.1486463940"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.758
+!MESSAGE Missing superclass "com.crt.advproject.gcc.hdrlib" for "com.crt.advproject.gcc.hdrlib.2063934392"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.758
+!MESSAGE Missing superclass "com.crt.advproject.gcc.fpu" for "com.crt.advproject.gcc.fpu.1723014603"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.758
+!MESSAGE Missing superclass "com.crt.advproject.gcc.thumb" for "com.crt.advproject.gcc.thumb.1145277439"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.758
+!MESSAGE Missing superclass "com.crt.advproject.gcc.arch" for "com.crt.advproject.gcc.arch.1267257849"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.758
+!MESSAGE Missing superclass "com.crt.advproject.c.misc.dialect" for "com.crt.advproject.c.misc.dialect.326002945"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.774
+!MESSAGE Missing superclass "com.crt.advproject.gcc.exe.debug.option.optimization.level" for "com.crt.advproject.gcc.exe.debug.option.optimization.level.1301331078"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.774
+!MESSAGE Missing superclass "com.crt.advproject.gcc.exe.debug.option.debugging.level" for "com.crt.advproject.gcc.exe.debug.option.debugging.level.1404419415"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.774
+!MESSAGE Missing superclass "com.crt.advproject.gcc.lto" for "com.crt.advproject.gcc.lto.618897561"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.774
+!MESSAGE Missing superclass "com.crt.advproject.gcc.lto.fat" for "com.crt.advproject.gcc.lto.fat.166686704"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.774
+!MESSAGE Missing superclass "com.crt.advproject.gcc.merge.constants" for "com.crt.advproject.gcc.merge.constants.846758749"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.774
+!MESSAGE Missing superclass "com.crt.advproject.gcc.prefixmap" for "com.crt.advproject.gcc.prefixmap.2045142515"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.774
+!MESSAGE Missing superclass "com.crt.advproject.gcc.thumbinterwork" for "com.crt.advproject.gcc.thumbinterwork.1802684161"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.774
+!MESSAGE Missing superclass "com.crt.advproject.gcc.securestate" for "com.crt.advproject.gcc.securestate.1901781811"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.774
+!MESSAGE Missing superclass "com.crt.advproject.gcc.stackusage" for "com.crt.advproject.gcc.stackusage.234958879"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.780
+!MESSAGE Missing superclass "com.crt.advproject.gcc.specs" for "com.crt.advproject.gcc.specs.1013600956"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.780
+!MESSAGE Missing superclass "com.crt.advproject.gcc.config" for "com.crt.advproject.gcc.config.485604102"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.780
+!MESSAGE Missing superclass "com.crt.advproject.gcc.store" for "com.crt.advproject.gcc.store.430631772"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.783
+!MESSAGE Missing superclass "com.crt.advproject.gas.hdrlib" for "com.crt.advproject.gas.hdrlib.583515207"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.783
+!MESSAGE Missing superclass "com.crt.advproject.gas.fpu" for "com.crt.advproject.gas.fpu.418042047"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.783
+!MESSAGE Missing superclass "com.crt.advproject.gas.thumb" for "com.crt.advproject.gas.thumb.581239895"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.783
+!MESSAGE Missing superclass "com.crt.advproject.gas.arch" for "com.crt.advproject.gas.arch.180754751"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.787
+!MESSAGE Missing superclass "gnu.both.asm.option.flags.crt" for "gnu.both.asm.option.flags.crt.1273911622"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.787
+!MESSAGE Missing superclass "com.crt.advproject.gas.exe.debug.option.debugging.level" for "com.crt.advproject.gas.exe.debug.option.debugging.level.1831725935"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.787
+!MESSAGE Missing superclass "com.crt.advproject.gas.thumbinterwork" for "com.crt.advproject.gas.thumbinterwork.487275270"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.790
+!MESSAGE Missing superclass "com.crt.advproject.gas.specs" for "com.crt.advproject.gas.specs.1861134489"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.790
+!MESSAGE Missing superclass "com.crt.advproject.gas.config" for "com.crt.advproject.gas.config.747049302"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.790
+!MESSAGE Missing superclass "com.crt.advproject.gas.store" for "com.crt.advproject.gas.store.1648464525"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.793
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.hdrlib" for "com.crt.advproject.link.cpp.hdrlib.586975263"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.793
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.fpu" for "com.crt.advproject.link.cpp.fpu.427039629"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.794
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.arch" for "com.crt.advproject.link.cpp.arch.1120228148"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.796
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.lto" for "com.crt.advproject.link.cpp.lto.1066472971"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.796
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.lto.optmization.level" for "com.crt.advproject.link.cpp.lto.optmization.level.1223786646"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.796
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.thumb" for "com.crt.advproject.link.cpp.thumb.1883028730"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.796
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.manage" for "com.crt.advproject.link.cpp.manage.89769031"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.796
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.script" for "com.crt.advproject.link.cpp.script.793066715"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.796
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.scriptdir" for "com.crt.advproject.link.cpp.scriptdir.194710639"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.803
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.crpenable" for "com.crt.advproject.link.cpp.crpenable.489151187"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.803
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.flashconfigenable" for "com.crt.advproject.link.cpp.flashconfigenable.882184283"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.805
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.ecrp" for "com.crt.advproject.link.cpp.ecrp.1978526665"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.805
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.nanofloat" for "com.crt.advproject.link.cpp.nanofloat.590878428"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.805
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.nanofloat.scanf" for "com.crt.advproject.link.cpp.nanofloat.scanf.1564614145"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.805
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.toram" for "com.crt.advproject.link.cpp.toram.2075298764"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.810
+!MESSAGE Missing superclass "com.crt.advproject.link.memory.load.image.cpp" for "com.crt.advproject.link.memory.load.image.cpp.1893821214"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.813
+!MESSAGE Missing superclass "com.crt.advproject.link.memory.heapAndStack.style.cpp" for "com.crt.advproject.link.memory.heapAndStack.style.cpp.1742843278"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.813
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.stackOffset" for "com.crt.advproject.link.cpp.stackOffset.1942206955"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.816
+!MESSAGE Missing superclass "com.crt.advproject.link.memory.heapAndStack.cpp" for "com.crt.advproject.link.memory.heapAndStack.cpp.1237838005"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.816
+!MESSAGE Missing superclass "com.crt.advproject.link.memory.data.cpp" for "com.crt.advproject.link.memory.data.cpp.562851679"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.819
+!MESSAGE Missing superclass "com.crt.advproject.link.memory.sections.cpp" for "com.crt.advproject.link.memory.sections.cpp.388781008"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.819
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.multicore.slave" for "com.crt.advproject.link.cpp.multicore.slave.1939906872"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.822
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.multicore.master" for "com.crt.advproject.link.cpp.multicore.master.618011028"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.822
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.multicore.empty" for "com.crt.advproject.link.cpp.multicore.empty.1357074449"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.824
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.multicore.master.userobjs" for "com.crt.advproject.link.cpp.multicore.master.userobjs.502462719"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.824
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.config" for "com.crt.advproject.link.cpp.config.627428461"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.827
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.store" for "com.crt.advproject.link.cpp.store.763967543"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.827
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.securestate" for "com.crt.advproject.link.cpp.securestate.202579723"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.827
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.sgstubs.placement" for "com.crt.advproject.link.cpp.sgstubs.placement.1741266375"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.827
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.sgstubenable" for "com.crt.advproject.link.cpp.sgstubenable.989622514"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.827
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.nonsecureobject" for "com.crt.advproject.link.cpp.nonsecureobject.862820686"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.827
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.inimplib" for "com.crt.advproject.link.cpp.inimplib.637688519"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.827
+!MESSAGE Missing superclass "com.crt.advproject.link.gcc.hdrlib" for "com.crt.advproject.link.gcc.hdrlib.1421464485"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.827
+!MESSAGE Missing superclass "com.crt.advproject.link.fpu" for "com.crt.advproject.link.fpu.1936660137"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.827
+!MESSAGE Missing superclass "com.crt.advproject.link.thumb" for "com.crt.advproject.link.thumb.731770969"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.837
+!MESSAGE Missing superclass "com.crt.advproject.link.memory.load.image" for "com.crt.advproject.link.memory.load.image.77652135"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.837
+!MESSAGE Missing superclass "com.crt.advproject.link.memory.heapAndStack.style" for "com.crt.advproject.link.memory.heapAndStack.style.1697177840"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.837
+!MESSAGE Missing superclass "com.crt.advproject.link.memory.heapAndStack" for "com.crt.advproject.link.memory.heapAndStack.1209783998"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.837
+!MESSAGE Missing superclass "com.crt.advproject.link.memory.data" for "com.crt.advproject.link.memory.data.1756521523"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.837
+!MESSAGE Missing superclass "com.crt.advproject.link.memory.sections" for "com.crt.advproject.link.memory.sections.1535398731"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.837
+!MESSAGE Missing superclass "com.crt.advproject.link.gcc.multicore.master.userobjs" for "com.crt.advproject.link.gcc.multicore.master.userobjs.970576720"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.844
+!MESSAGE Missing superclass "com.crt.advproject.link.gcc.multicore.slave" for "com.crt.advproject.link.gcc.multicore.slave.1443350819"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.844
+!MESSAGE Missing superclass "com.crt.advproject.link.arch" for "com.crt.advproject.link.arch.236780372"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.844
+!MESSAGE Missing superclass "com.crt.advproject.link.gcc.lto" for "com.crt.advproject.link.gcc.lto.1529262162"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.844
+!MESSAGE Missing superclass "com.crt.advproject.link.gcc.lto.optmization.level" for "com.crt.advproject.link.gcc.lto.optmization.level.758483375"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.844
+!MESSAGE Missing superclass "com.crt.advproject.link.manage" for "com.crt.advproject.link.manage.1856967169"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.844
+!MESSAGE Missing superclass "com.crt.advproject.link.script" for "com.crt.advproject.link.script.889060222"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.844
+!MESSAGE Missing superclass "com.crt.advproject.link.scriptdir" for "com.crt.advproject.link.scriptdir.220531292"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.844
+!MESSAGE Missing superclass "com.crt.advproject.link.crpenable" for "com.crt.advproject.link.crpenable.2010890331"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.844
+!MESSAGE Missing superclass "com.crt.advproject.link.flashconfigenable" for "com.crt.advproject.link.flashconfigenable.619235867"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.844
+!MESSAGE Missing superclass "com.crt.advproject.link.ecrp" for "com.crt.advproject.link.ecrp.1666275678"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.852
+!MESSAGE Missing superclass "com.crt.advproject.link.gcc.nanofloat" for "com.crt.advproject.link.gcc.nanofloat.466431065"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.852
+!MESSAGE Missing superclass "com.crt.advproject.link.gcc.nanofloat.scanf" for "com.crt.advproject.link.gcc.nanofloat.scanf.676162075"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.853
+!MESSAGE Missing superclass "com.crt.advproject.link.toram" for "com.crt.advproject.link.toram.1218551693"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.853
+!MESSAGE Missing superclass "com.crt.advproject.link.stackOffset" for "com.crt.advproject.link.stackOffset.1013227207"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.853
+!MESSAGE Missing superclass "com.crt.advproject.link.gcc.multicore.master" for "com.crt.advproject.link.gcc.multicore.master.653952721"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.855
+!MESSAGE Missing superclass "com.crt.advproject.link.gcc.multicore.empty" for "com.crt.advproject.link.gcc.multicore.empty.831614269"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.855
+!MESSAGE Missing superclass "com.crt.advproject.link.config" for "com.crt.advproject.link.config.136355787"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.855
+!MESSAGE Missing superclass "com.crt.advproject.link.store" for "com.crt.advproject.link.store.1994265269"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.855
+!MESSAGE Missing superclass "com.crt.advproject.link.securestate" for "com.crt.advproject.link.securestate.1781433222"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.855
+!MESSAGE Missing superclass "com.crt.advproject.link.sgstubs.placement" for "com.crt.advproject.link.sgstubs.placement.1221376285"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.855
+!MESSAGE Missing superclass "com.crt.advproject.link.sgstubenable" for "com.crt.advproject.link.sgstubenable.1544476802"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.855
+!MESSAGE Missing superclass "com.crt.advproject.link.nonsecureobject" for "com.crt.advproject.link.nonsecureobject.590990775"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.855
+!MESSAGE Missing superclass "com.crt.advproject.link.inimplib" for "com.crt.advproject.link.inimplib.1729542340"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.855
+!MESSAGE Missing superclass "com.crt.advproject.linkserver.debug.prevent.debug" for "com.crt.advproject.linkserver.debug.prevent.debug.206407568"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.855
+!MESSAGE Missing superclass "com.crt.advproject.miscellaneous.end_of_heap" for "com.crt.advproject.miscellaneous.end_of_heap.1977450449"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.861
+!MESSAGE Missing superclass "com.crt.advproject.miscellaneous.pvHeapStart" for "com.crt.advproject.miscellaneous.pvHeapStart.1104088758"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.861
+!MESSAGE Missing superclass "com.crt.advproject.miscellaneous.pvHeapLimit" for "com.crt.advproject.miscellaneous.pvHeapLimit.1950717119"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.861
+!MESSAGE Missing superclass "com.crt.advproject.debugger.security.nonsecureimageenable" for "com.crt.advproject.debugger.security.nonsecureimageenable.61414354"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.861
+!MESSAGE Missing superclass "com.crt.advproject.debugger.security.nonsecureimage" for "com.crt.advproject.debugger.security.nonsecureimage.1453919054"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.901
+!MESSAGE Orphaned CDT build configuration [com.crt.advproject.config.exe.release.1430369751]: parent extension cfg [com.crt.advproject.config.exe.release] not found
+!STACK 0
+java.lang.Exception
+	at org.eclipse.cdt.managedbuilder.core.ManagedBuilderCorePlugin.error(ManagedBuilderCorePlugin.java:246)
+	at org.eclipse.cdt.managedbuilder.internal.core.Configuration.loadFromProject(Configuration.java:879)
+	at org.eclipse.cdt.managedbuilder.internal.core.Configuration.<init>(Configuration.java:419)
+	at org.eclipse.cdt.managedbuilder.internal.dataprovider.ConfigurationDataProvider.load(ConfigurationDataProvider.java:405)
+	at org.eclipse.cdt.managedbuilder.internal.dataprovider.ConfigurationDataProvider.loadConfiguration(ConfigurationDataProvider.java:573)
+	at org.eclipse.cdt.internal.core.settings.model.CConfigurationDescriptionCache.loadData(CConfigurationDescriptionCache.java:139)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescription.loadDatas(CProjectDescription.java:199)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage.loadProjectDescription(XmlProjectDescriptionStorage.java:509)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage.getProjectDescription(XmlProjectDescriptionStorage.java:239)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescriptionInternal(CProjectDescriptionManager.java:426)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescription(CProjectDescriptionManager.java:408)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescription(CProjectDescriptionManager.java:402)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.getProjectDescription(CProjectDescriptionManager.java:395)
+	at org.eclipse.cdt.make.ui.MakeContentProvider.getSourceEntries(MakeContentProvider.java:411)
+	at org.eclipse.cdt.make.ui.MakeContentProvider.getChildren(MakeContentProvider.java:106)
+	at org.eclipse.cdt.make.ui.MakeContentProvider.hasChildren(MakeContentProvider.java:174)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.isExpandable(AbstractTreeViewer.java:2269)
+	at org.eclipse.jface.viewers.TreeViewer.isExpandable(TreeViewer.java:553)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.isExpandable(AbstractTreeViewer.java:2299)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.updatePlus(AbstractTreeViewer.java:3113)
+	at org.eclipse.jface.viewers.TreeViewer.updatePlus(TreeViewer.java:796)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.createTreeItem(AbstractTreeViewer.java:895)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.createChildren(AbstractTreeViewer.java:872)
+	at org.eclipse.jface.viewers.TreeViewer.createChildren(TreeViewer.java:611)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.createChildren(AbstractTreeViewer.java:819)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.internalInitializeTree(AbstractTreeViewer.java:1648)
+	at org.eclipse.jface.viewers.TreeViewer.internalInitializeTree(TreeViewer.java:782)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.lambda$1(AbstractTreeViewer.java:1633)
+	at org.eclipse.jface.viewers.StructuredViewer.preservingSelection(StructuredViewer.java:1392)
+	at org.eclipse.jface.viewers.TreeViewer.preservingSelection(TreeViewer.java:367)
+	at org.eclipse.jface.viewers.StructuredViewer.preservingSelection(StructuredViewer.java:1353)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.inputChanged(AbstractTreeViewer.java:1627)
+	at org.eclipse.jface.viewers.ContentViewer.setInput(ContentViewer.java:282)
+	at org.eclipse.jface.viewers.StructuredViewer.setInput(StructuredViewer.java:1636)
+	at org.eclipse.cdt.make.ui.views.MakeView.createPartControl(MakeView.java:218)
+	at org.eclipse.ui.internal.e4.compatibility.CompatibilityPart.createPartControl(CompatibilityPart.java:158)
+	at org.eclipse.ui.internal.e4.compatibility.CompatibilityView.createPartControl(CompatibilityView.java:155)
+	at org.eclipse.ui.internal.e4.compatibility.CompatibilityPart.create(CompatibilityPart.java:365)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(MethodRequestor.java:56)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.processAnnotated(InjectorImpl.java:977)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.processAnnotated(InjectorImpl.java:939)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.internalInject(InjectorImpl.java:139)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.internalMake(InjectorImpl.java:386)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.make(InjectorImpl.java:312)
+	at org.eclipse.e4.core.contexts.ContextInjectionFactory.make(ContextInjectionFactory.java:203)
+	at org.eclipse.e4.ui.internal.workbench.ReflectionContributionFactory.createFromBundle(ReflectionContributionFactory.java:90)
+	at org.eclipse.e4.ui.internal.workbench.ReflectionContributionFactory.doCreate(ReflectionContributionFactory.java:59)
+	at org.eclipse.e4.ui.internal.workbench.ReflectionContributionFactory.create(ReflectionContributionFactory.java:42)
+	at org.eclipse.e4.ui.workbench.renderers.swt.ContributedPartRenderer.createWidget(ContributedPartRenderer.java:132)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createWidget(PartRenderingEngine.java:991)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:658)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$1.run(PartRenderingEngine.java:543)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createGui(PartRenderingEngine.java:527)
+	at org.eclipse.e4.ui.workbench.renderers.swt.ElementReferenceRenderer.createWidget(ElementReferenceRenderer.java:73)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createWidget(PartRenderingEngine.java:991)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:658)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:762)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$2.run(PartRenderingEngine.java:727)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createGui(PartRenderingEngine.java:711)
+	at org.eclipse.e4.ui.internal.workbench.PartServiceImpl.createElement(PartServiceImpl.java:1314)
+	at org.eclipse.e4.ui.internal.workbench.PartServiceImpl.showPart(PartServiceImpl.java:1275)
+	at org.eclipse.ui.internal.WorkbenchPartReference.getPart(WorkbenchPartReference.java:395)
+	at com.st.stm32cube.ide.mcu.ide.oss.MCUProjectPresentationHandler$1$1$1.windowActivated(MCUProjectPresentationHandler.java:115)
+	at org.eclipse.ui.internal.Workbench$8.run(Workbench.java:1022)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.ui.internal.Workbench.fireWindowActivated(Workbench.java:1019)
+	at org.eclipse.ui.internal.WorkbenchWindow$6.shellActivated(WorkbenchWindow.java:2455)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:105)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:91)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4326)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1174)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1198)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1183)
+	at org.eclipse.swt.widgets.Decorations.WM_ACTIVATE(Decorations.java:1523)
+	at org.eclipse.swt.widgets.Shell.WM_ACTIVATE(Shell.java:2338)
+	at org.eclipse.swt.widgets.Control.windowProc(Control.java:4724)
+	at org.eclipse.swt.widgets.Canvas.windowProc(Canvas.java:342)
+	at org.eclipse.swt.widgets.Decorations.windowProc(Decorations.java:1482)
+	at org.eclipse.swt.widgets.Shell.windowProc(Shell.java:2311)
+	at org.eclipse.swt.widgets.Display.windowProc(Display.java:5091)
+	at org.eclipse.swt.internal.win32.OS.BringWindowToTop(Native Method)
+	at org.eclipse.swt.widgets.Decorations.bringToTop(Decorations.java:215)
+	at org.eclipse.swt.widgets.Shell.open(Shell.java:1292)
+	at org.eclipse.e4.ui.workbench.renderers.swt.WBWRenderer.postProcess(WBWRenderer.java:743)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:676)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:762)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$2.run(PartRenderingEngine.java:727)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createGui(PartRenderingEngine.java:711)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1079)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:639)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:546)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:208)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:143)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:109)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:439)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:271)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:668)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:605)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1481)
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.901
+!MESSAGE Missing superclass "com.crt.advproject.cpp.arch" for "com.crt.advproject.cpp.arch.1199296686"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.901
+!MESSAGE Missing superclass "com.crt.advproject.cpp.misc.dialect" for "com.crt.advproject.cpp.misc.dialect.2136326484"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.901
+!MESSAGE Missing superclass "com.crt.advproject.cpp.lto" for "com.crt.advproject.cpp.lto.738095793"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.901
+!MESSAGE Missing superclass "com.crt.advproject.cpp.lto.fat" for "com.crt.advproject.cpp.lto.fat.1835208733"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.907
+!MESSAGE Missing superclass "com.crt.advproject.cpp.merge.constants" for "com.crt.advproject.cpp.merge.constants.330202691"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.907
+!MESSAGE Missing superclass "com.crt.advproject.cpp.prefixmap" for "com.crt.advproject.cpp.prefixmap.2041958276"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.907
+!MESSAGE Missing superclass "com.crt.advproject.cpp.fpu" for "com.crt.advproject.cpp.fpu.1519622853"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.907
+!MESSAGE Missing superclass "com.crt.advproject.cpp.thumb" for "com.crt.advproject.cpp.thumb.762495067"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.910
+!MESSAGE Missing superclass "com.crt.advproject.cpp.thumbinterwork" for "com.crt.advproject.cpp.thumbinterwork.1644216673"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.910
+!MESSAGE Missing superclass "com.crt.advproject.cpp.securestate" for "com.crt.advproject.cpp.securestate.74201171"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.910
+!MESSAGE Missing superclass "com.crt.advproject.cpp.hdrlib" for "com.crt.advproject.cpp.hdrlib.2031755705"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.910
+!MESSAGE Missing superclass "com.crt.advproject.cpp.stackusage" for "com.crt.advproject.cpp.stackusage.638489996"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.910
+!MESSAGE Missing superclass "com.crt.advproject.cpp.specs" for "com.crt.advproject.cpp.specs.273390274"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.910
+!MESSAGE Missing superclass "com.crt.advproject.cpp.config" for "com.crt.advproject.cpp.config.1504333360"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.910
+!MESSAGE Missing superclass "com.crt.advproject.cpp.store" for "com.crt.advproject.cpp.store.696893640"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.917
+!MESSAGE Missing superclass "com.crt.advproject.gcc.thumb" for "com.crt.advproject.gcc.thumb.1702794415"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.917
+!MESSAGE Missing superclass "com.crt.advproject.gcc.arch" for "com.crt.advproject.gcc.arch.135907600"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.917
+!MESSAGE Missing superclass "com.crt.advproject.c.misc.dialect" for "com.crt.advproject.c.misc.dialect.1011194362"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.920
+!MESSAGE Missing superclass "com.crt.advproject.gcc.exe.release.option.debugging.level" for "com.crt.advproject.gcc.exe.release.option.debugging.level.1187493741"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.920
+!MESSAGE Missing superclass "com.crt.advproject.gcc.lto" for "com.crt.advproject.gcc.lto.835715640"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.920
+!MESSAGE Missing superclass "com.crt.advproject.gcc.lto.fat" for "com.crt.advproject.gcc.lto.fat.214606276"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.920
+!MESSAGE Missing superclass "com.crt.advproject.gcc.merge.constants" for "com.crt.advproject.gcc.merge.constants.1747608555"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.920
+!MESSAGE Missing superclass "com.crt.advproject.gcc.prefixmap" for "com.crt.advproject.gcc.prefixmap.1972558373"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.924
+!MESSAGE Missing superclass "com.crt.advproject.gcc.fpu" for "com.crt.advproject.gcc.fpu.1450387604"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.924
+!MESSAGE Missing superclass "com.crt.advproject.gcc.thumbinterwork" for "com.crt.advproject.gcc.thumbinterwork.440645221"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.924
+!MESSAGE Missing superclass "com.crt.advproject.gcc.securestate" for "com.crt.advproject.gcc.securestate.951559875"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.924
+!MESSAGE Missing superclass "com.crt.advproject.gcc.hdrlib" for "com.crt.advproject.gcc.hdrlib.1292986239"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.926
+!MESSAGE Missing superclass "com.crt.advproject.gcc.stackusage" for "com.crt.advproject.gcc.stackusage.1619880875"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.926
+!MESSAGE Missing superclass "com.crt.advproject.gcc.specs" for "com.crt.advproject.gcc.specs.1225573040"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.926
+!MESSAGE Missing superclass "com.crt.advproject.gcc.config" for "com.crt.advproject.gcc.config.1713400015"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.926
+!MESSAGE Missing superclass "com.crt.advproject.gcc.store" for "com.crt.advproject.gcc.store.863405999"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.926
+!MESSAGE Missing superclass "com.crt.advproject.gas.thumb" for "com.crt.advproject.gas.thumb.148006628"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.932
+!MESSAGE Missing superclass "com.crt.advproject.gas.arch" for "com.crt.advproject.gas.arch.647531792"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.932
+!MESSAGE Missing superclass "gnu.both.asm.option.flags.crt" for "gnu.both.asm.option.flags.crt.916447888"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.932
+!MESSAGE Missing superclass "com.crt.advproject.gas.fpu" for "com.crt.advproject.gas.fpu.1998418186"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.932
+!MESSAGE Missing superclass "com.crt.advproject.gas.thumbinterwork" for "com.crt.advproject.gas.thumbinterwork.1867922712"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.932
+!MESSAGE Missing superclass "com.crt.advproject.gas.hdrlib" for "com.crt.advproject.gas.hdrlib.1088372425"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.932
+!MESSAGE Missing superclass "com.crt.advproject.gas.specs" for "com.crt.advproject.gas.specs.2119334910"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.932
+!MESSAGE Missing superclass "com.crt.advproject.gas.config" for "com.crt.advproject.gas.config.159659558"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.932
+!MESSAGE Missing superclass "com.crt.advproject.gas.store" for "com.crt.advproject.gas.store.327614119"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.932
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.arch" for "com.crt.advproject.link.cpp.arch.1917684095"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.932
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.lto" for "com.crt.advproject.link.cpp.lto.1039271966"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.932
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.lto.optmization.level" for "com.crt.advproject.link.cpp.lto.optmization.level.475217751"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.932
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.fpu" for "com.crt.advproject.link.cpp.fpu.1460014488"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.932
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.thumb" for "com.crt.advproject.link.cpp.thumb.1359811574"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.932
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.manage" for "com.crt.advproject.link.cpp.manage.698113464"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.932
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.script" for "com.crt.advproject.link.cpp.script.2088319860"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.932
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.scriptdir" for "com.crt.advproject.link.cpp.scriptdir.949401929"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.932
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.crpenable" for "com.crt.advproject.link.cpp.crpenable.2137039772"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.932
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.flashconfigenable" for "com.crt.advproject.link.cpp.flashconfigenable.1921402792"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.932
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.ecrp" for "com.crt.advproject.link.cpp.ecrp.531901158"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.948
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.hdrlib" for "com.crt.advproject.link.cpp.hdrlib.1271000203"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.948
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.nanofloat" for "com.crt.advproject.link.cpp.nanofloat.1060454691"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.948
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.nanofloat.scanf" for "com.crt.advproject.link.cpp.nanofloat.scanf.375008923"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.948
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.toram" for "com.crt.advproject.link.cpp.toram.1225580065"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.948
+!MESSAGE Missing superclass "com.crt.advproject.link.memory.load.image.cpp" for "com.crt.advproject.link.memory.load.image.cpp.1516709786"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.948
+!MESSAGE Missing superclass "com.crt.advproject.link.memory.heapAndStack.style.cpp" for "com.crt.advproject.link.memory.heapAndStack.style.cpp.775639088"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.948
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.stackOffset" for "com.crt.advproject.link.cpp.stackOffset.42937759"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.948
+!MESSAGE Missing superclass "com.crt.advproject.link.memory.heapAndStack.cpp" for "com.crt.advproject.link.memory.heapAndStack.cpp.1717964494"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.948
+!MESSAGE Missing superclass "com.crt.advproject.link.memory.data.cpp" for "com.crt.advproject.link.memory.data.cpp.1427201575"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.948
+!MESSAGE Missing superclass "com.crt.advproject.link.memory.sections.cpp" for "com.crt.advproject.link.memory.sections.cpp.986731802"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.948
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.multicore.slave" for "com.crt.advproject.link.cpp.multicore.slave.1736775042"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.948
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.multicore.master" for "com.crt.advproject.link.cpp.multicore.master.892261450"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.948
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.multicore.empty" for "com.crt.advproject.link.cpp.multicore.empty.1326604239"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.948
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.multicore.master.userobjs" for "com.crt.advproject.link.cpp.multicore.master.userobjs.684753128"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.948
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.config" for "com.crt.advproject.link.cpp.config.627945023"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.957
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.store" for "com.crt.advproject.link.cpp.store.1757294880"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.957
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.securestate" for "com.crt.advproject.link.cpp.securestate.2108982868"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.957
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.sgstubs.placement" for "com.crt.advproject.link.cpp.sgstubs.placement.333640882"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.957
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.sgstubenable" for "com.crt.advproject.link.cpp.sgstubenable.1940746053"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.957
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.nonsecureobject" for "com.crt.advproject.link.cpp.nonsecureobject.465360145"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.957
+!MESSAGE Missing superclass "com.crt.advproject.link.cpp.inimplib" for "com.crt.advproject.link.cpp.inimplib.2132456373"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.962
+!MESSAGE Missing superclass "com.crt.advproject.link.thumb" for "com.crt.advproject.link.thumb.672192041"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.962
+!MESSAGE Missing superclass "com.crt.advproject.link.memory.load.image" for "com.crt.advproject.link.memory.load.image.461528199"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.963
+!MESSAGE Missing superclass "com.crt.advproject.link.memory.heapAndStack.style" for "com.crt.advproject.link.memory.heapAndStack.style.966257008"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.963
+!MESSAGE Missing superclass "com.crt.advproject.link.memory.heapAndStack" for "com.crt.advproject.link.memory.heapAndStack.1576769707"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.963
+!MESSAGE Missing superclass "com.crt.advproject.link.memory.data" for "com.crt.advproject.link.memory.data.1855350958"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.963
+!MESSAGE Missing superclass "com.crt.advproject.link.memory.sections" for "com.crt.advproject.link.memory.sections.170125302"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.963
+!MESSAGE Missing superclass "com.crt.advproject.link.gcc.multicore.master.userobjs" for "com.crt.advproject.link.gcc.multicore.master.userobjs.893633825"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.963
+!MESSAGE Missing superclass "com.crt.advproject.link.gcc.multicore.slave" for "com.crt.advproject.link.gcc.multicore.slave.577870629"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.968
+!MESSAGE Missing superclass "com.crt.advproject.link.arch" for "com.crt.advproject.link.arch.335335247"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.968
+!MESSAGE Missing superclass "com.crt.advproject.link.gcc.lto" for "com.crt.advproject.link.gcc.lto.900391651"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.968
+!MESSAGE Missing superclass "com.crt.advproject.link.gcc.lto.optmization.level" for "com.crt.advproject.link.gcc.lto.optmization.level.507256890"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.968
+!MESSAGE Missing superclass "com.crt.advproject.link.fpu" for "com.crt.advproject.link.fpu.237710451"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.968
+!MESSAGE Missing superclass "com.crt.advproject.link.manage" for "com.crt.advproject.link.manage.1494639368"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.968
+!MESSAGE Missing superclass "com.crt.advproject.link.script" for "com.crt.advproject.link.script.136946919"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.968
+!MESSAGE Missing superclass "com.crt.advproject.link.scriptdir" for "com.crt.advproject.link.scriptdir.838865804"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.968
+!MESSAGE Missing superclass "com.crt.advproject.link.crpenable" for "com.crt.advproject.link.crpenable.261429265"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.968
+!MESSAGE Missing superclass "com.crt.advproject.link.flashconfigenable" for "com.crt.advproject.link.flashconfigenable.1097823586"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.968
+!MESSAGE Missing superclass "com.crt.advproject.link.ecrp" for "com.crt.advproject.link.ecrp.1994269704"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.968
+!MESSAGE Missing superclass "com.crt.advproject.link.gcc.hdrlib" for "com.crt.advproject.link.gcc.hdrlib.983566905"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.968
+!MESSAGE Missing superclass "com.crt.advproject.link.gcc.nanofloat" for "com.crt.advproject.link.gcc.nanofloat.492132157"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.968
+!MESSAGE Missing superclass "com.crt.advproject.link.gcc.nanofloat.scanf" for "com.crt.advproject.link.gcc.nanofloat.scanf.1428651639"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.968
+!MESSAGE Missing superclass "com.crt.advproject.link.toram" for "com.crt.advproject.link.toram.1746667188"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.968
+!MESSAGE Missing superclass "com.crt.advproject.link.stackOffset" for "com.crt.advproject.link.stackOffset.948247044"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.968
+!MESSAGE Missing superclass "com.crt.advproject.link.gcc.multicore.master" for "com.crt.advproject.link.gcc.multicore.master.1229683482"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.968
+!MESSAGE Missing superclass "com.crt.advproject.link.gcc.multicore.empty" for "com.crt.advproject.link.gcc.multicore.empty.982838836"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.968
+!MESSAGE Missing superclass "com.crt.advproject.link.config" for "com.crt.advproject.link.config.1635936529"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.979
+!MESSAGE Missing superclass "com.crt.advproject.link.store" for "com.crt.advproject.link.store.1868577960"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.979
+!MESSAGE Missing superclass "com.crt.advproject.link.securestate" for "com.crt.advproject.link.securestate.544382079"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.979
+!MESSAGE Missing superclass "com.crt.advproject.link.sgstubs.placement" for "com.crt.advproject.link.sgstubs.placement.1830952662"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.979
+!MESSAGE Missing superclass "com.crt.advproject.link.sgstubenable" for "com.crt.advproject.link.sgstubenable.604687372"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.979
+!MESSAGE Missing superclass "com.crt.advproject.link.nonsecureobject" for "com.crt.advproject.link.nonsecureobject.330047339"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.979
+!MESSAGE Missing superclass "com.crt.advproject.link.inimplib" for "com.crt.advproject.link.inimplib.1974239291"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.979
+!MESSAGE Missing superclass "com.crt.advproject.miscellaneous.end_of_heap" for "com.crt.advproject.miscellaneous.end_of_heap.1558417876"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.979
+!MESSAGE Missing superclass "com.crt.advproject.miscellaneous.pvHeapStart" for "com.crt.advproject.miscellaneous.pvHeapStart.396096877"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.979
+!MESSAGE Missing superclass "com.crt.advproject.miscellaneous.pvHeapLimit" for "com.crt.advproject.miscellaneous.pvHeapLimit.1762404789"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.979
+!MESSAGE Missing superclass "com.crt.advproject.debugger.security.nonsecureimageenable" for "com.crt.advproject.debugger.security.nonsecureimageenable.1990284242"
+
+!ENTRY org.eclipse.cdt.managedbuilder.core 4 0 2025-08-14 08:54:42.979
+!MESSAGE Missing superclass "com.crt.advproject.debugger.security.nonsecureimage" for "com.crt.advproject.debugger.security.nonsecureimage.1291840856"
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-08-14 08:54:48.493
+!MESSAGE Started RMI Server, listening on port 41337

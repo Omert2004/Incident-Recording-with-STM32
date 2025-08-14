@@ -81,23 +81,25 @@ void MPU6050_Read_Gyro(void);
 
 void UserButton_Callback(void);
 
-typedef struct __attribute__((packed)){
-	int16_t pitch_i;
-	int16_t roll_i;
-	uint8_t hours;
-	uint8_t minutes;
-	uint8_t seconds;
-	uint8_t padding ;
-} Current_Flash_Struct;
-
-void Construct_Flash_Struct(Current_Flash_Struct *data);
-void Flash_Write_After_2Secs(uint32_t current_pointer);
-void Dynamic_Buffer_Write(uint64_t value);
-uint64_t Dynamic_Buffer_Read(uint64_t *value);
-void Flash_Write_Past_1s(void);
 
 
 uint32_t GetElapsedTime_us(uint32_t start_ticks);
+
+uint64_t Dynamic_Buffer_Read(uint64_t *value);
+
+typedef struct __attribute__((packed)){
+	int16_t intProcessedPitch;
+	int16_t intProcessedRoll;
+	uint8_t intRTCHours;
+	uint8_t intRTCMinutes;
+	uint8_t intRTCSeconds;
+	uint8_t intPadding ;
+}tsCurrentFlashStruct;
+
+void Construct_Flash_Struct(tsCurrentFlashStruct *data);
+void Flash_Write_After_2Secs(uint32_t current_pointer);
+void Dynamic_Buffer_Write(uint64_t value);
+void Flash_Write_Past_1s(void);
 void SysTick_InitForTiming(void);
 /* USER CODE END Private defines */
 

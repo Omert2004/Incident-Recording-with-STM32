@@ -1,10 +1,10 @@
-22:02:32 **** Incremental Build of configuration Debug for project TimerAddition ****
+10:46:00 **** Incremental Build of configuration Debug for project TimerAddition ****
 make -j8 all 
 arm-none-eabi-size  TimerAddition.elf 
    text	   data	    bss	    dec	    hex	filename
-  49460	      0	  19632	  69092	  10de4	TimerAddition.elf
+  48128	      0	  19624	  67752	  108a8	TimerAddition.elf
 Finished building: default.size.stdout
  
 
-22:02:32 Build Finished. 0 errors, 0 warnings. (took 479ms)
+10:46:00 Build Finished. 0 errors, 0 warnings. (took 373ms)
 

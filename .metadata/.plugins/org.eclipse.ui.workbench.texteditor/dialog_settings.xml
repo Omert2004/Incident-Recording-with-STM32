@@ -1,18 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<item key="hasShownOverlayPopupBefore" value="true"/>
-	<item key="replaceBarOpen" value="false"/>
+	<item key="replaceBarOpen" value="true"/>
 	<list key="searchhistory">
+		<item value="currentData"/>
+		<item value="Current_Flash_Struct"/>
+		<item value="STATES"/>
+		<item value="Flash_PAGE54_START"/>
+		<item value="STATE_AFTER_2SECS"/>
+		<item value="STATE_PAST_1"/>
+		<item value="STATE_IDLE"/>
+		<item value="page_buffer"/>
+		<item value="flash_addr_pointer"/>
+		<item value="current_addr"/>
+		<item value="FLASH_ADDR_POINTER_STORAGE"/>
+		<item value="FLASH_PAGE54_START"/>
+		<item value="FLASH_PAGE_START"/>
 		<item value="sys"/>
 		<item value="PAST_1s_time_us"/>
-		<item value="rtc_buf"/>
-		<item value="rtc"/>
-		<item value="rtc "/>
-		<item value="Flash_Write"/>
-		<item value="word_counter"/>
-		<item value="flash_start_addr"/>
-		<item value="receive_flag"/>
-		<item value="TIM2_IRQHandler"/>
-		<item value="systick"/>
+	</list>
+	<list key="replacehistory">
+		<item value="sCurrentData"/>
+		<item value="tsCurrentFlashStruct"/>
+		<item value="FLASH_PAGE54_START"/>
+		<item value="EN_STATE_NEXT_150_SAMPLES"/>
+		<item value="EN_STATE_PAST_100_SAMPLES"/>
+		<item value="EN_STATE_IDLE"/>
 	</list>
 </section>
