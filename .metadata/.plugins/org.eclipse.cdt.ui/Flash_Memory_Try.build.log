@@ -1,0 +1,10 @@
+00:53:45 **** Incremental Build of configuration Debug for project Flash_Memory_Try ****
+make -j8 all 
+arm-none-eabi-size  Flash_Memory_Try.elf 
+   text	   data	    bss	    dec	    hex	filename
+   8536	      0	  18072	  26608	   67f0	Flash_Memory_Try.elf
+Finished building: default.size.stdout
+ 
+
+00:53:45 Build Finished. 0 errors, 0 warnings. (took 532ms)
+
