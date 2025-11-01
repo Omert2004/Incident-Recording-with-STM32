@@ -155,10 +155,10 @@ Each event = **250 samples × 8 bytes = 2000 bytes ≈ 2 KB per page.**
 
 ## 🧑‍💻 Author
 
-**Oğuz Mert Coşkun**  
-📧 [oguzmertcoskun@gmail.com](mailto:oguzmertcoskun@gmail.com)  
-🎓 Electrical & Electronics Engineering — Özyeğin University  
----
+- 👤 **Oğuz Mert Coşkun**  
+- 📧 [oguzmertcoskun2004@gmail.com](mailto:oguzmertcoskun2004@gmail.com)  
+- 🎓 Electrical & Electronics Engineering — Özyeğin University
+
 
 ## 📄 License
 
